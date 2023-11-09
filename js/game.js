@@ -4,14 +4,17 @@ let keyboard = new Keyboard();
 
 function init() {
   canvas = document.getElementById('canvas');
-  world = new World(canvas);
+  world = new World(canvas, keyboard);
   
-  console.log('My Character is', world.character);
+  // console.log('My Character is', world.character);
 }
 
-window.addEventListener('keydown', (e) => {
+window.addEventListener('keydown', (e) => {  
+  let key = e.code.toUpperCase();  
+  keyboard[key] = true;
+  keyboard.setDirectionTrue(key);
+});
 
-  //console.log(e.code.toUpperCase());
-  let key = e.code.toUpperCase();
-  this.keyboard[key];
+window.addEventListener('keyup', (e) => {  
+   keyboard.setDirectionFalse();
 });
