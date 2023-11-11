@@ -1,9 +1,6 @@
 class World {
   character = new Character();
-  enemies = level1.enemies;
-  clouds = level1.clouds;  
-  backgroundObjects = level1.backgroundObjects;
-
+  level = level1;
   canvas;
   ctx;
   keyboard;
@@ -12,14 +9,7 @@ class World {
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext('2d');
     this.canvas = canvas;
-    this.keyboard = keyboard;
-    //this.updateBackgroundObjects(); 
-    // this.backgroundObjects = [
-    //   new BackgroundObject('img/5_background/layers/air.png', -719*2),
-    //   new BackgroundObject('img/5_background/layers/3_third_layer/1.png', -719*2),
-    //   new BackgroundObject('img/5_background/layers/2_second_layer/1.png', -719*2),
-    //   new BackgroundObject('img/5_background/layers/1_first_layer/1.png', -719*2),      
-    // ];
+    this.keyboard = keyboard;    
     this.draw();
     this.setWorld();
   }
@@ -33,10 +23,10 @@ class World {
 
     this.ctx.translate(this.camera_x, 0);
 
-    this.addObjectsToMap(this.backgroundObjects);
+    this.addObjectsToMap(this.level.backgroundObjects);
     this.addToMap(this.character);
-    this.addObjectsToMap(this.clouds);
-    this.addObjectsToMap(this.enemies);
+    this.addObjectsToMap(this.level.clouds);
+    this.addObjectsToMap(this.level.enemies);
 
     this.ctx.translate(-this.camera_x, 0);
 
@@ -65,22 +55,4 @@ class World {
        this.ctx.restore();
     }
   }
-
-  updateBackgroundObjects(){
-    //for (let i = -100, j = 0; i <= 100; i++, j++) {
-    for (let i = 0, j = 0; i <= 100; i++, j++) {
-      // Jeder 2. Durchlauf soll den Bildnamen ändern
-      const imageNameSuffix = j % 2 === 0 ? '1.png' : '2.png';      
-      // Iteriere über jedes BackgroundObject in der Liste
-      for (const obj of this.backgroundObjects) {
-        // Ändere den Bildnamen und die Position entsprechend        
-        obj.setImagePath = `img/5_background/layers/1_first_layer/${imageNameSuffix}`;
-        obj.setPositionX = 719 * i;
-
-        console.log(setImagePath);
-
-      }
-    }
-  }
-
 }
