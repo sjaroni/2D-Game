@@ -1,13 +1,9 @@
 class World {
   character = new Character();
-  enemies = [new Chicken(), new Chicken(), new Chicken()];
-  clouds = [new Cloud(), new Cloud()];
-  backgroundObjects = [
-    new BackgroundObject('img/5_background/layers/air.png', 0),
-    new BackgroundObject('img/5_background/layers/3_third_layer/1.png', 0),
-    new BackgroundObject('img/5_background/layers/2_second_layer/1.png', 0),
-    new BackgroundObject('img/5_background/layers/1_first_layer/1.png', 0),
-  ];
+  enemies = level1.enemies;
+  clouds = level1.clouds;  
+  backgroundObjects = level1.backgroundObjects;
+
   canvas;
   ctx;
   keyboard;
@@ -17,6 +13,13 @@ class World {
     this.ctx = canvas.getContext('2d');
     this.canvas = canvas;
     this.keyboard = keyboard;
+    //this.updateBackgroundObjects(); 
+    // this.backgroundObjects = [
+    //   new BackgroundObject('img/5_background/layers/air.png', -719*2),
+    //   new BackgroundObject('img/5_background/layers/3_third_layer/1.png', -719*2),
+    //   new BackgroundObject('img/5_background/layers/2_second_layer/1.png', -719*2),
+    //   new BackgroundObject('img/5_background/layers/1_first_layer/1.png', -719*2),      
+    // ];
     this.draw();
     this.setWorld();
   }
@@ -62,4 +65,22 @@ class World {
        this.ctx.restore();
     }
   }
+
+  updateBackgroundObjects(){
+    //for (let i = -100, j = 0; i <= 100; i++, j++) {
+    for (let i = 0, j = 0; i <= 100; i++, j++) {
+      // Jeder 2. Durchlauf soll den Bildnamen ändern
+      const imageNameSuffix = j % 2 === 0 ? '1.png' : '2.png';      
+      // Iteriere über jedes BackgroundObject in der Liste
+      for (const obj of this.backgroundObjects) {
+        // Ändere den Bildnamen und die Position entsprechend        
+        obj.setImagePath = `img/5_background/layers/1_first_layer/${imageNameSuffix}`;
+        obj.setPositionX = 719 * i;
+
+        console.log(setImagePath);
+
+      }
+    }
+  }
+
 }
