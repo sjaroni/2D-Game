@@ -43,15 +43,15 @@ IMAGES_JUMPING = [
       this.walking_sound.pause();
       if(this.world.keyboard.ARROWRIGHT && this.x < this.world.level.level_end_x){
         this.moveRight();
+        this.walking_sound.play();
       }
       
       if(this.world.keyboard.ARROWLEFT  && this.x > 0){
-        this.x -= this.speed;
-        this.otherDirection = true;
+        this.moveLeft();
         this.walking_sound.play();
       }
-
-      if(this.world.keyboard.ARROWUP && !this.isAboveGround()){
+      
+      if(this.world.keyboard.SPACE && !this.isAboveGround()){
         this.jump();
       }
 
@@ -65,9 +65,7 @@ IMAGES_JUMPING = [
         this.playAnimation(this.IMAGES_JUMPING);
       }
 
-
       if(this.world.keyboard.ARROWRIGHT || this.world.keyboard.ARROWLEFT){
-        // Walk animation
         this.playAnimation(this.IMAGES_WALKING);
       }
 
@@ -76,7 +74,7 @@ IMAGES_JUMPING = [
 
 
   jump(){
-
+    this.speedY = 30;
   }
 
 }
