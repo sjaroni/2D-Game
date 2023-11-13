@@ -37,20 +37,15 @@ class MovableObject{
     });
   }
 
-
   moveRight(){
-    this.x += this.speed;
-    this.otherDirection = false;
+    this.x += this.speed;    
   }  
 
   moveLeft(){    
-    this.x -= this.speed;
-    this.otherDirection = true;
+    this.x -= this.speed;    
   }
 
-
   playAnimation(images){
-    // Walk animation
     let i = this.currentImage % images.length;
     let path = images[i];
     this.img = this.imageCache[path];
@@ -60,6 +55,4 @@ class MovableObject{
   jump(){
     this.speedY = 30;
   }
-
-
 }

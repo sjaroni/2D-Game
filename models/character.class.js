@@ -14,17 +14,17 @@ class Character extends MovableObject{
     'img/2_character_pepe/2_walk/W-26.png'
   ];
 
-IMAGES_JUMPING = [
-  'img/2_character_pepe/3_jump/J-31.png',
-  'img/2_character_pepe/3_jump/J-32.png',
-  'img/2_character_pepe/3_jump/J-33.png',
-  'img/2_character_pepe/3_jump/J-34.png',
-  'img/2_character_pepe/3_jump/J-35.png',
-  'img/2_character_pepe/3_jump/J-36.png',
-  'img/2_character_pepe/3_jump/J-37.png',
-  'img/2_character_pepe/3_jump/J-38.png',
-  'img/2_character_pepe/3_jump/J-39.png'
-]
+  IMAGES_JUMPING = [
+    'img/2_character_pepe/3_jump/J-31.png',
+    'img/2_character_pepe/3_jump/J-32.png',
+    'img/2_character_pepe/3_jump/J-33.png',
+    'img/2_character_pepe/3_jump/J-34.png',
+    'img/2_character_pepe/3_jump/J-35.png',
+    'img/2_character_pepe/3_jump/J-36.png',
+    'img/2_character_pepe/3_jump/J-37.png',
+    'img/2_character_pepe/3_jump/J-38.png',
+    'img/2_character_pepe/3_jump/J-39.png'
+  ];
 
   world;
   walking_sound = new Audio('audio/running.mp3');
@@ -44,11 +44,13 @@ IMAGES_JUMPING = [
       if(this.world.keyboard.ARROWRIGHT && this.x < this.world.level.level_end_x){
         this.moveRight();
         this.walking_sound.play();
+        this.otherDirection = false;
       }
       
       if(this.world.keyboard.ARROWLEFT  && this.x > 0){
         this.moveLeft();
         this.walking_sound.play();
+        this.otherDirection = true;
       }
       
       if(this.world.keyboard.SPACE && !this.isAboveGround()){
@@ -71,10 +73,4 @@ IMAGES_JUMPING = [
 
     }, 50);
   }
-
-
-  jump(){
-    this.speedY = 30;
-  }
-
 }

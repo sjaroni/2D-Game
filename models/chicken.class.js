@@ -30,12 +30,10 @@ class Chicken extends MovableObject{
     //this.chicken_sound.play();
 
     setInterval(() => {      
-      this.moveLeft();
-      this.otherDirection = false;      
+      this.moveLeft();      
     }, 1000 / 60);
 
     setInterval(() => {
-      // Walk animation
       this.playAnimation(this.IMAGES_WALKING);     
     }, 200);
     
