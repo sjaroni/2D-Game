@@ -7,12 +7,9 @@ class DrawableObject{
   width = 100;
   height = 150;
   
-
   constructor(){
 
   }
-
-  
 
   loadImage(path) {
     this.img = new Image();
@@ -28,7 +25,17 @@ class DrawableObject{
   }
 
   draw(ctx){
-    ctx.drawImage(this.img, this.x, this.y, this.width, this.height);        
+    ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
   }
 
+  drawFrame(ctx){
+    if(this instanceof Character || this instanceof Chicken){
+      ctx.beginPath();
+      ctx.lineWidth = '2';
+      ctx.strokeStyle = 'white';    
+      ctx.rect(this.x, this.y, this.width, this.height);
+      ctx.stroke();
+    }
+  }
+  
 }

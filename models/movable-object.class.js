@@ -27,22 +27,12 @@ class MovableObject extends DrawableObject{
     return this.y < 170;
   }
   
-  drawFrame(ctx){
-    if(this instanceof Character || this instanceof Chicken){
-      ctx.beginPath();
-      ctx.lineWidth = '2';
-      ctx.strokeStyle = 'white';    
-      ctx.rect(this.x, this.y, this.width, this.height);
-      ctx.stroke();
-    }
-  }
-  
   hit(){
-    this.energy -= 5;
+    this.energy -= 5;    
     if(this.energy < 0){
       this.energy = 0;
     } else {
-      this.lastHit = new Date().getTime();
+      this.lastHit = new Date().getTime();      
     }
   }  
 
