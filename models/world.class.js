@@ -57,15 +57,7 @@ class World {
     this.ctx.translate(-this.camera_x, 0); // Kamera zurücksetzen
     // -- Space for fixed objects -- //
     this.addToMap(this.statusBar);
-    this.ctx.translate(this.camera_x, 0); // Kamera wieder setzen
-
-    //TODO - Startposition/Bild von Pepe
-    //TODO - isAboveGround Standardbild
-    //TODO - isHurt nach Zeit neues Standardbild    
-    //TODO - Mehr Hühner?
-    //TODO - Endboss
-    //TODO - Statusbar - alle (auch Endboss)     
-    //TODO - Clouds bewegen sich nicht / Clouds wiederholen sich nicht
+    this.ctx.translate(this.camera_x, 0); // Kamera wieder setzen    
     this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.throwableObjects);
 
