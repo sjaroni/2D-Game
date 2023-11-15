@@ -10,7 +10,7 @@ function init() {
 }
 
 window.addEventListener('keydown', (e) => {  
-  let key = e.code.toUpperCase();  
+  let key = e.code.toUpperCase();
   keyboard[key] = true;
   keyboard.setDirectionTrue(key);
 });

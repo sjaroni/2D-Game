@@ -74,16 +74,17 @@ class Character extends MovableObject{
       
       if(this.world.keyboard.SPACE && !this.isAboveGround()){
         this.jump();
-      }
+      }      
 
       this.world.camera_x = -this.x + 100;
 
     }, 1000 / 60);
     
-    setInterval(() => {
+    const intervalId = setInterval(() => {
 
       if(this.isDead()){
         this.playAnimation(this.IMAGES_DEAD);
+        this.stopAnimation(intervalId);
       } else if(this.isHurt()){
         this.playAnimation(this.IMAGES_HURT);
       } else if(this.isAboveGround()){
@@ -96,4 +97,12 @@ class Character extends MovableObject{
 
     }, 50);
   }
+
+  stopAnimation(intervalId){
+    setTimeout(() => {
+      clearInterval(intervalId);
+    }, 300);
+  }
+
+
 }

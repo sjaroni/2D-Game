@@ -1,12 +1,12 @@
 class Keyboard {
 
-
   constructor(){
     this.ARROWLEFT = false;
     this.ARROWRIGHT = false;
     this.SPACE = false;
     this.ARROWUP = false;
     this.ARROWDOWN = false;
+    this.KEYD = false;
   }
 
   // Setzt die angegebene Richtung auf true und alle anderen auf false
@@ -16,6 +16,7 @@ class Keyboard {
     this.SPACE = direction === 'SPACE';
     this.ARROWUP = direction === 'ARROWUP';
     this.ARROWDOWN = direction === 'ARROWDOWN';
+    this.KEYD = direction === 'KEYD';
   }
   
   // Setze alle auf false
@@ -25,6 +26,7 @@ class Keyboard {
     this.SPACE = false;
     this.ARROWUP = false;
     this.ARROWDOWN = false;
+    this.KEYD = false;
   }
 
 }
