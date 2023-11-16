@@ -9,6 +9,11 @@ function init() {
   console.log('My Character is', world.character);
 }
 
+function stopGame() {
+  for (let i = 0; i < 9999; i++) window.clearInterval(i);
+}
+
+
 window.addEventListener('keydown', (e) => {  
   let key = e.code.toUpperCase();
   keyboard[key] = true;

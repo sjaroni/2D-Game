@@ -25,7 +25,7 @@
 //TODO - Mehr Hühner?
 //TODO - Clouds bewegen sich nicht / Clouds wiederholen sich nicht
 
-//TODO - Endboss laufen
+//TODO - Endboss laufen (extra Intro-Animation) 
 //TODO - Statusbar - alle (auch Endboss)     
 
 //TODO - Objekt-Rahmen entfernen
