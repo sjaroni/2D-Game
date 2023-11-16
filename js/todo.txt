@@ -5,6 +5,8 @@
 //TODO - GameOver Screen
 //TODO - Hintergrundbild mit background-Img URL() background-position auf index.html
 //TODO - FullScreen-Modus canvas.requestFullscreen
+    document.getElementById('fullscreen').requestFullscreen();
+    
 //TODO - Keine Standardschriftart! Zabars
 //TODO - Gegner läuft bevor das Spiel startet (Startbutton startet initLevel() in Level1 - in den code gucken!)
 
