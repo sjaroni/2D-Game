@@ -5,6 +5,11 @@ class World {
   ctx;
   keyboard;
   camera_x = 0;
+  
+  backgroundWidth = 719;
+  backgroundRepeat = 8;
+  maxBackgroundWidth = this.backgroundWidth * this.backgroundRepeat;
+
   statusBar = new StatusBar();
   throwableObjects = [];
   
@@ -76,7 +81,7 @@ class World {
 
   addToMap(mo) {
     if(mo.otherDirection){
-      this.flipImage(mo);
+      this.flipImage(mo);      
     }
     
     mo.draw(this.ctx);

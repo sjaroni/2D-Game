@@ -21,5 +21,5 @@ window.addEventListener('keydown', (e) => {
 });
 
 window.addEventListener('keyup', (e) => {  
-   keyboard.setDirectionFalse();
+  keyboard.setDirectionFalse();
 });

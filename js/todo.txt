@@ -1,33 +1,33 @@
-//TODO - Startscreen (Start, Anleitung, Settings wie Musik an/aus, Sounds, an/aus, Fullscreen)
-//TODO - Anleitung (vom Startbildschirm aus) welche Tasten
-//TODO - Musik im Hintergrund
-//TODO - Sounds (auch Springen)
-//TODO - GameOver Screen
-//TODO - Hintergrundbild mit background-Img URL() background-position auf index.html
-//TODO - FullScreen-Modus canvas.requestFullscreen
-    document.getElementById('fullscreen').requestFullscreen();
+    //TODO - Startscreen (Start, Anleitung, Settings wie Musik an/aus, Sounds, an/aus, Fullscreen)
+    //TODO - Anleitung (vom Startbildschirm aus) welche Tasten
+    //TODO - Musik im Hintergrund
+    //TODO - Sounds (auch Springen)
+    //TODO - GameOver Screen
+    //TODO - Hintergrundbild mit background-Img URL() background-position auf index.html
+    //TODO - FullScreen-Modus canvas.requestFullscreen
+        document.getElementById('fullscreen').requestFullscreen();
     
-//TODO - Keine Standardschriftart! Zabars
-//TODO - Gegner läuft bevor das Spiel startet (Startbutton startet initLevel() in Level1 - in den code gucken!)
+    //TODO - Keine Standardschriftart! Zabars
+    //TODO - Gegner läuft bevor das Spiel startet (Startbutton startet initLevel() in Level1 - in den code gucken!)
 
-//TODO - Flaschen einsammeln
-//TODO - Coins einsammeln
-//TODO - Flaschen nur werfen wenn vorhanden
-//TODO - Flaschen Kollision
-//TODO - Auf Gegner springen
+    //TODO - Flaschen einsammeln
+    //TODO - Coins einsammeln
+    //TODO - Flaschen nur werfen wenn vorhanden
+    //TODO - Flaschen Kollision
+    //TODO - Auf Gegner springen
 
 
-//TODO - Mehrere Level?
+    //TODO - Mehrere Level?
 
-//TODO - Startposition/Bild von Pepe
-//TODO - isAboveGround Standardbild
-//TODO - isAboveGround dann trotzdem rechts und links möglich
+    //TODO - Startposition/Bild von Pepe
+    //TODO - isAboveGround Standardbild
+    //TODO - isAboveGround dann trotzdem rechts und links möglich
 
-//TODO - isHurt nach Zeit neues Standardbild    
+    //TODO - isHurt nach Zeit neues Standardbild    
+
 //TODO - Mehr Hühner?
-//TODO - Clouds bewegen sich nicht / Clouds wiederholen sich nicht
 
-//TODO - Endboss laufen (extra Intro-Animation) 
-//TODO - Statusbar - alle (auch Endboss)     
+    //TODO - Endboss laufen (extra Intro-Animation) 
+    //TODO - Statusbar - alle (auch Endboss)     
 
-//TODO - Objekt-Rahmen entfernen
+    //TODO - Objekt-Rahmen entfernen
