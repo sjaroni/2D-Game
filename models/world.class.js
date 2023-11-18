@@ -57,12 +57,13 @@ class World {
 
     this.addObjectsToMap(this.level.backgroundObjects);
     this.addObjectsToMap(this.level.clouds);
-    this.addToMap(this.character);
+    
 
     this.ctx.translate(-this.camera_x, 0); // Kamera zurücksetzen
-    // -- Space for fixed objects -- //
+    // -- Space for fixed objects -- //    
     this.addToMap(this.statusBar);
     this.ctx.translate(this.camera_x, 0); // Kamera wieder setzen    
+    this.addToMap(this.character);
     this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.throwableObjects);
 
@@ -81,7 +82,7 @@ class World {
 
   addToMap(mo) {
     if(mo.otherDirection){
-      this.flipImage(mo);      
+      this.flipImage(mo);
     }
     
     mo.draw(this.ctx);
@@ -101,6 +102,6 @@ class World {
   
   flipImageBack(mo){
     mo.x = mo.x * -1;
-       this.ctx.restore();
+    this.ctx.restore();
   }
 }

@@ -17,13 +17,10 @@
     //TODO - Auf Gegner springen
 
 
-    //TODO - Mehrere Level?
-
-    //TODO - Startposition/Bild von Pepe
-    //TODO - isAboveGround Standardbild
+    //TODO - Mehrere Level?    
     //TODO - isAboveGround dann trotzdem rechts und links möglich
 
-    //TODO - isHurt nach Zeit neues Standardbild    
+    //TODO - isHurt nach Zeit neues Standardbild
 
 //TODO - Mehr Hühner?
 
