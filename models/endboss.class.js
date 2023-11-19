@@ -58,40 +58,39 @@ class Endboss extends MovableObject {
     this.loadImages(this.IMAGES_ATTACK);
     this.loadImages(this.IMAGES_HURT);
     this.loadImages(this.IMAGES_DEAD);
-    //this.x = 2500;
-    this.x = 500;
+    this.x = 2500;
     this.speed = this.speed + Math.random() * 0.25;
-    this.animate();
+    //this.animate();
     this.intervalNum = 1;
-    this.starteIntervalle();
+    this.startInterval();
   }
 
-  animate(){
+  // animate(){
 
-    // setInterval(() => {
-    //   this.moveLeft();      
-    // }, 1000 / 60);
-  }
+  //   // setInterval(() => {
+  //   //   this.moveLeft();      
+  //   // }, 1000 / 60);
+  // }
 
-  starteIntervalle() {
+  startInterval() {
     switch (this.intervalNum) {
         case 1:
-          this.starteErstesIntervall();
+          this.startWalkingInterval();
           break;
         case 2:
-          this.starteZweitesIntervall();
+          this.startAlertInterval();
           break;
         case 3:
-          this.starteDrittesIntervall();
+          this.startAttackInterval();
           break;
         default:
           this.intervalNum = 1;
-          this.starteIntervalle();
+          this.startInterval();
           break;
       }
     }
   
-    starteErstesIntervall() {      
+    startWalkingInterval() {      
       let intervalWalking = setInterval(() => {
         this.moveLeft();
         this.playAnimation(this.IMAGES_WALKING);
@@ -99,33 +98,33 @@ class Endboss extends MovableObject {
         if(this.initIntervalWalking == 5){
           clearInterval(intervalWalking);
           this.intervalNum = 2;
-          this.starteIntervalle();
+          this.startInterval();
         }
         this.initIntervalWalking++;
       }, 50);
     }
 
-    starteZweitesIntervall() {
+    startAlertInterval() {
       let intervalAlert = setInterval(() => {
         this.playAnimation(this.IMAGES_ALERT);
         this.initIntervalWalking = 0;
         if(this.initIntervalAlert == 5){
           clearInterval(intervalAlert);
           this.intervalNum = 3;
-          this.starteIntervalle();
+          this.startInterval();
         }
         this.initIntervalAlert++;
       }, 400);
     }
   
-    starteDrittesIntervall() {      
+    startAttackInterval() {      
       let intervalAttack = setInterval(() => {
         this.playAnimation(this.IMAGES_ATTACK);
         this.initIntervalAlert = 0;
         if(this.initIntervalAttack == 6){
           clearInterval(intervalAttack);
           this.intervalNum = 1;
-          this.starteIntervalle();
+          this.startInterval();
         }
         this.initIntervalAttack++;
       }, 400);

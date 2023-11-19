@@ -9,14 +9,24 @@ class World {
   backgroundWidth = 719;
   backgroundRepeat = 8;
   maxBackgroundWidth = this.backgroundWidth * this.backgroundRepeat;
-
-  statusBar = new StatusBar();
+  
+  statusBar = new StatusBar();  
+  coins = [
+    new Coin(),
+    new Coin(),
+    new Coin(),
+    new Coin(),
+    new Coin(),
+    new Coin(),
+    new Coin(),
+    new Coin()
+  ];
   throwableObjects = [];
   
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext('2d');
     this.canvas = canvas;
-    this.keyboard = keyboard;    
+    this.keyboard = keyboard;
     this.draw();
     this.setWorld();
     this.run();
@@ -40,7 +50,14 @@ class World {
         this.statusBar.setPercentage(this.character.energy);
       }
       }
-    );
+      );
+    
+    this.coins.forEach((coin) => {
+       if(this.character.isColliding(coin)){
+         //this.coin.collected();         
+         console.log('gesammelt');
+       }
+    });
   }
 
   checkThrowObjects(){
@@ -57,11 +74,13 @@ class World {
 
     this.addObjectsToMap(this.level.backgroundObjects);
     this.addObjectsToMap(this.level.clouds);
-    
+    this.addObjectsToMap(this.coins);    
 
     this.ctx.translate(-this.camera_x, 0); // Kamera zurücksetzen
     // -- Space for fixed objects -- //    
+    
     this.addToMap(this.statusBar);
+    // -- Space for fixed objects -- //    
     this.ctx.translate(this.camera_x, 0); // Kamera wieder setzen    
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.enemies);

@@ -50,8 +50,6 @@ class MovableObject extends DrawableObject{
     timepassed = timepassed / 1000;
     return timepassed < 1;
   }
-
-
   // isColliding(obj) {
   //   return  (this.X + this.width) >= obj.X && this.X <= (obj.X + obj.width) && 
   //           (this.Y + this.offsetY + this.height) >= obj.Y &&

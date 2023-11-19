@@ -24,7 +24,7 @@
 
 //TODO - Mehr Hühner?
 
-    //TODO - Endboss laufen (extra Intro-Animation) 
+    //TODO - Endboss erreicht - Sound starten
     //TODO - Statusbar - alle (auch Endboss)     
 
     //TODO - Objekt-Rahmen entfernen
