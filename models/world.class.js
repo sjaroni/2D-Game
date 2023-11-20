@@ -51,7 +51,7 @@ class World {
       if (this.character.isColliding(coin)) {
         //this.coin.collected();
         //console.log('gesammelt');
-        this.statusBarCoin.setPercentage(10);
+        this.statusBarCoin.setPercentage(22);
         //this.coinsArray.push('coin');
       }
     });
