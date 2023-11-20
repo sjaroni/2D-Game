@@ -5,24 +5,20 @@ class World {
   ctx;
   keyboard;
   camera_x = 0;
-  
+  coinsArray = [];
+
   backgroundWidth = 719;
   backgroundRepeat = 8;
   maxBackgroundWidth = this.backgroundWidth * this.backgroundRepeat;
-  
-  statusBar = new StatusBar();  
-  coins = [
-    new Coin(),
-    new Coin(),
-    new Coin(),
-    new Coin(),
-    new Coin(),
-    new Coin(),
-    new Coin(),
-    new Coin()
-  ];
+
+  statusBarHealth = new StatusBarHealth();
+  statusBarBottle = new StatusBarBottle();
+  statusBarCoin = new StatusBarCoin();
+  statusBarEndboss = new StatusBarEndboss();
+
+  coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
   throwableObjects = [];
-  
+
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext('2d');
     this.canvas = canvas;
@@ -32,37 +28,41 @@ class World {
     this.run();
   }
 
-  setWorld(){
-    this.character.world = this;    
+  setWorld() {
+    this.character.world = this;
   }
 
-  run(){
-    setInterval(() => {      
+  run() {
+    setInterval(() => {
       this.checkCollisions();
       this.checkThrowObjects();
     }, 200);
   }
 
-  checkCollisions(){
-    this.level.enemies.forEach((enemy) => {        
-      if(this.character.isColliding(enemy) && this.character.energy > 0) {          
+  checkCollisions() {
+    this.level.enemies.forEach((enemy) => {
+      if (this.character.isColliding(enemy) && this.character.energy > 0) {
         this.character.hit();
-        this.statusBar.setPercentage(this.character.energy);
+        this.statusBarHealth.setPercentage(this.character.energy);
       }
-      }
-      );
-    
+    });
+
     this.coins.forEach((coin) => {
-       if(this.character.isColliding(coin)){
-         //this.coin.collected();         
-         console.log('gesammelt');
-       }
+      if (this.character.isColliding(coin)) {
+        //this.coin.collected();
+        //console.log('gesammelt');
+        this.statusBarCoin.setPercentage(10);
+        //this.coinsArray.push('coin');
+      }
     });
   }
 
-  checkThrowObjects(){
-    if(this.keyboard.KEYD){      
-      let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+  checkThrowObjects() {
+    if (this.keyboard.KEYD) {
+      let bottle = new ThrowableObject(
+        this.character.x + 100,
+        this.character.y + 100,
+      );
       this.throwableObjects.push(bottle);
     }
   }
@@ -74,14 +74,18 @@ class World {
 
     this.addObjectsToMap(this.level.backgroundObjects);
     this.addObjectsToMap(this.level.clouds);
-    this.addObjectsToMap(this.coins);    
+    this.addObjectsToMap(this.coins);
 
     this.ctx.translate(-this.camera_x, 0); // Kamera zurücksetzen
-    // -- Space for fixed objects -- //    
-    
-    this.addToMap(this.statusBar);
-    // -- Space for fixed objects -- //    
-    this.ctx.translate(this.camera_x, 0); // Kamera wieder setzen    
+    // -- Space for fixed objects -- //
+
+    this.addToMap(this.statusBarHealth);
+    this.addToMap(this.statusBarCoin);
+    this.addToMap(this.statusBarBottle);
+    this.addToMap(this.statusBarEndboss);
+
+    // -- Space for fixed objects -- //
+    this.ctx.translate(this.camera_x, 0); // Kamera wieder setzen
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.throwableObjects);
@@ -94,32 +98,32 @@ class World {
   }
 
   addObjectsToMap(objects) {
-    objects.forEach(o => {
+    objects.forEach((o) => {
       this.addToMap(o);
     });
   }
 
   addToMap(mo) {
-    if(mo.otherDirection){
+    if (mo.otherDirection) {
       this.flipImage(mo);
     }
-    
+
     mo.draw(this.ctx);
     mo.drawFrame(this.ctx);
 
-    if(mo.otherDirection){
-       this.flipImageBack(mo);
+    if (mo.otherDirection) {
+      this.flipImageBack(mo);
     }
   }
 
-  flipImage(mo){
-    this.ctx.save();      
+  flipImage(mo) {
+    this.ctx.save();
     this.ctx.translate(mo.width, 0);
     this.ctx.scale(-1, 1);
     mo.x = mo.x * -1;
   }
-  
-  flipImageBack(mo){
+
+  flipImageBack(mo) {
     mo.x = mo.x * -1;
     this.ctx.restore();
   }
