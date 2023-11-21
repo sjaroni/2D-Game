@@ -16,7 +16,7 @@ class World {
   statusBarCoin = new StatusBarCoin();
   statusBarEndboss = new StatusBarEndboss();
 
-  coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
+  coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];  
   throwableObjects = [];
 
   constructor(canvas, keyboard) {
@@ -44,15 +44,16 @@ class World {
       if (this.character.isColliding(enemy) && this.character.energy > 0) {
         this.character.hit();
         this.statusBarHealth.setPercentage(this.character.energy);
+        //ctx.clearRect(enemy.x, enemy.y, enemy.width, enemy.height);
+        //this.ctx.clearRect(enemy.x, enemy.y, enemy.x + enemy.width, enemy.y + enemy.height);
+        //console.log(enemy.x);
       }
     });
 
     this.coins.forEach((coin) => {
       if (this.character.isColliding(coin)) {
-        //this.coin.collected();
-        //console.log('gesammelt');
-        this.statusBarCoin.setPercentage(22);
-        //this.coinsArray.push('coin');
+        console.log(this.coins.length);
+        this.coins.splice(0,1);
       }
     });
   }
