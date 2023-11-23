@@ -16,7 +16,8 @@ class World {
   statusBarCoin = new StatusBarCoin();
   statusBarEndboss = new StatusBarEndboss();
 
-  coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];  
+  //coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];  
+  coins = [new Coin()];  
   throwableObjects = [];
 
   constructor(canvas, keyboard) {
@@ -92,6 +93,8 @@ class World {
     this.addObjectsToMap(this.throwableObjects);
 
     this.ctx.translate(-this.camera_x, 0);
+    
+    // Draw() wird immer wieder aufgerufen
     let self = this;
     requestAnimationFrame(function () {
       self.draw();
@@ -111,6 +114,7 @@ class World {
 
     mo.draw(this.ctx);
     mo.drawFrame(this.ctx);
+    mo.drawFrame2(this.ctx);
 
     if (mo.otherDirection) {
       this.flipImageBack(mo);

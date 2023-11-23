@@ -57,17 +57,17 @@ class MovableObject extends DrawableObject{
   //           obj.onCollisionCourse;
   // }
 
-  isColliding(obj) {
-    return  (this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) && 
-            (this.y + this.height) >= obj.y &&
-            this.y <= (obj.y + obj.height);
+isColliding(obj) {
+    return  (this.X + this.width) >= obj.X && this.X <= (obj.X + obj.width) && 
+            (this.Y + this.offsetY + this.height) >= obj.Y &&
+            (this.Y + this.offsetY) <= (obj.Y + obj.height);
   }
 
-  // isColliding(mo){
-  //   return this.x + this.width > mo.x &&
-  //     this.y + this.height > mo.y &&
-  //     this.x < mo.x &&
-  //     this.y < mo.y + mo.height;
+  // Geht
+  // isColliding(obj) {
+  //    return  (this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) && 
+  //            (this.y + this.height) >= obj.y &&
+  //            this.y <= (obj.y + obj.height);
   // }
 
   playAnimation(images){

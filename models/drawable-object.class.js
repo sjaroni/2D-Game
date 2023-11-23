@@ -6,6 +6,8 @@ class DrawableObject{
   y = 170;
   width = 100;
   height = 150;
+  offsetX = 0;
+  offsetY = 0;
   backgroundWidth = 719;
   backgroundRepeat = 8;
   maxBackgroundWidth = this.backgroundWidth * this.backgroundRepeat;
@@ -40,5 +42,13 @@ class DrawableObject{
       ctx.stroke();
     }
   }
-  
+  drawFrame2(ctx){
+    if(this instanceof Character || this instanceof Chicken || this instanceof Coin || this instanceof ThrowableObject){
+      ctx.beginPath();
+      ctx.lineWidth = '2';
+      ctx.strokeStyle = 'red';
+      ctx.rect(this.x + this.offsetX / 2, this.y + this.offsetY / 2 , this.width - this.offsetX, this.height - this.offsetY);
+      ctx.stroke();
+    }
+  }
 }

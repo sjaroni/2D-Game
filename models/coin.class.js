@@ -9,8 +9,11 @@ class Coin extends DrawableObject {
   x = 0; // Wert zwischen 0 und maximaler Breite
   y = 100; // Wert zwischen 100 und 300
 
+  offsetX = 74;
+  offsetY = 74;  
+
   width = 120;
-  height = 120;
+  height = 120;  
   maxBackgroundWidth = 1400;
 
   constructor(){
