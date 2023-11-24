@@ -5,19 +5,21 @@ class World {
   ctx;
   keyboard;
   camera_x = 0;
-  coinsArray = [];
+  collectedCoins = 0;
+  
+  font = "40px serif";
 
   backgroundWidth = 719;
   backgroundRepeat = 8;
   maxBackgroundWidth = this.backgroundWidth * this.backgroundRepeat;
 
-  statusBarHealth = new StatusBarHealth();
-  statusBarBottle = new StatusBarBottle();
-  statusBarCoin = new StatusBarCoin();
+ // statusBarBottle = new StatusBarBottle();
+  statusBarBottleText = new StatusBarBottleText();
+  //statusBarHealth = new StatusBarHealth();
+  //statusBarCoin = new StatusBarCoin();
   statusBarEndboss = new StatusBarEndboss();
 
-  //coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];  
-  coins = [new Coin()];  
+  coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
   throwableObjects = [];
 
   constructor(canvas, keyboard) {
@@ -52,9 +54,14 @@ class World {
     });
 
     this.coins.forEach((coin) => {
-      if (this.character.isColliding(coin)) {
-        console.log(this.coins.length);
-        this.coins.splice(0,1);
+      if (this.character.isColliding(coin)) {      
+        
+        //this.coin.collected();
+        let coinIndex = getIndexOf(coin.x,coin.y, this.coins);
+        this.coins.splice(coinIndex, 1);
+        this.collectedCoins++;
+        // sound collect
+        // animation 
       }
     });
   }
@@ -81,9 +88,12 @@ class World {
     this.ctx.translate(-this.camera_x, 0); // Kamera zurücksetzen
     // -- Space for fixed objects -- //
 
-    this.addToMap(this.statusBarHealth);
-    this.addToMap(this.statusBarCoin);
-    this.addToMap(this.statusBarBottle);
+    //this.addToMap(this.statusBarBottle);
+    this.addToMap(this.statusBarBottleText);
+    this.addTextToMap(this.statusBarBottleText);
+
+    //this.addToMap(this.statusBarHealth);
+    //this.addToMap(this.statusBarCoin);
     this.addToMap(this.statusBarEndboss);
 
     // -- Space for fixed objects -- //
@@ -114,12 +124,17 @@ class World {
 
     mo.draw(this.ctx);
     mo.drawFrame(this.ctx);
-    mo.drawFrame2(this.ctx);
+    //mo.drawFrame2(this.ctx);
 
     if (mo.otherDirection) {
       this.flipImageBack(mo);
     }
   }
+
+  addTextToMap(mo) {
+    mo.drawText(this.ctx);
+  }
+
 
   flipImage(mo) {
     this.ctx.save();

@@ -23,8 +23,8 @@ class Coin extends DrawableObject {
     this.y = this.height + Math.random() * 180;    
   }
 
-  //  collected(){
-  //    this.coin_sound.play();
-  //  };
+    collected(){
+      this.coin_sound.play();
+    };
 
 }

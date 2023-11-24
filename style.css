@@ -7,6 +7,14 @@ body{
   box-sizing: border-box;
 }
 
+#fullscreen{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center;   */
+  height: 100vh;
+}
+
 canvas{
   background-color: black;
   display: block;

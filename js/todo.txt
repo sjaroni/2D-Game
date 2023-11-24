@@ -15,6 +15,9 @@
     //TODO - Flaschen nur werfen wenn vorhanden
     //TODO - Flaschen Kollision
     //TODO - Auf Gegner springen
+    
+    
+    //TODO - Touchbedienung
 
 
     //TODO - Mehrere Level?    
@@ -22,9 +25,19 @@
 
     //TODO - isHurt nach Zeit neues Standardbild
 
-//TODO - Mehr Hühner?
-
     //TODO - Endboss erreicht - Sound starten
     //TODO - Statusbar - alle (auch Endboss)     
 
     //TODO - Objekt-Rahmen entfernen
+    //TODO justify-center in style.css
+
+
+//TODO Sounds
+    bottle
+    el_pollo_loco
+    glass
+    jump
+    musicrunning
+    throw
+    win
+    lose
