@@ -13,11 +13,11 @@ class World {
   backgroundRepeat = 8;
   maxBackgroundWidth = this.backgroundWidth * this.backgroundRepeat;
 
- // statusBarBottle = new StatusBarBottle();
-  statusBarBottleText = new StatusBarBottleText();
-  //statusBarHealth = new StatusBarHealth();
-  //statusBarCoin = new StatusBarCoin();
-  statusBarEndboss = new StatusBarEndboss();
+  statusIcons = new StatusIcons();
+  statusBarBottle = new StatusBarBottle();
+  statusBarHealth = new StatusBarHealth();
+  statusBarCoin = new StatusBarCoin();
+  statusBarEndboss = new StatusBarEndboss();  
 
   coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
   throwableObjects = [];
@@ -47,21 +47,15 @@ class World {
       if (this.character.isColliding(enemy) && this.character.energy > 0) {
         this.character.hit();
         this.statusBarHealth.setPercentage(this.character.energy);
-        //ctx.clearRect(enemy.x, enemy.y, enemy.width, enemy.height);
-        //this.ctx.clearRect(enemy.x, enemy.y, enemy.x + enemy.width, enemy.y + enemy.height);
-        //console.log(enemy.x);
       }
     });
 
     this.coins.forEach((coin) => {
-      if (this.character.isColliding(coin)) {      
-        
-        //this.coin.collected();
+      if (this.character.isColliding(coin)) {
         let coinIndex = getIndexOf(coin.x,coin.y, this.coins);
         this.coins.splice(coinIndex, 1);
-        this.collectedCoins++;
-        // sound collect
-        // animation 
+        this.collectedCoins++;        
+        this.statusBarCoin.collected('Coins');
       }
     });
   }
@@ -86,14 +80,17 @@ class World {
     this.addObjectsToMap(this.coins);
 
     this.ctx.translate(-this.camera_x, 0); // Kamera zurücksetzen
-    // -- Space for fixed objects -- //
 
-    //this.addToMap(this.statusBarBottle);
-    this.addToMap(this.statusBarBottleText);
-    this.addTextToMap(this.statusBarBottleText);
+    // -- Space for fixed objects -- //  
+    this.addToMap(this.statusBarBottle);
+    this.addTextToMap(this.statusBarBottle);
 
-    //this.addToMap(this.statusBarHealth);
-    //this.addToMap(this.statusBarCoin);
+    this.addToMap(this.statusBarHealth);
+    this.addTextToMap(this.statusBarHealth);
+    
+    this.addToMap(this.statusBarCoin);
+    this.addTextToMap(this.statusBarCoin);
+
     this.addToMap(this.statusBarEndboss);
 
     // -- Space for fixed objects -- //

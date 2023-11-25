@@ -27,7 +27,7 @@ class Chicken extends MovableObject{
   animate(){
 
     
-    //this.chicken_sound.play();
+    // this.chicken_sound.play();
 
     setInterval(() => {
       this.moveLeft();      
@@ -39,7 +39,7 @@ class Chicken extends MovableObject{
     
     
     // setInterval(() => {      
-    //   this.chicken_sound.play();
+    //    this.chicken_sound.play();
     // }, 10000);
 
 
