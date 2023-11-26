@@ -9,7 +9,9 @@ class DrawableObject{
   backgroundWidth = 719;
   backgroundRepeat = 8;
   maxBackgroundWidth = this.backgroundWidth * this.backgroundRepeat;  
+  otherDirection = false;
   text;
+
 
   constructor(){
 
@@ -33,7 +35,7 @@ class DrawableObject{
   }
 
   drawText(ctx){    
-    ctx.font = "30px Comic Sans MS";
+    ctx.font = "48px zabars";
     ctx.fillStyle = "white";
     ctx.fillText(this.text, this.textX, this.textY);
   }

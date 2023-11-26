@@ -7,8 +7,6 @@ class World {
   camera_x = 0;
   collectedCoins = 0;
   
-  font = "40px serif";
-
   backgroundWidth = 719;
   backgroundRepeat = 8;
   maxBackgroundWidth = this.backgroundWidth * this.backgroundRepeat;
@@ -20,7 +18,7 @@ class World {
   statusBarEndboss = new StatusBarEndboss();  
 
   coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
-  throwableObjects = [];
+  throwableObjects = [];  
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext('2d');
@@ -50,21 +48,31 @@ class World {
       }
     });
 
+    
     this.coins.forEach((coin) => {
       if (this.character.isColliding(coin)) {
-        let coinIndex = getIndexOf(coin.x,coin.y, this.coins);
-        this.coins.splice(coinIndex, 1);
-        this.collectedCoins++;        
-        this.statusBarCoin.collected('Coins');
-      }
+         let coinIndex = getIndexOf(coin.x,coin.y, this.coins);
+         this.coins.splice(coinIndex, 1);
+         this.collectedCoins++;        
+         this.statusBarCoin.collected('Coins');
+       }
     });
   }
 
   checkThrowObjects() {
-    if (this.keyboard.KEYD) {
-      let bottle = new ThrowableObject(
-        this.character.x + 100,
+    let offset;
+    if(this.character.otherDirection == true){
+      offset = -10;
+    }
+    else{
+      offset = 100;
+    }
+
+    if (this.keyboard.KEYD) {      
+      let bottle = new ThrowableObject(        
+        this.character.x + offset,
         this.character.y + 100,
+        this.character.otherDirection
       );
       this.throwableObjects.push(bottle);
     }

@@ -7,6 +7,7 @@ class StatusIcons extends DrawableObject {
   textY = 70;
   width;
   height;
+  percentage = 100;
   
   collect_sound = new Audio('audio/collect.mp3');
 

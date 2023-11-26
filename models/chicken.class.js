@@ -21,9 +21,6 @@ class Chicken extends MovableObject{
     this.animate();
   }
 
-
-
-
   animate(){
 
     

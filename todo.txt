@@ -2,17 +2,17 @@
     //TODO - Anleitung (vom Startbildschirm aus) welche Tasten
     //TODO - Musik im Hintergrund
     //TODO - Sounds (auch Springen)
-    //TODO - GameOver Screen
-    //TODO - Hintergrundbild mit background-Img URL() background-position auf index.html
+    //TODO - GameOver Screen    
     //TODO - FullScreen-Modus canvas.requestFullscreen
         document.getElementById('fullscreen').requestFullscreen();
     
-    //TODO - Keine Standardschriftart! Zabars
     //TODO - Gegner läuft bevor das Spiel startet (Startbutton startet initLevel() in Level1 - in den code gucken!)
 
     //TODO - Flaschen einsammeln
-    //TODO - Coins einsammeln
     //TODO - Flaschen nur werfen wenn vorhanden
+
+    //TODO - 1x Heart einsammeln einsammeln
+    
     //TODO - Flaschen Kollision
     //TODO - Auf Gegner springen
     
@@ -20,7 +20,7 @@
     //TODO - Touchbedienung
 
 
-    //TODO - Mehrere Level?    
+    //TODO - Mehrere Level?
     //TODO - isAboveGround dann trotzdem rechts und links möglich
 
     //TODO - isHurt nach Zeit neues Standardbild

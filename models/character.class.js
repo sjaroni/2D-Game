@@ -97,10 +97,14 @@ class Character extends MovableObject{
         this.stopIdle();
       }
       
-      if(this.world.keyboard.ARROWLEFT  && this.x > 0){
+      if(this.world.keyboard.ARROWLEFT && this.x > 0){
         this.moveLeft();
         //this.walking_sound.play();
         this.otherDirection = true;
+        this.stopIdle();
+      }
+
+      if(this.world.keyboard.KEYD){        
         this.stopIdle();
       }
       
