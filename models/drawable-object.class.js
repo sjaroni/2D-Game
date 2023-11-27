@@ -11,7 +11,12 @@ class DrawableObject{
   maxBackgroundWidth = this.backgroundWidth * this.backgroundRepeat;  
   otherDirection = false;
   text;
-
+  offset = {
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+  };
 
   constructor(){
 
@@ -50,13 +55,14 @@ class DrawableObject{
     }
   }
   
-  // drawFrame2(ctx){
-  //   if(this instanceof Character || this instanceof Chicken || this instanceof Coin || this instanceof ThrowableObject){
-  //     ctx.beginPath();
-  //     ctx.lineWidth = '2';
-  //     ctx.strokeStyle = 'red';
-  //     ctx.rect(this.x + this.offsetX / 2, this.y + this.offsetY / 2 , this.width - this.offsetX, this.height - this.offsetY);
-  //     ctx.stroke();
-  //   }
-  // }
+   drawFrame2(ctx){
+     //if(this instanceof Character || this instanceof Chicken || this instanceof Coin || this instanceof ThrowableObject){
+     if(this instanceof Character){
+       ctx.beginPath();
+       ctx.lineWidth = '2';
+       ctx.strokeStyle = 'red';
+       ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom);
+       ctx.stroke();
+     }
+   }
 }

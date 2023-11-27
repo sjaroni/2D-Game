@@ -4,6 +4,12 @@ class Character extends MovableObject{
   height = 260;
   speed = 10;
   y = 180;
+  offset = {
+    top: 120,
+    right: 70,
+    bottom: 140,
+    left: 30
+  }
 
   energy = 100;
   iAmIdle = 0;
@@ -103,16 +109,16 @@ class Character extends MovableObject{
         //this.walking_sound.play();
         this.otherDirection = true;
         this.stopIdle();
-        this.world.camera_x = -this.x + 100;
+        //this.world.camera_x = -this.x + 100;
       }
       
-      if(this.world.keyboard.ARROWLEFT && this.x > 720){
-        this.moveLeft();
-        //this.walking_sound.play();
-        this.otherDirection = true;
-        this.stopIdle();
-        this.world.camera_x = -this.x + 500;
-      }
+      // if(this.world.keyboard.ARROWLEFT && this.x > 720){
+      //   this.moveLeft();
+      //   //this.walking_sound.play();
+      //   this.otherDirection = true;
+      //   this.stopIdle();
+      //   this.world.camera_x = -this.x + 500;
+      // }
 
       if(this.world.keyboard.KEYD){        
         this.stopIdle();
@@ -127,7 +133,7 @@ class Character extends MovableObject{
          this.playIdleAnimation(300);
       }
 
-      //this.world.camera_x = -this.x + 100;
+      this.world.camera_x = -this.x + 100;
       this.iAmIdle++;      
 
     }, 1000 / 60); 
