@@ -41,8 +41,9 @@ class World {
   }
 
   checkCollisions() {
+   
     this.level.enemies.forEach((enemy) => {
-      if (this.character.isColliding(enemy) && this.character.energy > 0) {
+      if (this.character.isColliding(enemy) && this.character.energy > 0) {          
         this.character.hit();
         this.statusBarHealth.setPercentage(this.character.energy);
       }

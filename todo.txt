@@ -1,36 +1,38 @@
-    //TODO - Startscreen (Start, Anleitung, Settings wie Musik an/aus, Sounds, an/aus, Fullscreen)
-    //TODO - Anleitung (vom Startbildschirm aus) welche Tasten
-    //TODO - Musik im Hintergrund
-    //TODO - Sounds (auch Springen)
-    //TODO - GameOver Screen    
-    //TODO - FullScreen-Modus canvas.requestFullscreen
-        document.getElementById('fullscreen').requestFullscreen();
+//TODO - Startscreen (Start, Anleitung, Settings wie Musik an/aus, Sounds, an/aus, Fullscreen)
+//TODO - Anleitung (vom Startbildschirm aus) welche Tasten
+//TODO - Musik im Hintergrund
+//TODO - GameOver Screen    
+//TODO - FullScreen-Modus canvas.requestFullscreen
+    document.getElementById('fullscreen').requestFullscreen();
     
-    //TODO - Gegner läuft bevor das Spiel startet (Startbutton startet initLevel() in Level1 - in den code gucken!)
+// TODO - Level Länge in level1 definieren - abhängig davon die Objekte erstellen und verteilen
 
-    //TODO - Flaschen einsammeln
-    //TODO - Flaschen nur werfen wenn vorhanden
+//TODO - Gegner läuft bevor das Spiel startet (Startbutton startet initLevel() in Level1 - in den code gucken!)
 
-    //TODO - 1x Heart einsammeln einsammeln
+//TODO - Flaschen einsammeln
+//TODO - Flaschen nur werfen wenn vorhanden
+
+//TODO - 1x Heart einsammeln einsammeln
+//TODO - Chicken drehen wenn man rechts von ihnen ist
+
+//TODO - Game Pause
     
-    //TODO - Flaschen Kollision
-    //TODO - Auf Gegner springen
-    
-    
-    //TODO - Touchbedienung
+//TODO - Flaschen Kollision
+//TODO - Auf Gegner springen
 
+//TODO - Touchbedienung
 
-    //TODO - Mehrere Level?
-    //TODO - isAboveGround dann trotzdem rechts und links möglich
+//TODO - Mehrere Level?
+//TODO - isAboveGround dann trotzdem rechts und links möglich
 
-    //TODO - isHurt nach Zeit neues Standardbild
+//TODO - isHurt nach Zeit neues Standardbild
 
-    //TODO - Endboss erreicht - Sound starten
-    //TODO - Statusbar - alle (auch Endboss)     
+//TODO - Endboss erreicht - Sound starten
+//TODO - Statusbar - alle (auch Endboss)     
 
-    //TODO - Objekt-Rahmen entfernen
-    //TODO justify-center in style.css
-
+//TODO - Objekt-Rahmen entfernen
+//TODO - justify-center in style.css
+//TODO - JSDoc - Dokumentation
 
 //TODO Sounds
     bottle
