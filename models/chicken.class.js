@@ -34,14 +34,20 @@ class Chicken extends MovableObject{
     
     // this.chicken_sound.play();
 
-    setInterval(() => {
-      this.moveLeft();      
-    }, 1000 / 60);
+    // if(this.otherDirection == 'true'){
+    //   const intervalId1 = setInterval(() => {
+    //     console.log('moveRight');
+    //     this.stopAnimation(this.intervalId2);
+    //     this.moveRight();      
+    //   }, 1000 / 60);
+    // } else {
+    //   const intervalId2 = setInterval(() => {
+    //     console.log('moveLeft');
+    //      this.stopAnimation(this.intervalId1);
+    //      this.moveLeft();      
+    //   }, 1000 / 60);
+    // }
 
-
-    setInterval(() => {
-      this.moveRight();      
-    }, 1000 / 60);
 
     setInterval(() => {
       this.playAnimation(this.IMAGES_WALKING);     

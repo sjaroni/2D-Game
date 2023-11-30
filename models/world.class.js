@@ -6,7 +6,6 @@ class World {
   keyboard;
   camera_x = 0;
   collectedCoins = 0;
-  characterPositionIsLeft = true;
 
   backgroundWidth = 719;
   backgroundRepeat = 8;
@@ -43,7 +42,13 @@ class World {
   checkCollisions() {
     this.level.enemies.forEach((enemy) => {
       
-      console.log(this.character.checkCharacterPosition(enemy));
+      if((!this.character.checkCharacterPosition(enemy))){
+        enemy.otherDirection = true;
+        enemy.moveLeft();
+       } else{
+        enemy.otherDirection = false;
+        enemy.moveRight();
+      }      
 
       if (
         this.character.isColliding(enemy) &&

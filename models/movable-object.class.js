@@ -70,7 +70,7 @@ class MovableObject extends DrawableObject {
   }
 
   checkCharacterPosition(mo) {
-    if (this.x + this.width - this.offset.right < mo.x) {
+    if (this.x - this.offset.left < mo.x) {
       return true;
     } else {
       return false;
@@ -83,6 +83,12 @@ class MovableObject extends DrawableObject {
     this.img = this.imageCache[path];
     this.currentImage++;
   } 
+
+  stopAnimation(intervalId){
+    setTimeout(() => {
+      clearInterval(intervalId);
+    }, 300);
+  }
 
   jump() {
     this.speedY = 30;

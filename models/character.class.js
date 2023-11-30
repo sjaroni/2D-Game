@@ -155,12 +155,6 @@ class Character extends MovableObject{
     }, 50);
   }
 
-  stopAnimation(intervalId){
-    setTimeout(() => {
-      clearInterval(intervalId);
-    }, 300);
-  }
-
   playIdleAnimation(counter){
     const intervalIdle = setInterval(() => {
       this.playAnimation(this.IMAGES_IDLE);
