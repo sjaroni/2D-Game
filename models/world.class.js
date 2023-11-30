@@ -44,10 +44,10 @@ class World {
       
       if((!this.character.checkCharacterPosition(enemy))){
         enemy.otherDirection = true;
-        enemy.moveLeft();
+        //enemy.moveLeft();
        } else{
         enemy.otherDirection = false;
-        enemy.moveRight();
+        //enemy.moveRight();
       }      
 
       if (
@@ -61,21 +61,21 @@ class World {
         if (
           this.character.isCollidingFromTop(enemy) &&
           this.character.isAboveGroundCharacter()
-        ) {          
-          //enemy.hello();
+        ) {
           enemy.energy = 0;
+          enemy.enemyIsDead(enemy);
         }
       }
     });
 
-    this.coins.forEach((coin) => {
-      if (this.character.isColliding(coin)) {
-        let coinIndex = getIndexOf(coin.x, coin.y, this.coins);
-        this.coins.splice(coinIndex, 1);
-        this.collectedCoins++;
-        this.statusBarCoin.collected('Coins');
-      }
-    });
+    // this.coins.forEach((coin) => {
+    //   if (this.character.isColliding(coin)) {
+    //     let coinIndex = getIndexOf(coin.x, coin.y, this.coins);
+    //     this.coins.splice(coinIndex, 1);
+    //     this.collectedCoins++;
+    //     this.statusBarCoin.collected('Coins');
+    //   }
+    // });
   }
 
   checkThrowObjects() {
@@ -103,7 +103,7 @@ class World {
 
     this.addObjectsToMap(this.level.backgroundObjects);
     this.addObjectsToMap(this.level.clouds);
-    this.addObjectsToMap(this.coins);
+    //this.addObjectsToMap(this.coins);
 
     this.ctx.translate(-this.camera_x, 0); // Kamera zurücksetzen
 

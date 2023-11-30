@@ -99,8 +99,12 @@ class MovableObject extends DrawableObject {
     this.speedY = 30;
   }
 
-  enemyIsDead() {
-    console.log('dead');
-    this.playAnimation(this.IMAGES_DEAD);
+  enemyIsDead(mo) {
+    //console.log('dead');
+    console.log(mo.x);
+    // setInterval(() => {      
+    //    this.playAnimation(mo.IMAGES_DEAD);
+    // }, 20);
+    //this.world.level.enemies.splice(0,1);
   }
 }

@@ -22,12 +22,13 @@ class Chicken extends MovableObject{
 
     super().loadImage(this.IMAGES_WALKING[0]);
     this.loadImages(this.IMAGES_WALKING);
+    this.loadImages(this.IMAGES_DEAD);
     
 
     this.x = 200 + Math.random() * this.maxBackgroundWidth;
     this.speed = 0.15 + Math.random() * 0.25;    
     
-    //this.x = 230;
+    this.x = 300;
     this.animate();
   }
 
@@ -65,11 +66,11 @@ class Chicken extends MovableObject{
       this.playAnimation(this.IMAGES_WALKING);      
     }, 200);
 
-    setInterval(() => {
-      if(this.energy = 0){
-        this.enemyIsDead();
-      }  
-    }, 200);    
+    // setInterval(() => {
+    //   if(this.energy == 0){        
+    //     this.enemyIsDead();
+    //   }  
+    // }, 200);    
     
     // setInterval(() => {
     //    this.chicken_sound.play();
