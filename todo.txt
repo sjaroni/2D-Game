@@ -4,25 +4,30 @@
 //TODO - GameOver Screen    
 //TODO - FullScreen-Modus canvas.requestFullscreen
     document.getElementById('fullscreen').requestFullscreen();
-    
-// TODO - Level Länge in level1 definieren - abhängig davon die Objekte erstellen und verteilen
-
+//TODO - Game Pause
 //TODO - Gegner läuft bevor das Spiel startet (Startbutton startet initLevel() in Level1 - in den code gucken!)
+
+
+//TODO - Level Länge in level1 definieren - abhängig davon die Objekte erstellen und verteilen
+//TODO - LevelWidth in constant.js (raus aus level1)
+
 
 //TODO - Flaschen einsammeln
 //TODO - Flaschen nur werfen wenn vorhanden
-
+//TODO - Flaschen Kollision
 //TODO - 1x Heart einsammeln einsammeln
+
+
+//TODO - Kleine Hühner 
+//TODO - Auf Gegner springen
 //TODO - Chicken drehen wenn man rechts von ihnen ist
 
-//TODO - Game Pause
-    
-//TODO - Flaschen Kollision
-//TODO - Auf Gegner springen
 
 //TODO - Touchbedienung
 
-//TODO - Mehrere Level?
+
+//TODO - Kamera bewegen bzw. Position ändern
+
 //TODO - isAboveGround dann trotzdem rechts und links möglich
 
 //TODO - isHurt nach Zeit neues Standardbild

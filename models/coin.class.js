@@ -6,6 +6,12 @@ class Coin extends DrawableObject {
 
   x = 300; // Wert zwischen 0 und maximaler Breite
   y = 100; // Wert zwischen 100 und 300
+  offset = {
+    top: 40,
+    bottom: 40,
+    left: 40,
+    right: 40
+  }
 
   width = 120;
   height = 120;  

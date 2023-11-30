@@ -6,7 +6,8 @@ class World {
   keyboard;
   camera_x = 0;
   collectedCoins = 0;
-  
+  characterPositionIsLeft = true;
+
   backgroundWidth = 719;
   backgroundRepeat = 8;
   maxBackgroundWidth = this.backgroundWidth * this.backgroundRepeat;
@@ -15,10 +16,9 @@ class World {
   statusBarBottle = new StatusBarBottle();
   statusBarHealth = new StatusBarHealth();
   statusBarCoin = new StatusBarCoin();
-  statusBarEndboss = new StatusBarEndboss();  
-
+  statusBarEndboss = new StatusBarEndboss();
   coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
-  throwableObjects = [];  
+  throwableObjects = [];
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext('2d');
@@ -41,39 +41,55 @@ class World {
   }
 
   checkCollisions() {
-   
     this.level.enemies.forEach((enemy) => {
-      if (this.character.isColliding(enemy) && this.character.energy > 0) {          
+      
+      console.log(this.character.checkCharacterPosition(enemy));
+
+      if (
+        this.character.isColliding(enemy) &&
+        this.character.energy > 0 &&
+        !this.character.isAboveGroundCharacter()
+      ) {
         this.character.hit();
         this.statusBarHealth.setPercentage(this.character.energy);
+      } else {
+        if (
+          this.character.isCollidingFromTop(enemy) &&
+          this.character.isAboveGroundCharacter()
+        ) {
+          console.log(
+            this.character.y +
+              this.character.height -
+              this.character.offset.bottom,
+          );
+          //enemy.playAnimation(enemy.IMAGES_DEAD);
+        }
       }
     });
 
-    
     this.coins.forEach((coin) => {
       if (this.character.isColliding(coin)) {
-         let coinIndex = getIndexOf(coin.x,coin.y, this.coins);
-         this.coins.splice(coinIndex, 1);
-         this.collectedCoins++;        
-         this.statusBarCoin.collected('Coins');
-       }
+        let coinIndex = getIndexOf(coin.x, coin.y, this.coins);
+        this.coins.splice(coinIndex, 1);
+        this.collectedCoins++;
+        this.statusBarCoin.collected('Coins');
+      }
     });
   }
 
   checkThrowObjects() {
-    let offset;
-    if(this.character.otherDirection == true){
-      offset = -10;
-    }
-    else{
-      offset = 100;
+    let offsetBottle;
+    if (this.character.otherDirection == true) {
+      offsetBottle = -10;
+    } else {
+      offsetBottle = 100;
     }
 
-    if (this.keyboard.KEYD) {      
-      let bottle = new ThrowableObject(        
-        this.character.x + offset,
+    if (this.keyboard.KEYD) {
+      let bottle = new ThrowableObject(
+        this.character.x + offsetBottle,
         this.character.y + 100,
-        this.character.otherDirection
+        this.character.otherDirection,
       );
       this.throwableObjects.push(bottle);
     }
@@ -90,13 +106,13 @@ class World {
 
     this.ctx.translate(-this.camera_x, 0); // Kamera zurücksetzen
 
-    // -- Space for fixed objects -- //  
+    // -- Space for fixed objects -- //
     this.addToMap(this.statusBarBottle);
     this.addTextToMap(this.statusBarBottle);
 
     this.addToMap(this.statusBarHealth);
     this.addTextToMap(this.statusBarHealth);
-    
+
     this.addToMap(this.statusBarCoin);
     this.addTextToMap(this.statusBarCoin);
 
@@ -109,7 +125,7 @@ class World {
     this.addObjectsToMap(this.throwableObjects);
 
     this.ctx.translate(-this.camera_x, 0);
-    
+
     // Draw() wird immer wieder aufgerufen
     let self = this;
     requestAnimationFrame(function () {
@@ -130,7 +146,7 @@ class World {
 
     mo.draw(this.ctx);
     mo.drawFrame(this.ctx);
-    mo.drawFrame2(this.ctx);
+    mo.drawInnerFrame(this.ctx);
 
     if (mo.otherDirection) {
       this.flipImageBack(mo);
@@ -140,7 +156,6 @@ class World {
   addTextToMap(mo) {
     mo.drawText(this.ctx);
   }
-
 
   flipImage(mo) {
     this.ctx.save();

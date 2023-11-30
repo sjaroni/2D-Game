@@ -60,17 +60,9 @@ class Endboss extends MovableObject {
     this.loadImages(this.IMAGES_DEAD);
     this.x = 2500;
     this.speed = this.speed + Math.random() * 0.25;
-    //this.animate();
     this.intervalNum = 1;
     this.startInterval();
   }
-
-  // animate(){
-
-  //   // setInterval(() => {
-  //   //   this.moveLeft();      
-  //   // }, 1000 / 60);
-  // }
 
   startInterval() {
     switch (this.intervalNum) {

@@ -1,15 +1,15 @@
 class Character extends MovableObject{  
 
-  width = 130;
-  height = 260;
+  width = 125;
+  height = 250;
   speed = 10;
   y = 180;
   offset = {
     top: 120,
-    right: 70,
-    bottom: 140,
-    left: 30
-  }
+    bottom: 0,
+    left: 25,
+    right: 25,
+};
 
   energy = 100;
   iAmIdle = 0;

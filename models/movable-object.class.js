@@ -21,6 +21,14 @@ class MovableObject extends DrawableObject {
     this.x -= this.speed;
   }
 
+  isAboveGroundCharacter() {
+    if(this.y < 180){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   isAboveGround() {
     if (this instanceof ThrowableObject) {
       return true;
@@ -47,18 +55,26 @@ class MovableObject extends DrawableObject {
     timepassed = timepassed / 1000;
     return timepassed < 1;
   }
-  // isColliding(obj) {
-  //   return  (this.X + this.width) >= obj.X && this.X <= (obj.X + obj.width) &&
-  //           (this.Y + this.offsetY + this.height) >= obj.Y &&
-  //           (this.Y + this.offsetY) <= (obj.Y + obj.height) &&
-  //           obj.onCollisionCourse;
-  // }
 
   isColliding(mo) {
-     return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&       
-        this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&       
-        this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&       
-        this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
+     return this.x + this.width - this.offset.right > mo.x + mo.offset.left && 
+         this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+         this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+         this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
+  }
+
+  isCollidingFromTop(mo){
+    return this.x + this.width - this.offset.right > mo.x + mo.offset.left && 
+           this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+           this.y + this.height - this.offset.bottom >= mo.y + mo.offset.top;
+  }
+
+  checkCharacterPosition(mo) {
+    if (this.x + this.width - this.offset.right < mo.x) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   playAnimation(images) {
@@ -66,7 +82,7 @@ class MovableObject extends DrawableObject {
     let path = images[i];
     this.img = this.imageCache[path];
     this.currentImage++;
-  }
+  } 
 
   jump() {
     this.speedY = 30;

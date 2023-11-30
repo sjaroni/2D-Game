@@ -12,11 +12,11 @@ class DrawableObject{
   otherDirection = false;
   text;
   offset = {
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-  };
+    right: 10,
+    left: 10,
+    top: 10,
+    bottom: 10,
+};
 
   constructor(){
 
@@ -55,12 +55,12 @@ class DrawableObject{
     }
   }
   
-   drawFrame2(ctx){
-     if(this instanceof Character || this instanceof Chicken || this instanceof Endboss){
+   drawInnerFrame(ctx){
+      if(this instanceof Character || this instanceof Chicken || this instanceof Endboss || this instanceof Coin){      
        ctx.beginPath();
        ctx.lineWidth = '2';
        ctx.strokeStyle = 'red';
-       ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom);
+       ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right - this.offset.left, this.height - this.offset.bottom - this.offset.top);
        ctx.stroke();
      }
    }
