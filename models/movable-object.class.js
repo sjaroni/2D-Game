@@ -3,6 +3,7 @@ class MovableObject extends DrawableObject {
   speedY = 0;
   acceleration = 2.5;
   lastHit = 0;
+  energy = 100;
 
   applyGravity() {
     setInterval(() => {
@@ -22,7 +23,7 @@ class MovableObject extends DrawableObject {
   }
 
   isAboveGroundCharacter() {
-    if(this.y < 180){
+    if (this.y < 180) {
       return true;
     } else {
       return false;
@@ -57,16 +58,20 @@ class MovableObject extends DrawableObject {
   }
 
   isColliding(mo) {
-     return this.x + this.width - this.offset.right > mo.x + mo.offset.left && 
-         this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
-         this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
-         this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
+    return (
+      this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
+      this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+      this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+      this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom
+    );
   }
 
-  isCollidingFromTop(mo){
-    return this.x + this.width - this.offset.right > mo.x + mo.offset.left && 
-           this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
-           this.y + this.height - this.offset.bottom >= mo.y + mo.offset.top;
+  isCollidingFromTop(mo) {
+    return (
+      this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
+      this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+      this.y + this.height - this.offset.bottom >= mo.y + mo.offset.top
+    );
   }
 
   checkCharacterPosition(mo) {
@@ -82,9 +87,9 @@ class MovableObject extends DrawableObject {
     let path = images[i];
     this.img = this.imageCache[path];
     this.currentImage++;
-  } 
+  }
 
-  stopAnimation(intervalId){
+  stopAnimation(intervalId) {
     setTimeout(() => {
       clearInterval(intervalId);
     }, 300);
@@ -92,5 +97,10 @@ class MovableObject extends DrawableObject {
 
   jump() {
     this.speedY = 30;
+  }
+
+  enemyIsDead() {
+    console.log('dead');
+    this.playAnimation(this.IMAGES_DEAD);
   }
 }

@@ -61,13 +61,9 @@ class World {
         if (
           this.character.isCollidingFromTop(enemy) &&
           this.character.isAboveGroundCharacter()
-        ) {
-          console.log(
-            this.character.y +
-              this.character.height -
-              this.character.offset.bottom,
-          );
-          //enemy.playAnimation(enemy.IMAGES_DEAD);
+        ) {          
+          //enemy.hello();
+          enemy.energy = 0;
         }
       }
     });

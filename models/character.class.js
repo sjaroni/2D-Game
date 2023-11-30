@@ -11,7 +11,7 @@ class Character extends MovableObject{
     right: 25,
 };
 
-  energy = 100;
+//  energy = 100;
   iAmIdle = 0;
 
   IMAGES_IDLE = [
