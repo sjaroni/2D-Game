@@ -1,17 +1,15 @@
-class Character extends MovableObject{  
-
+class Character extends MovableObject {
   width = 125;
   height = 250;
   speed = 10;
   y = 180;
   offset = {
     top: 120,
-    bottom: 0,
-    left: 25,
-    right: 25,
-};
+    bottom: 10,
+    left: 30,
+    right: 35,
+  };
 
-//  energy = 100;
   iAmIdle = 0;
 
   IMAGES_IDLE = [
@@ -24,8 +22,8 @@ class Character extends MovableObject{
     'img/2_character_pepe/1_idle/idle/I-7.png',
     'img/2_character_pepe/1_idle/idle/I-8.png',
     'img/2_character_pepe/1_idle/idle/I-9.png',
-    'img/2_character_pepe/1_idle/idle/I-10.png'
-  ]
+    'img/2_character_pepe/1_idle/idle/I-10.png',
+  ];
 
   IMAGES_LONGIDLE = [
     'img/2_character_pepe/1_idle/long_idle/I-11.png',
@@ -37,8 +35,8 @@ class Character extends MovableObject{
     'img/2_character_pepe/1_idle/long_idle/I-17.png',
     'img/2_character_pepe/1_idle/long_idle/I-18.png',
     'img/2_character_pepe/1_idle/long_idle/I-19.png',
-    'img/2_character_pepe/1_idle/long_idle/I-20.png'
-  ]
+    'img/2_character_pepe/1_idle/long_idle/I-20.png',
+  ];
 
   IMAGES_WALKING = [
     'img/2_character_pepe/2_walk/W-21.png',
@@ -46,7 +44,7 @@ class Character extends MovableObject{
     'img/2_character_pepe/2_walk/W-23.png',
     'img/2_character_pepe/2_walk/W-24.png',
     'img/2_character_pepe/2_walk/W-25.png',
-    'img/2_character_pepe/2_walk/W-26.png'
+    'img/2_character_pepe/2_walk/W-26.png',
   ];
 
   IMAGES_JUMPING = [
@@ -58,7 +56,7 @@ class Character extends MovableObject{
     'img/2_character_pepe/3_jump/J-36.png',
     'img/2_character_pepe/3_jump/J-37.png',
     'img/2_character_pepe/3_jump/J-38.png',
-    'img/2_character_pepe/3_jump/J-39.png'
+    'img/2_character_pepe/3_jump/J-39.png',
   ];
 
   IMAGES_DEAD = [
@@ -68,19 +66,19 @@ class Character extends MovableObject{
     'img/2_character_pepe/5_dead/D-54.png',
     'img/2_character_pepe/5_dead/D-55.png',
     'img/2_character_pepe/5_dead/D-56.png',
-    'img/2_character_pepe/5_dead/D-57.png'
+    'img/2_character_pepe/5_dead/D-57.png',
   ];
 
   IMAGES_HURT = [
     'img/2_character_pepe/4_hurt/H-41.png',
     'img/2_character_pepe/4_hurt/H-42.png',
-    'img/2_character_pepe/4_hurt/H-43.png'
+    'img/2_character_pepe/4_hurt/H-43.png',
   ];
 
   world;
   walking_sound = new Audio('audio/running.mp3');
-
-  constructor(){    
+  
+  constructor() {
     super().loadImage(this.IMAGES_IDLE[1]);
     this.loadImages(this.IMAGES_IDLE);
     this.loadImages(this.IMAGES_LONGIDLE);
@@ -92,97 +90,96 @@ class Character extends MovableObject{
     this.animate();
   }
 
-  animate(){
-    
+  animate() {
     setInterval(() => {
       this.walking_sound.pause();
-      if(this.world.keyboard.ARROWRIGHT && this.x < this.world.level.level_end_x){
+      if (
+        this.world.keyboard.ARROWRIGHT &&
+        this.x < this.world.level.level_end_x
+      ) {
         this.moveRight();
         //this.walking_sound.play();
         this.otherDirection = false;
         this.stopIdle();
         this.world.camera_x = -this.x + 100;
       }
-      
-      if(this.world.keyboard.ARROWLEFT && this.x > 0){
+
+      if (this.world.keyboard.ARROWLEFT && this.x > 0) {
         this.moveLeft();
         //this.walking_sound.play();
         this.otherDirection = true;
         this.stopIdle();
-        //this.world.camera_x = -this.x + 100;
       }
-      
-      // if(this.world.keyboard.ARROWLEFT && this.x > 720){
-      //   this.moveLeft();
-      //   //this.walking_sound.play();
-      //   this.otherDirection = true;
-      //   this.stopIdle();
-      //   this.world.camera_x = -this.x + 500;
-      // }
 
-      if(this.world.keyboard.KEYD){        
+      if (this.world.keyboard.KEYD) {
         this.stopIdle();
       }
-      
-      if(this.world.keyboard.SPACE && !this.isAboveGround()){
+
+      if (this.world.keyboard.SPACE && !this.isAboveGround()) {
         this.jump();
         this.stopIdle();
-      }      
+      }
 
-      if(this.iAmIdle == 300){
-         this.playIdleAnimation(300);
+      if (this.iAmIdle == 300) {
+        this.playIdleAnimation(300);
       }
 
       this.world.camera_x = -this.x + 100;
-      this.iAmIdle++;      
+      this.iAmIdle++;
+    }, 1000 / 60);
 
-    }, 1000 / 60); 
-    
     const intervalId = setInterval(() => {
-
-      if(this.isDead()){
+      if (this.isDead()) {
         this.playAnimation(this.IMAGES_DEAD);
         this.stopAnimation(intervalId);
         this.stopIdle();
-      } else if(this.isHurt()){
+        this.loadImage(this.IMAGES_DEAD[5]);
+        this.hideObject();
+      } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
         this.stopIdle();
-      } else if(this.isAboveGround()){
+      } else if (this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
-      } else if(this.world.keyboard.ARROWRIGHT || this.world.keyboard.ARROWLEFT){
-        this.playAnimation(this.IMAGES_WALKING);        
+      } else if (
+        this.world.keyboard.ARROWRIGHT ||
+        this.world.keyboard.ARROWLEFT
+      ) {
+        this.playAnimation(this.IMAGES_WALKING);
       }
     }, 50);
   }
 
-  playIdleAnimation(counter){
+  playIdleAnimation(counter) {
     const intervalIdle = setInterval(() => {
       this.playAnimation(this.IMAGES_IDLE);
       counter++;
-      if(counter == 320)
-      {
-        this.playLongIdleAnimation(intervalIdle);        
+      if (counter == 320) {
+        this.playLongIdleAnimation(intervalIdle);
       }
     }, 200);
   }
 
-  stopIdle(){
+  stopIdle() {
     this.iAmIdle = 0;
   }
 
-  playLongIdleAnimation(intervalIdle){
-    clearInterval(intervalIdle);    
+  playLongIdleAnimation(intervalIdle) {
+    clearInterval(intervalIdle);
     const intervalLongIdle = setInterval(() => {
       this.playAnimation(this.IMAGES_LONGIDLE);
 
-      if(this.world.keyboard.ARROWLEFT || this.world.keyboard.ARROWRIGHT || this.world.keyboard.SPACE || this.world.keyboard.KEYD){      
+      if (
+        this.world.keyboard.ARROWLEFT ||
+        this.world.keyboard.ARROWRIGHT ||
+        this.world.keyboard.SPACE ||
+        this.world.keyboard.KEYD
+      ) {
         clearInterval(intervalLongIdle);
         this.iAmIdle = 0;
-        if(this.world.keyboard.KEYD){
+        if (this.world.keyboard.KEYD) {
           this.loadImage(this.IMAGES_IDLE[1]);
         }
       }
-
     }, 200);
   }
 }

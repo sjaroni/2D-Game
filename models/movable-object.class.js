@@ -23,7 +23,7 @@ class MovableObject extends DrawableObject {
   }
 
   isAboveGroundCharacter() {
-    if (this.y < 180) {
+    if (this.y < 180) {     
       return true;
     } else {
       return false;
@@ -38,8 +38,8 @@ class MovableObject extends DrawableObject {
     }
   }
 
-  hit() {
-    this.energy -= 5;
+  hit(deduction) {
+    this.energy -= deduction;
     if (this.energy < 0) {
       this.energy = 0;
     } else {
@@ -68,9 +68,14 @@ class MovableObject extends DrawableObject {
 
   isCollidingFromTop(mo) {
     return (
-      this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
-      this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
-      this.y + this.height - this.offset.bottom >= mo.y + mo.offset.top
+      
+      this.x + this.width - this.offset.right > mo.x + mo.offset.left &&      
+      this.x - this.offset.left < mo.x + mo.width - mo.offset.right &&
+      this.y + this.height - this.offset.bottom > mo.y + mo.offset.top
+
+      // this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
+      // this.x - this.offset.left < mo.x + mo.width - mo.offset.right &&
+      // this.y + this.height - this.offset.bottom >= mo.y + mo.offset.top
     );
   }
 
@@ -95,16 +100,14 @@ class MovableObject extends DrawableObject {
     }, 300);
   }
 
-  jump() {
+  jump() {    
     this.speedY = 30;
   }
 
-  enemyIsDead(mo) {
-    //console.log('dead');
-    console.log(mo.x);
-    // setInterval(() => {      
-    //    this.playAnimation(mo.IMAGES_DEAD);
-    // }, 20);
-    //this.world.level.enemies.splice(0,1);
+  hideObject(){      
+    setTimeout(() => {      
+      this.y += 600;
+    }, 2000);
   }
+
 }

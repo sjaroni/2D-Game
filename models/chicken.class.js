@@ -22,60 +22,35 @@ class Chicken extends MovableObject{
 
     super().loadImage(this.IMAGES_WALKING[0]);
     this.loadImages(this.IMAGES_WALKING);
-    this.loadImages(this.IMAGES_DEAD);
-    
+    this.loadImages(this.IMAGES_DEAD);    
 
     this.x = 200 + Math.random() * this.maxBackgroundWidth;
-    this.speed = 0.15 + Math.random() * 0.25;    
-    
-    this.x = 300;
+    this.speed = 0.15 + Math.random() * 0.25;
+  
+    this.x = 400;
     this.animate();
   }
 
+  animate(){    
 
-  // hello(){
-  //   setInterval(() => {    
-  //     this.loadImage(this.IMAGES_DEAD[0]);
-  //   }, 5);
-  // }
-
-  animate(){
-
-    
-    // this.chicken_sound.play();
-
-    // if(this.otherDirection == 'true'){
-    //   const intervalId1 = setInterval(() => {
-    //     console.log('moveRight');
-    //     this.stopAnimation(this.intervalId2);
-    //     this.moveRight();      
-    //   }, 1000 / 60);
-    // } else {
-    //   const intervalId2 = setInterval(() => {
-    //     console.log('moveLeft');
-    //      this.stopAnimation(this.intervalId1);
-    //      this.moveLeft();      
-    //   }, 1000 / 60);
-    // }
-
-    setInterval(() => {
-      this.moveLeft();
+    const intervalIdWalking = setInterval(() => {
+      if(!this.otherDirection){
+        this.moveLeft();
+      } else {
+        this.moveRight();
+      }
     }, 1000 / 60);
     
-    setInterval(() => {
-      this.playAnimation(this.IMAGES_WALKING);      
+    const intervalId = setInterval(() => {
+      if (this.isDead()) {
+        this.chicken_sound.play();
+        this.playAnimation(this.IMAGES_DEAD);
+        this.stopAnimation(intervalIdWalking);
+        this.stopAnimation(intervalId);
+        this.hideObject();
+      } else {
+        this.playAnimation(this.IMAGES_WALKING);
+      }
     }, 200);
-
-    // setInterval(() => {
-    //   if(this.energy == 0){        
-    //     this.enemyIsDead();
-    //   }  
-    // }, 200);    
-    
-    // setInterval(() => {
-    //    this.chicken_sound.play();
-    // }, 10000);
-
-
-  }
+  }  
 }

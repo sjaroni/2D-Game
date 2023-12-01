@@ -16,7 +16,9 @@ class World {
   statusBarHealth = new StatusBarHealth();
   statusBarCoin = new StatusBarCoin();
   statusBarEndboss = new StatusBarEndboss();
-  coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
+//  coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
+  coins = [new Coin()];
+
   throwableObjects = [];
 
   constructor(canvas, keyboard) {
@@ -36,7 +38,7 @@ class World {
     setInterval(() => {
       this.checkCollisions();
       this.checkThrowObjects();
-    }, 200);
+    }, 50);
   }
 
   checkCollisions() {
@@ -44,38 +46,30 @@ class World {
       
       if((!this.character.checkCharacterPosition(enemy))){
         enemy.otherDirection = true;
-        //enemy.moveLeft();
        } else{
         enemy.otherDirection = false;
-        //enemy.moveRight();
       }      
 
       if (
-        this.character.isColliding(enemy) &&
-        this.character.energy > 0 &&
-        !this.character.isAboveGroundCharacter()
+        this.character.isColliding(enemy) && enemy.energy == 100 && this.character.energy > 0 && this.character.isAboveGroundCharacter() == false
       ) {
-        this.character.hit();
+        this.character.hit(1);
         this.statusBarHealth.setPercentage(this.character.energy);
       } else {
-        if (
-          this.character.isCollidingFromTop(enemy) &&
-          this.character.isAboveGroundCharacter()
-        ) {
-          enemy.energy = 0;
-          enemy.enemyIsDead(enemy);
+        if (this.character.isCollidingFromTop(enemy) && this.character.isAboveGroundCharacter()) {          
+          enemy.hit(100);
         }
       }
     });
 
-    // this.coins.forEach((coin) => {
-    //   if (this.character.isColliding(coin)) {
-    //     let coinIndex = getIndexOf(coin.x, coin.y, this.coins);
-    //     this.coins.splice(coinIndex, 1);
-    //     this.collectedCoins++;
-    //     this.statusBarCoin.collected('Coins');
-    //   }
-    // });
+    this.coins.forEach((coin) => {
+      if (this.character.isColliding(coin)) {
+        let coinIndex = getIndexOf(coin.x, coin.y, this.coins);
+        this.coins.splice(coinIndex, 1);
+        this.collectedCoins++;
+        this.statusBarCoin.collected('Coins');
+      }
+    });
   }
 
   checkThrowObjects() {
@@ -103,7 +97,7 @@ class World {
 
     this.addObjectsToMap(this.level.backgroundObjects);
     this.addObjectsToMap(this.level.clouds);
-    //this.addObjectsToMap(this.coins);
+    this.addObjectsToMap(this.coins);
 
     this.ctx.translate(-this.camera_x, 0); // Kamera zurücksetzen
 
