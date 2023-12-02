@@ -9,15 +9,12 @@ class StatusIcons extends DrawableObject {
   height;
   percentage = 100;
   
-  collect_sound = new Audio('audio/collect.mp3');
-
   constructor(){
     super();
   }
 
   collected(item){
     let itemName = `collected${item}`;
-    this.text = world[itemName];
-    this.collect_sound.play();
+    this.text = world[itemName];    
   }
 }

@@ -7,6 +7,7 @@ class World {
   camera_x = 0;
   collectedCoins = 0;
   collectedBottles = 0;
+  nextThrow = 0;
 
   backgroundWidth = 719;
   backgroundRepeat = 8;
@@ -38,7 +39,7 @@ class World {
   run() {
     setInterval(() => {
       this.checkCollisions();
-      this.checkThrowObjects();
+      this.checkThrowObjects();      
     }, 50);
   }
 
@@ -69,6 +70,7 @@ class World {
         this.coins.splice(coinIndex, 1);
         this.collectedCoins++;
         this.statusBarCoin.collected('Coins');
+        this.soundCollected();
       }
     });
 
@@ -78,6 +80,7 @@ class World {
         this.bottles.splice(bottleIndex, 1);
         this.collectedBottles++;
         this.statusBarBottle.collected('Bottles');
+        this.soundCollected();
       }
     });
 
@@ -90,16 +93,28 @@ class World {
     } else {
       offsetBottle = 100;
     }
-
-    if (this.keyboard.KEYD && this.collectedBottles > 0) {
+    
+    if (this.keyboard.KEYD && this.collectedBottles > 0 && this.nextThrow == 0) {
       let bottle = new ThrowableObject(
         this.character.x + offsetBottle,
         this.character.y + 100,
         this.character.otherDirection,
       );
+      
+      this.nextThrow = 20;
+
+      // sound throw
+      let throw_sound = new Audio('audio/collect.mp3');
+      throw_sound.play();
+
       this.throwableObjects.push(bottle);
       this.collectedBottles--;
       this.statusBarBottle.collected('Bottles');
+    }
+    if(this.nextThrow < 1){
+      this.nextThrow = 0;
+    } else{
+      this.nextThrow--;
     }
   }
 
@@ -177,4 +192,11 @@ class World {
     mo.x = mo.x * -1;
     this.ctx.restore();
   }
+
+
+  soundCollected(){
+    let throw_sound = new Audio('audio/collect.mp3');
+    throw_sound.play();
+  }
+
 }

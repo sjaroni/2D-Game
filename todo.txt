@@ -11,7 +11,6 @@
 //TODO - Level Länge in level1 definieren - abhängig davon die Objekte erstellen und verteilen
 //TODO - LevelWidth in constant.js (raus aus level1)
 
-//TODO - Flaschen nur werfen wenn vorhanden
 //TODO - Flaschen Kollision
 //TODO - 1x Heart einsammeln einsammeln
 
