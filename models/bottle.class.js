@@ -1,24 +1,24 @@
-class Coin extends DrawableObject {
+class Bottle extends DrawableObject {
 
-  IMAGES = [
-    'img/8_coin/coin_1.png'
-  ]
+  IMAGES_BOTTLE = [
+    'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png'
+  ];
 
   x = 300; // Wert zwischen 0 und maximaler Breite
   y = 100; // Wert zwischen 100 und 300
   offset = {
-    top: 40,
-    bottom: 40,
-    left: 40,
-    right: 40
+    top: 10,
+    bottom: 10,
+    left: 25,
+    right: 25
   }
 
-  width = 120;
-  height = 120;  
+  width = 71;
+  height = 69;
   maxBackgroundWidth = 1400;
 
   constructor(){
-    super().loadImage(this.IMAGES);
+    super().loadImage(this.IMAGES_BOTTLE);
     this.x = this.x + Math.random() * this.maxBackgroundWidth;
     this.y = this.height + Math.random() * 180;
   }

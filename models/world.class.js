@@ -6,6 +6,7 @@ class World {
   keyboard;
   camera_x = 0;
   collectedCoins = 0;
+  collectedBottles = 0;
 
   backgroundWidth = 719;
   backgroundRepeat = 8;
@@ -16,10 +17,10 @@ class World {
   statusBarHealth = new StatusBarHealth();
   statusBarCoin = new StatusBarCoin();
   statusBarEndboss = new StatusBarEndboss();
-//  coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
-  coins = [new Coin()];
+  coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
+  bottles = [new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle()];
 
-  throwableObjects = [];
+  throwableObjects = [];  
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext('2d');
@@ -31,7 +32,7 @@ class World {
   }
 
   setWorld() {
-    this.character.world = this;
+    this.character.world = this;    
   }
 
   run() {
@@ -70,6 +71,16 @@ class World {
         this.statusBarCoin.collected('Coins');
       }
     });
+
+    this.bottles.forEach((bottle) => {
+      if (this.character.isColliding(bottle)) {
+        let bottleIndex = getIndexOf(bottle.x, bottle.y, this.bottles);
+        this.bottles.splice(bottleIndex, 1);
+        this.collectedBottles++;
+        this.statusBarBottle.collected('Bottles');
+      }
+    });
+
   }
 
   checkThrowObjects() {
@@ -80,13 +91,15 @@ class World {
       offsetBottle = 100;
     }
 
-    if (this.keyboard.KEYD) {
+    if (this.keyboard.KEYD && this.collectedBottles > 0) {
       let bottle = new ThrowableObject(
         this.character.x + offsetBottle,
         this.character.y + 100,
         this.character.otherDirection,
       );
       this.throwableObjects.push(bottle);
+      this.collectedBottles--;
+      this.statusBarBottle.collected('Bottles');
     }
   }
 
@@ -98,6 +111,7 @@ class World {
     this.addObjectsToMap(this.level.backgroundObjects);
     this.addObjectsToMap(this.level.clouds);
     this.addObjectsToMap(this.coins);
+    this.addObjectsToMap(this.bottles);
 
     this.ctx.translate(-this.camera_x, 0); // Kamera zurücksetzen
 
