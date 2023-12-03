@@ -18,6 +18,8 @@ class World {
   statusBarHealth = new StatusBarHealth();
   statusBarCoin = new StatusBarCoin();
   statusBarEndboss = new StatusBarEndboss();
+  statusBarEndbossIcon = new EndbossIcon();
+
   coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
   bottles = [new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle()];
 
@@ -127,20 +129,21 @@ class World {
     this.addObjectsToMap(this.level.clouds);
     this.addObjectsToMap(this.coins);
     this.addObjectsToMap(this.bottles);
-
+    
     this.ctx.translate(-this.camera_x, 0); // Kamera zurücksetzen
-
+    
     // -- Space for fixed objects -- //
     this.addToMap(this.statusBarBottle);
     this.addTextToMap(this.statusBarBottle);
-
+    
     this.addToMap(this.statusBarHealth);
     this.addTextToMap(this.statusBarHealth);
-
+    
     this.addToMap(this.statusBarCoin);
     this.addTextToMap(this.statusBarCoin);
-
+    
     this.addToMap(this.statusBarEndboss);
+    this.addToMap(this.statusBarEndbossIcon);
 
     // -- Space for fixed objects -- //
     this.ctx.translate(this.camera_x, 0); // Kamera wieder setzen
