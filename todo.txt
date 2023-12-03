@@ -30,6 +30,10 @@
 //TODO - justify-center in style.css
 //TODO - JSDoc - Dokumentation
 
+//TODO - CleanCode
+//TODO - Checkliste DA
+
+
 //TODO Sounds
     bottle
     el_pollo_loco
