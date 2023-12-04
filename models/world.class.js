@@ -6,7 +6,7 @@ class World {
   keyboard;
   camera_x = 0;
   collectedCoins = 0;
-  collectedBottles = 0;
+  collectedBottles = 1000;
   nextThrow = 0;
 
   backgroundWidth = 719;
@@ -106,7 +106,7 @@ class World {
       this.nextThrow = 20;
 
       // sound throw
-      let throw_sound = new Audio('audio/collect.mp3');
+      let throw_sound = new Audio('audio/throw.mp3');
       throw_sound.play();
 
       this.throwableObjects.push(bottle);
@@ -144,8 +144,8 @@ class World {
     
     this.addToMap(this.statusBarEndboss);
     this.addToMap(this.statusBarEndbossIcon);
+    // -- End Space for fixed objects -- //
 
-    // -- Space for fixed objects -- //
     this.ctx.translate(this.camera_x, 0); // Kamera wieder setzen
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.enemies);
@@ -196,10 +196,9 @@ class World {
     this.ctx.restore();
   }
 
-
   soundCollected(){
-    let throw_sound = new Audio('audio/collect.mp3');
-    throw_sound.play();
+    let collect_sound = new Audio('audio/collect.mp3');
+    collect_sound.play();
   }
 
 }

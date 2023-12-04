@@ -3,6 +3,7 @@ class Chicken extends MovableObject{
    y = 345;
    width = 80;
    height = 80;
+   chicken_sound = new Audio('audio/chicken.mp3');
 
   IMAGES_WALKING = [
     'img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
@@ -16,8 +17,6 @@ class Chicken extends MovableObject{
     'img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
   ]
 
-  chicken_sound = new Audio('audio/chicken.mp3');
-
   constructor(){
 
     super().loadImage(this.IMAGES_WALKING[0]);
@@ -26,7 +25,7 @@ class Chicken extends MovableObject{
 
     this.x = 200 + Math.random() * this.maxBackgroundWidth;
     this.speed = 0.15 + Math.random() * 0.25;
-
+    
     this.x = 620;
     //this.animate();
   }
@@ -42,7 +41,7 @@ class Chicken extends MovableObject{
     }, 1000 / 60);
     
     const intervalId = setInterval(() => {
-      if (this.isDead()) {
+      if (this.isDead()) {        
         this.chicken_sound.play();
         this.playAnimation(this.IMAGES_DEAD);
         this.stopAnimation(intervalIdWalking);

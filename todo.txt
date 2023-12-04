@@ -33,13 +33,11 @@
 //TODO - CleanCode
 //TODO - Checkliste DA
 
+//TODO - SOUND DISABLE (um alle Funktionen eine Prüfung in den Constanten)
 
 //TODO Sounds
     bottle
     el_pollo_loco
     glass
-    jump
-    musicrunning
-    throw
     win
     lose

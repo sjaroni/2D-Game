@@ -23,7 +23,7 @@ class MovableObject extends DrawableObject {
   }
 
   isAboveGroundCharacter() {
-    if (this.y < 180) {     
+    if (this.y < 180) {      
       return true;
     } else {
       return false;
@@ -96,6 +96,8 @@ class MovableObject extends DrawableObject {
   }
 
   jump() {    
+    let jump_sound = new Audio('audio/jump.mp3');
+    jump_sound.play();
     this.speedY = 30;
   }
 
