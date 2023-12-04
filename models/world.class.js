@@ -8,6 +8,8 @@ class World {
   collectedCoins = 0;
   collectedBottles = 1000;
   nextThrow = 0;
+  
+  endboss_sound = new Audio('audio/endboss.mp3');
 
   backgroundWidth = 719;
   backgroundRepeat = 8;
@@ -107,8 +109,10 @@ class World {
       this.nextThrow = 20;
 
       // sound throw
-      let throw_sound = new Audio('audio/throw.mp3');
-      throw_sound.play();
+      if(SOUND_ON){      
+        let throw_sound = new Audio('audio/throw.mp3');
+        throw_sound.play();
+      }
 
       this.throwableObjects.push(bottle);
       this.collectedBottles--;
@@ -122,14 +126,17 @@ class World {
   }
 
   reachedEndboss(){
-    //TODO - check if endboss is alive
-    //TODO - Play Sound
     let enemies = world.level.enemies;    
-    let endboss = enemies[enemies.length - 1];    
-    if(endboss.x - this.character.x <= 570){
-      console.log('Endboss erreicht');
-      //let endboss_sound = new Audio('audio/endboss.mp3');
-      //endboss_sound.play();
+    let endboss = enemies[enemies.length - 1];
+
+    if(endboss.x - this.character.x <= 570 && !REACHED_ENDBOSS){
+      REACHED_ENDBOSS = true;
+      if(SOUND_ON){        
+        this.endboss_sound.play();
+      }      
+    } else if(endboss.x - this.character.x > 570 && REACHED_ENDBOSS){
+      REACHED_ENDBOSS = false;
+      this.endboss_sound.pause();
     }
   }
 
@@ -211,8 +218,10 @@ class World {
   }
 
   soundCollected(){
-    let collect_sound = new Audio('audio/collect.mp3');
-    collect_sound.play();
+    if(SOUND_ON){
+      let collect_sound = new Audio('audio/collect.mp3');
+      collect_sound.play();
+    }
   }
 
 }

@@ -2,9 +2,13 @@
 //TODO - Anleitung (vom Startbildschirm aus) welche Tasten
 //TODO - Musik im Hintergrund
 //TODO - GameOver Screen    
+
+//TODO - GAME MENU
+//TODO - Game Pause
+//TODO - SOUND DISABLE (um alle Funktionen eine Prüfung in den Constanten)
 //TODO - FullScreen-Modus canvas.requestFullscreen
     document.getElementById('fullscreen').requestFullscreen();
-//TODO - Game Pause
+
 //TODO - Gegner läuft bevor das Spiel startet (Startbutton startet initLevel() in Level1 - in den code gucken!)
 
 
@@ -33,11 +37,10 @@
 //TODO - CleanCode
 //TODO - Checkliste DA
 
-//TODO - SOUND DISABLE (um alle Funktionen eine Prüfung in den Constanten)
-
 //TODO Sounds
-    bottle
-    el_pollo_loco
-    glass
+    character.hurt
+    bottle splash
+    hintergrundmusik (music)
     win
     lose
+    dying

@@ -42,7 +42,9 @@ class Chicken extends MovableObject{
     
     const intervalId = setInterval(() => {
       if (this.isDead()) {        
-        this.chicken_sound.play();
+        if(SOUND_ON){
+          this.chicken_sound.play();
+        }
         this.playAnimation(this.IMAGES_DEAD);
         this.stopAnimation(intervalIdWalking);
         this.stopAnimation(intervalId);
