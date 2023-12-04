@@ -129,14 +129,19 @@ class World {
     let enemies = world.level.enemies;    
     let endboss = enemies[enemies.length - 1];
 
-    if(endboss.x - this.character.x <= 570 && !REACHED_ENDBOSS){
-      REACHED_ENDBOSS = true;
+    if(endboss.x - this.character.x <= 570 && !ENDBOSS_REACHED){
+      ENDBOSS_REACHED = true;      
+      //ENDBOSS_ANIMATION only at first Contact
+      this.endboss_reached();
       if(SOUND_ON){        
         this.endboss_sound.play();
-      }      
-    } else if(endboss.x - this.character.x > 570 && REACHED_ENDBOSS){
-      REACHED_ENDBOSS = false;
+      }
+      ENDBOSS_FIRST_CONTACT = true;
+
+    } else if(endboss.x - this.character.x > 570 && ENDBOSS_REACHED){
+      ENDBOSS_REACHED = false;
       this.endboss_sound.pause();
+      //STOP ENDBOSS_ANIMATION only at first Contact
     }
   }
 
@@ -223,5 +228,11 @@ class World {
       collect_sound.play();
     }
   }
+
+  endboss_reached(){
+    //console.log('endboss ist da');
+    document.getElementById('canvas').classList.add('alarm');
+  }
+
 
 }

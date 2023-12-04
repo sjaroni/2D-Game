@@ -1,2 +1,5 @@
 let SOUND_ON = true;
-let REACHED_ENDBOSS = false;
+let ENDBOSS_REACHED = false;
+let ENDBOSS_FIRST_CONTACT = false;
+let LEVEL_WIDTH = 719;
+let MAXBACKGROUNDWITH = 1;
