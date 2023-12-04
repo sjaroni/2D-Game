@@ -15,11 +15,10 @@ class Bottle extends DrawableObject {
 
   width = 71;
   height = 69;
-  maxBackgroundWidth = 1400;
 
   constructor(){
     super().loadImage(this.IMAGES_BOTTLE);
-    this.x = this.x + Math.random() * this.maxBackgroundWidth;
+    this.x = this.x + Math.random() * MAXBACKGROUNDWITH;
     this.y = this.height + Math.random() * 180;
   }
 }

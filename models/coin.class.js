@@ -14,12 +14,11 @@ class Coin extends DrawableObject {
   }
 
   width = 120;
-  height = 120;  
-  maxBackgroundWidth = 1400;
-
+  height = 120;
+  
   constructor(){
     super().loadImage(this.IMAGES);
-    this.x = this.x + Math.random() * this.maxBackgroundWidth;
+    this.x = this.x + Math.random() * MAXBACKGROUNDWITH;
     this.y = this.height + Math.random() * 180;
   }
 }

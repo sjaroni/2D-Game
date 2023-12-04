@@ -96,7 +96,7 @@ class Character extends MovableObject {
       this.walking_sound.pause();
       if (
         this.world.keyboard.ARROWRIGHT &&
-        this.x < this.world.level.level_end_x
+        this.x < CHARACTER_LEVEL_END
       ) {
         this.moveRight();
         if(SOUND_ON){

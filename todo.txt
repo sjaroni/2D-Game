@@ -38,6 +38,7 @@
 //TODO - Checkliste DA
 
 //TODO Sounds
+    endboss erscheint = alarm
     character.hurt
     bottle splash
     hintergrundmusik (music)

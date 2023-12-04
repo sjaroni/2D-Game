@@ -11,10 +11,6 @@ class World {
   
   endboss_sound = new Audio('audio/endboss.mp3');
 
-  backgroundWidth = 719;
-  backgroundRepeat = 8;
-  maxBackgroundWidth = this.backgroundWidth * this.backgroundRepeat;
-
   statusIcons = new StatusIcons();
   statusBarBottle = new StatusBarBottle();
   statusBarHealth = new StatusBarHealth();

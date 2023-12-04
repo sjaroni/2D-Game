@@ -5,10 +5,8 @@ class DrawableObject{
   x = 120;
   y = 170;
   width = 100;
-  height = 150;  
-  backgroundWidth = 719;
-  backgroundRepeat = 8;
-  maxBackgroundWidth = this.backgroundWidth * this.backgroundRepeat;  
+  height = 150;    
+  
   otherDirection = false;
   text;
   offset = {
