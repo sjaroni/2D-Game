@@ -10,6 +10,7 @@
     document.getElementById('fullscreen').requestFullscreen();
 
 //TODO - Gegner läuft bevor das Spiel startet (Startbutton startet initLevel() in Level1 - in den code gucken!)
+//TODO - Endboss läuft erst los ab Alarm
 
 
 //TODO - Level Länge in level1 definieren - abhängig davon die Objekte erstellen und verteilen
