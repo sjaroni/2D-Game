@@ -41,7 +41,8 @@ class World {
   run() {
     setInterval(() => {
       this.checkCollisions();
-      this.checkThrowObjects();      
+      this.checkThrowObjects();
+      this.reachedEndboss();
     }, 50);
   }
 
@@ -119,6 +120,19 @@ class World {
       this.nextThrow--;
     }
   }
+
+  reachedEndboss(){
+    //TODO - check if endboss is alive
+    //TODO - Play Sound
+    let enemies = world.level.enemies;    
+    let endboss = enemies[enemies.length - 1];    
+    if(endboss.x - this.character.x <= 570){
+      console.log('Endboss erreicht');
+      //let endboss_sound = new Audio('audio/endboss.mp3');
+      //endboss_sound.play();
+    }
+  }
+
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
