@@ -1,6 +1,12 @@
 class Endboss extends MovableObject {
 
-  y = 55;
+  y = 55;  
+  offset = {
+    top: 70,
+    bottom: 40,
+    left: 30,
+    right: 35,
+  };
   width = 250;
   height = 400;  
   speed = 12;
@@ -61,7 +67,8 @@ class Endboss extends MovableObject {
     this.x = 5500;
     this.speed = this.speed + Math.random() * 0.25;
     this.intervalNum = 1;
-    this.startInterval();
+    this.x = 500;
+    //this.startInterval();
   }
 
   startInterval() {
