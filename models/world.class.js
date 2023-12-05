@@ -19,7 +19,7 @@ class World {
   statusBarEndbossIcon = new EndbossIcon();
 
   coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
-  bottles = [new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle()];
+  bottles = [new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle()];  
 
   throwableObjects = [];  
 
@@ -53,9 +53,7 @@ class World {
         enemy.otherDirection = false;
       }      
 
-      if (
-        this.character.isColliding(enemy) && enemy.energy == 100 && this.character.energy > 0 && this.character.isAboveGroundCharacter() == false
-      ) {
+      if (this.character.isColliding(enemy) && enemy.energy == 100 && this.character.energy > 0 && this.character.isAboveGroundCharacter() == false) {
         this.character.hit(1);
         this.statusBarHealth.setPercentage(this.character.energy);
       } else {
@@ -63,6 +61,13 @@ class World {
           enemy.hit(100);
         }
       }
+      
+      if (this.throwableObjects.length !== 0){
+        if(this.throwableObjects[0].isColliding(enemy)){
+          enemy.hit(100);
+        }
+      }
+
     });
 
     this.coins.forEach((coin) => {
@@ -99,12 +104,11 @@ class World {
       let bottle = new ThrowableObject(
         this.character.x + offsetBottle,
         this.character.y + 100,
-        this.character.otherDirection,
+        this.character.otherDirection
       );
-      
-      this.nextThrow = 20;
 
-      // sound throw
+      this.nextThrow = 30;
+
       if(SOUND_ON){      
         let throw_sound = new Audio('audio/throw.mp3');
         throw_sound.play();
@@ -116,8 +120,10 @@ class World {
     }
     if(this.nextThrow < 1){
       this.nextThrow = 0;
+      this.throwableObjects = [];
     } else{
       this.nextThrow--;
+      
     }
   }
 
@@ -136,6 +142,7 @@ class World {
 
     } else if(endboss.x - this.character.x > 570 && ENDBOSS_REACHED){
       ENDBOSS_REACHED = false;
+      this.endboss_left();
       this.endboss_sound.pause();
       //STOP ENDBOSS_ANIMATION only at first Contact
     }
@@ -164,8 +171,10 @@ class World {
     this.addToMap(this.statusBarCoin);
     this.addTextToMap(this.statusBarCoin);
     
-    this.addToMap(this.statusBarEndboss);
-    this.addToMap(this.statusBarEndbossIcon);
+    if(ENDBOSS_REACHED){
+      this.addToMap(this.statusBarEndboss);
+      this.addToMap(this.statusBarEndbossIcon);
+    }
     // -- End Space for fixed objects -- //
 
     this.ctx.translate(this.camera_x, 0); // Kamera wieder setzen
@@ -225,10 +234,11 @@ class World {
     }
   }
 
-  endboss_reached(){
-    //console.log('endboss ist da');
+  endboss_reached(){    
     document.getElementById('canvas').classList.add('alarm');
   }
-
+  endboss_left(){    
+    document.getElementById('canvas').classList.remove('alarm');
+  }
 
 }

@@ -23,15 +23,14 @@ class ThrowableObject extends MovableObject {
     this.otherDirection = otherDirection;
 
     this.height = 60;
-    this.width = 50;       
-
-    this.throw();    
+    this.width = 50;
+    this.throw();
   }
   
   throw() {
     this.speedY = 30;
     this.applyGravity();
-    
+
     setInterval(() => {
       this.playAnimation(this.IMAGES_THROW);
       if (this.otherDirection == false) {        

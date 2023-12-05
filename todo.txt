@@ -16,8 +16,10 @@
 //TODO - Level Länge in level1 definieren - abhängig davon die Objekte erstellen und verteilen
 //TODO - LevelWidth in constant.js (raus aus level1)
 
-//TODO - Flaschen Kollision
+//TODO - Flaschen Kollision bei Endgegner
 //TODO - 1x Heart einsammeln einsammeln
+
+//TODO - Wenn Endgegner erreicht soll die Statusbar vom Endgegner angezeigt werden, sonst nicht
 
 
 //TODO - Kleine Hühner 
