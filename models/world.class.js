@@ -8,6 +8,7 @@ class World {
   collectedCoins = 0;
   collectedBottles = 1000;
   nextThrow = 0;
+  nextHit = 0;
   
   endboss_sound = new Audio('audio/endboss.mp3');
 
@@ -62,14 +63,21 @@ class World {
         }
       }
       
-      if (this.throwableObjects.length !== 0){
+      if (this.throwableObjects.length !== 0){        
         if(this.throwableObjects[0].isColliding(enemy)){          
           if(enemy instanceof Chicken){
             enemy.hit(100);
           }
-          if(enemy instanceof Endboss){
+          if(enemy instanceof Endboss && this.nextHit == 0){
             enemy.hit(20);
+            this.statusBarEndboss.setPercentage(enemy.energy);
+            this.nextHit = 30;
           }
+        }
+        if(this.nextHit < 1){
+          this.nextHit = 0;          
+        } else{          
+          this.nextHit--;
         }
       }
 
@@ -127,8 +135,7 @@ class World {
       this.nextThrow = 0;
       this.throwableObjects = [];
     } else{
-      this.nextThrow--;
-      
+      this.nextThrow--;      
     }
   }
 
@@ -146,6 +153,9 @@ class World {
         if(SOUND_ON){
           this.endboss_sound.play();
         }
+
+      //TODO - startIntervall
+      //endboss.startInterval();
       ENDBOSS_FIRST_CONTACT = true;
 
     } else if(endboss.x - this.character.x > 570 && ENDBOSS_REACHED){

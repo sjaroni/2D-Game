@@ -10,7 +10,6 @@
     document.getElementById('fullscreen').requestFullscreen();
 
 //TODO - Gegner läuft bevor das Spiel startet (Startbutton startet initLevel() in Level1 - in den code gucken!)
-//TODO - Endboss läuft erst los ab Alarm
 
 
 //TODO - Level Länge in level1 definieren - abhängig davon die Objekte erstellen und verteilen
@@ -21,6 +20,7 @@
 
 //TODO - Wenn Endgegner erreicht soll die Statusbar vom Endgegner angezeigt werden, sonst nicht
 
+//TODO - Hintergrundbild
 
 //TODO - Kleine Hühner 
 
@@ -30,8 +30,7 @@
 
 //TODO - isAboveGround dann trotzdem rechts und links möglich
 
-//TODO - Endboss erreicht - Sound starten
-//TODO - Statusbar - alle (auch Endboss)     
+//TODO - Statusbar Endboss
 
 //TODO - Objekt-Rahmen entfernen
 //TODO - justify-center in style.css

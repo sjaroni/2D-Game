@@ -22,11 +22,11 @@ class StatusBarHealth extends StatusIcons {
   }
 
   resolveImageIndex(percentage) {
-    if (percentage <= 100 && percentage > 80) {      
+    if (percentage <= 100 && percentage > 80) {
       return 5;
     } else if (percentage <= 80 && percentage > 60) {
       return 4;
-    } else if (percentage <= 60 && percentage > 40) {      
+    } else if (percentage <= 60 && percentage > 40) {
       return 3;
     } else if (percentage <= 40 && percentage > 20) {
       return 2;

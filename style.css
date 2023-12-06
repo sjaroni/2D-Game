@@ -41,7 +41,7 @@ canvas{
 	background: red;	
 	margin: 20px;
 	box-shadow: 0 0 0 0 rgb(221, 11, 11);
-	animation: pulse 1s infinite;
+	animation: pulse 1.2s infinite;
 }
 
 @keyframes pulse {
@@ -50,7 +50,7 @@ canvas{
 	}
 
 	70% {		
-		box-shadow: 0 0 0 20px rgba(221, 11, 11, 0.7);
+		box-shadow: 0 0 0 15px rgba(221, 11, 11, 0.7);
 	}
 
 	100% {		

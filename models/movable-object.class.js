@@ -23,7 +23,7 @@ class MovableObject extends DrawableObject {
   }
 
   isAboveGroundCharacter() {
-    if (this.y < 180) {      
+    if (this.y < 180) {
       return true;
     } else {
       return false;
