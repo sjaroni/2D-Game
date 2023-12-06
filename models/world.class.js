@@ -54,7 +54,7 @@ class World {
         enemy.otherDirection = false;
       }      
 
-      if (this.character.isColliding(enemy) && enemy.energy == 100 && this.character.energy > 0 && this.character.isAboveGroundCharacter() == false) {
+      if (this.character.isColliding(enemy) && enemy.energy != 0 && this.character.energy > 0 && this.character.isAboveGroundCharacter() == false) {
         this.character.hit(1);
         this.statusBarHealth.setPercentage(this.character.energy);
       } else {
@@ -155,7 +155,7 @@ class World {
         }
 
       //TODO - startIntervall
-      //endboss.startInterval();
+      endboss.startInterval();
       ENDBOSS_FIRST_CONTACT = true;
 
     } else if(endboss.x - this.character.x > 570 && ENDBOSS_REACHED){
