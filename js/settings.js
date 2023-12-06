@@ -1,4 +1,4 @@
-let SOUND_ON = false;
+let SOUND_ON = true;
 let ENDBOSS_REACHED = false;
 let ENDBOSS_FIRST_CONTACT = false;
 let LEVEL_WIDTH = 719;

@@ -67,7 +67,7 @@ class Endboss extends MovableObject {
     this.x = 5500;
     this.speed = this.speed + Math.random() * 0.25;
     this.intervalNum = 1;
-    this.x = 500;
+    this.x = 1500;
     //this.startInterval();
   }
 

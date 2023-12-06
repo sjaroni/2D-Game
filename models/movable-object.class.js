@@ -40,6 +40,7 @@ class MovableObject extends DrawableObject {
 
   hit(deduction) {
     this.energy -= deduction;
+    console.log(this.energy);
     if (this.energy < 0) {
       this.energy = 0;
     } else {

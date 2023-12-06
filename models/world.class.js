@@ -63,8 +63,13 @@ class World {
       }
       
       if (this.throwableObjects.length !== 0){
-        if(this.throwableObjects[0].isColliding(enemy)){
-          enemy.hit(100);
+        if(this.throwableObjects[0].isColliding(enemy)){          
+          if(enemy instanceof Chicken){
+            enemy.hit(100);
+          }
+          if(enemy instanceof Endboss){
+            enemy.hit(20);
+          }
         }
       }
 
@@ -109,7 +114,7 @@ class World {
 
       this.nextThrow = 30;
 
-      if(SOUND_ON){      
+      if(SOUND_ON){
         let throw_sound = new Audio('audio/throw.mp3');
         throw_sound.play();
       }
@@ -132,19 +137,21 @@ class World {
     let endboss = enemies[enemies.length - 1];
 
     if(endboss.x - this.character.x <= 570 && !ENDBOSS_REACHED){
-      ENDBOSS_REACHED = true;      
-      //ENDBOSS_ANIMATION only at first Contact
+      ENDBOSS_REACHED = true;
       this.endboss_reached();
-      if(SOUND_ON){        
-        this.endboss_sound.play();
-      }
+      if(SOUND_ON && !ENDBOSS_FIRST_CONTACT){
+        let alarm_sound = new Audio('audio/alarm.mp3');
+        alarm_sound.play();
+      } 
+        if(SOUND_ON){
+          this.endboss_sound.play();
+        }
       ENDBOSS_FIRST_CONTACT = true;
 
     } else if(endboss.x - this.character.x > 570 && ENDBOSS_REACHED){
       ENDBOSS_REACHED = false;
       this.endboss_left();
       this.endboss_sound.pause();
-      //STOP ENDBOSS_ANIMATION only at first Contact
     }
   }
 

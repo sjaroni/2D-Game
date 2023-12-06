@@ -25,16 +25,14 @@ class Chicken extends MovableObject{
 
     this.x = 200 + Math.random() * MAXBACKGROUNDWITH;
     this.speed = 0.15 + Math.random() * 0.25;
-    
-    //this.x = 620;
-    //this.animate();
+    this.animate();
   }
 
   animate(){    
 
     const intervalIdWalking = setInterval(() => {
       if(!this.otherDirection){
-        //this.moveLeft();
+        this.moveLeft();
       } else {
         this.moveRight();
       }
