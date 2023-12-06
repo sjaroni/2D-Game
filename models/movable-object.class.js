@@ -40,7 +40,6 @@ class MovableObject extends DrawableObject {
 
   hit(deduction) {
     this.energy -= deduction;
-    console.log(this.energy);
     if (this.energy < 0) {
       this.energy = 0;
     } else {
@@ -68,8 +67,8 @@ class MovableObject extends DrawableObject {
   }
 
   isCollidingFromTop(mo) {
-    return (      
-      this.x + this.width - this.offset.right > mo.x + mo.offset.left &&      
+    return (
+      this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
       this.x - this.offset.left < mo.x + mo.width - mo.offset.right &&
       this.y + this.height - this.offset.bottom > mo.y + mo.offset.top
     );
@@ -96,18 +95,17 @@ class MovableObject extends DrawableObject {
     }, 300);
   }
 
-  jump() {    
-    if(SOUND_ON){
+  jump() {
+    if (SOUND_ON) {
       let jump_sound = new Audio('audio/jump.mp3');
       jump_sound.play();
     }
     this.speedY = 30;
   }
 
-  hideObject(){      
-    setTimeout(() => {      
+  hideObject() {
+    setTimeout(() => {
       this.y += 600;
     }, 2000);
-  } 
-
+  }
 }

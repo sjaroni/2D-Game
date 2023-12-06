@@ -63,7 +63,10 @@ class World {
         }
       }
       
-      if (this.throwableObjects.length !== 0){        
+      if (this.throwableObjects.length !== 0){
+
+        console.log(this.nextHit);
+
         if(this.throwableObjects[0].isColliding(enemy)){          
           if(enemy instanceof Chicken){
             enemy.hit(100);
@@ -71,7 +74,7 @@ class World {
           if(enemy instanceof Endboss && this.nextHit == 0){
             enemy.hit(20);
             this.statusBarEndboss.setPercentage(enemy.energy);
-            this.nextHit = 30;
+            this.nextHit = 100;            
           }
         }
         if(this.nextHit < 1){

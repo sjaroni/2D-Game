@@ -66,6 +66,7 @@ class Endboss extends MovableObject {
     this.loadImages(this.IMAGES_DEAD);
     this.x = 5500;
     this.speed = this.speed + Math.random() * 0.25;
+    this.x = 1500;
     this.intervalNum = 1;    
   }
 
