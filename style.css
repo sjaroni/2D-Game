@@ -39,7 +39,6 @@ h1{
 #start_endscreen{
   width: 720px;
   height: 480px;  
-  background: url('img/9_intro_outro_screens/start/startscreen_2.png') no-repeat;
   background-position: center;
   background-size: cover;
   position: absolute;
@@ -51,6 +50,7 @@ canvas{
   display: block;
   margin: 20px;
   position: absolute;
+  cursor: none;
 }
 
 .alarm {

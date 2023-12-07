@@ -18,7 +18,7 @@ class Bottle extends DrawableObject {
 
   constructor(){
     super().loadImage(this.IMAGES_BOTTLE);
-    this.x = this.x + Math.random() * MAXBACKGROUNDWITH;
+    this.x = this.x + Math.random() * OBJECT_LEVEL_END;
     this.y = this.height + Math.random() * 180;
   }
 }

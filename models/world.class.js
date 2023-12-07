@@ -6,7 +6,7 @@ class World {
   keyboard;
   camera_x = 0;
   collectedCoins = 0;
-  collectedBottles = 1000;
+  collectedBottles = 0;
   nextThrow = 0;
   nextHit = 0;
   
@@ -18,7 +18,7 @@ class World {
   statusBarEndbossIcon = new EndbossIcon();
 
   coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
-  bottles = [new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle()];  
+  bottles = [new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle()];
 
   throwableObjects = [];  
 
@@ -56,7 +56,7 @@ class World {
         this.character.hit(1);
         this.statusBarHealth.setPercentage(this.character.energy);
       } else {
-        if (this.character.isCollidingFromTop(enemy) && this.character.isAboveGroundCharacter()) {          
+        if (enemy instanceof Chicken && this.character.isCollidingFromTop(enemy) && this.character.isAboveGroundCharacter()) {
           enemy.hit(100);
         }
       }
@@ -69,13 +69,16 @@ class World {
           if(enemy instanceof Endboss && this.nextHit == 0){
             enemy.hit(20);
             this.statusBarEndboss.setPercentage(enemy.energy);
-            this.nextHit = 10;            
+            this.nextHit = 10;
           }
         }
-        if(this.nextHit < 1){
-          this.nextHit = 0;          
-        } else{          
-          this.nextHit--;
+
+        if(enemy instanceof Endboss){
+          if(this.nextHit < 1){
+            this.nextHit = 0;          
+          } else{          
+            this.nextHit--;
+          }
         }
       }
 
@@ -160,7 +163,6 @@ class World {
       endboss.endboss_sound.pause();
     }
   }
-
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);

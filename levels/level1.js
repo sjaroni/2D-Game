@@ -1,16 +1,18 @@
-// let level1;
+//let level1;
 
-// function initLevel(){
+function initLevel(){
+  document.getElementById('start_endscreen').classList.add('d-none');
+}
 
 const level1 = new Level(
   [
-    // new Chicken(),
-    // new Chicken(),
-    // new Chicken(),
-    // new Chicken(),
-    // new Chicken(),
-    // new Chicken(),
-    // new Chicken(),
+    new Chicken(),
+    new Chicken(),
+    new Chicken(),
+    new Chicken(),
+    new Chicken(),
+    new Chicken(),
+    new Chicken(),
     new Endboss()
   ],  
   [
