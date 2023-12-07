@@ -10,8 +10,6 @@ class World {
   nextThrow = 0;
   nextHit = 0;
   
-  // endboss_sound = new Audio('audio/endboss.mp3');
-
   statusIcons = new StatusIcons();
   statusBarBottle = new StatusBarBottle();
   statusBarHealth = new StatusBarHealth();
@@ -143,22 +141,20 @@ class World {
     let enemies = world.level.enemies;    
     let endboss = enemies[enemies.length - 1];
 
-    if(endboss.x - this.character.x <= 570 && !ENDBOSS_REACHED){
+    if(endboss.x - this.character.x <= 570 && !ENDBOSS_REACHED && endboss.energy > 0){
       ENDBOSS_REACHED = true;
       this.endboss_reached();
       if(SOUND_ON && !ENDBOSS_FIRST_CONTACT){
         let alarm_sound = new Audio('audio/alarm.mp3');
         alarm_sound.play();
-      } 
-      // if(SOUND_ON){
-      //     this.endboss_sound.play();
-      // }
+      }
+      
+      if(!ENDBOSS_FIRST_CONTACT){
+        endboss.startInterval();
+        ENDBOSS_FIRST_CONTACT = true;
+      }
 
-      //TODO - startIntervall
-      endboss.startInterval();
-      ENDBOSS_FIRST_CONTACT = true;
-
-    } else if(endboss.x - this.character.x > 570 && ENDBOSS_REACHED){
+    } else if(endboss.x - this.character.x > 570 && ENDBOSS_REACHED && endboss.energy > 0){
       ENDBOSS_REACHED = false;
       this.endboss_left();
       endboss.endboss_sound.pause();
