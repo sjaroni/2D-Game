@@ -11,14 +11,7 @@
 
 //TODO - Gegner läuft bevor das Spiel startet (Startbutton startet initLevel() in Level1 - in den code gucken!)
 
-
-//TODO - Level Länge in level1 definieren - abhängig davon die Objekte erstellen und verteilen
-//TODO - LevelWidth in constant.js (raus aus level1)
-
-//TODO - Flaschen Kollision bei Endgegner
-//TODO - 1x Heart einsammeln einsammeln
-
-//TODO - Wenn Endgegner erreicht soll die Statusbar vom Endgegner angezeigt werden, sonst nicht
+//TODO - Flaschen Kollision bei Endgegner (Sound und Splash)
 
 //TODO - Hintergrundbild
 
@@ -26,22 +19,20 @@
 
 //TODO - Touchbedienung
 
-//TODO - Kamera bewegen bzw. Position ändern
+//TODO - Kamera bewegen bzw. Position ändern - wenn Pepe nach links läuft soll er statt links rechts angezeigt werden
 
 //TODO - isAboveGround dann trotzdem rechts und links möglich
-
-//TODO - Statusbar Endboss
 
 //TODO - Objekt-Rahmen entfernen
 //TODO - justify-center in style.css
 //TODO - JSDoc - Dokumentation
 
 //TODO - CleanCode
+//TODO - Kommentare entfernen
+//TODO - Console.log entfernen
 //TODO - Checkliste DA
 
 //TODO Sounds
-    endboss erscheint = alarm
-    character.hurt
     bottle splash
     hintergrundmusik (music)
     win

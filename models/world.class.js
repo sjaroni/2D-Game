@@ -10,7 +10,7 @@ class World {
   nextThrow = 0;
   nextHit = 0;
   
-  endboss_sound = new Audio('audio/endboss.mp3');
+  // endboss_sound = new Audio('audio/endboss.mp3');
 
   statusIcons = new StatusIcons();
   statusBarBottle = new StatusBarBottle();
@@ -64,9 +64,6 @@ class World {
       }
       
       if (this.throwableObjects.length !== 0){
-
-        console.log(this.nextHit);
-
         if(this.throwableObjects[0].isColliding(enemy)){          
           if(enemy instanceof Chicken){
             enemy.hit(100);
@@ -74,7 +71,7 @@ class World {
           if(enemy instanceof Endboss && this.nextHit == 0){
             enemy.hit(20);
             this.statusBarEndboss.setPercentage(enemy.energy);
-            this.nextHit = 100;            
+            this.nextHit = 10;            
           }
         }
         if(this.nextHit < 1){
@@ -153,9 +150,9 @@ class World {
         let alarm_sound = new Audio('audio/alarm.mp3');
         alarm_sound.play();
       } 
-        if(SOUND_ON){
-          this.endboss_sound.play();
-        }
+      // if(SOUND_ON){
+      //     this.endboss_sound.play();
+      // }
 
       //TODO - startIntervall
       endboss.startInterval();
@@ -164,7 +161,7 @@ class World {
     } else if(endboss.x - this.character.x > 570 && ENDBOSS_REACHED){
       ENDBOSS_REACHED = false;
       this.endboss_left();
-      this.endboss_sound.pause();
+      endboss.endboss_sound.pause();
     }
   }
 
@@ -223,8 +220,11 @@ class World {
     }
 
     mo.draw(this.ctx);
-    mo.drawFrame(this.ctx);
-    mo.drawInnerFrame(this.ctx);
+    
+    if(DRAWALLFRAMES){
+      mo.drawFrame(this.ctx);
+      mo.drawInnerFrame(this.ctx);
+    }
 
     if (mo.otherDirection) {
       this.flipImageBack(mo);
