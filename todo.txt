@@ -32,6 +32,8 @@
 //TODO - Console.log entfernen
 //TODO - Checkliste DA
 
+//TODO - auf FTP testen
+
 //TODO Sounds
     bottle splash
     hintergrundmusik (music)
