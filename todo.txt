@@ -15,7 +15,7 @@
 
 //TODO - Hintergrundbild
 
-//TODO - Kleine Hühner 
+//TODO - Kleine Hühner - springen!
 
 //TODO - Touchbedienung
 

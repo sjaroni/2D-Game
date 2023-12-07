@@ -20,7 +20,7 @@ class World {
   coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
   bottles = [new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle()];
 
-  throwableObjects = [];  
+  throwableObjects = [];
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext('2d');
@@ -56,14 +56,14 @@ class World {
         this.character.hit(1);
         this.statusBarHealth.setPercentage(this.character.energy);
       } else {
-        if (enemy instanceof Chicken && this.character.isCollidingFromTop(enemy) && this.character.isAboveGroundCharacter()) {
+        if ((enemy instanceof Chicken || enemy instanceof ChickenSmall) && this.character.isCollidingFromTop(enemy) && this.character.isAboveGroundCharacter()) {
           enemy.hit(100);
         }
       }
       
       if (this.throwableObjects.length !== 0){
         if(this.throwableObjects[0].isColliding(enemy)){          
-          if(enemy instanceof Chicken){
+          if(enemy instanceof Chicken || enemy instanceof ChickenSmall){
             enemy.hit(100);
           }
           if(enemy instanceof Endboss && this.nextHit == 0){
@@ -80,6 +80,10 @@ class World {
             this.nextHit--;
           }
         }
+      }
+
+      if(this.collectedBottles == 0 && this.bottles.length == 0){
+        this.bottles.push(new Bottle());
       }
 
     });
