@@ -4,7 +4,9 @@ class ChickenSmall extends MovableObject{
    y = 345;
    width = 80;
    height = 80;
-   chicken_sound = new Audio('audio/chicken.mp3');
+   chicken_sound = new Audio('audio/chicken_small.mp3');
+   yPosition = this.y;
+   jumpInterval = Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000;
 
   IMAGES_WALKING = [
     'img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
@@ -23,8 +25,8 @@ class ChickenSmall extends MovableObject{
     super().loadImage(this.IMAGES_WALKING[0]);
     this.loadImages(this.IMAGES_WALKING);
     this.loadImages(this.IMAGES_DEAD);
-
-    this.x = 200 + Math.random() * OBJECT_LEVEL_END;
+    this.applyGravity();
+    this.x = 400 + Math.random() * OBJECT_LEVEL_END;
     this.speed = 0.15 + Math.random() * 0.25;
     this.animate();
   }
@@ -32,13 +34,19 @@ class ChickenSmall extends MovableObject{
   animate(){    
 
     const intervalIdWalking = setInterval(() => {
-      if(!this.otherDirection){
+      if(!this.otherDirection){        
         this.moveLeft();
       } else {
         this.moveRight();
       }
     }, 1000 / 60);
     
+    setInterval(() => {
+      if (!this.isAboveGround() && this.energy > 0) {
+        this.jump();
+     }  
+    }, this.jumpInterval);
+
     const intervalId = setInterval(() => {
       if (this.isDead()) {        
         if(SOUND_ON){

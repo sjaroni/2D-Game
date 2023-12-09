@@ -4,6 +4,7 @@ class MovableObject extends DrawableObject {
   acceleration = 2.5;
   lastHit = 0;
   energy = 100;
+  yPosition = 180;
 
   applyGravity() {
     setInterval(() => {
@@ -34,7 +35,7 @@ class MovableObject extends DrawableObject {
     if (this instanceof ThrowableObject) {
       return true;
     } else {
-      return this.y < 180;
+      return this.y < this.yPosition;
     }
   }
 
@@ -97,8 +98,12 @@ class MovableObject extends DrawableObject {
 
   jump() {
     if (SOUND_ON) {
-      let jump_sound = new Audio('audio/jump.mp3');
-      jump_sound.play();
+      
+      if(this instanceof Character){
+        let jump_sound = new Audio('audio/jump.mp3');
+        jump_sound.play();
+      }
+
     }
     this.speedY = 30;
   }

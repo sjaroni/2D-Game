@@ -6,7 +6,7 @@ class World {
   keyboard;
   camera_x = 0;
   collectedCoins = 0;
-  collectedBottles = 0;
+  collectedBottles = 1000;
   nextThrow = 0;
   nextHit = 0;
   
@@ -181,18 +181,21 @@ class World {
     this.ctx.translate(-this.camera_x, 0); // Kamera zurücksetzen
     
     // -- Space for fixed objects -- //
-    this.addToMap(this.statusBarBottle);
-    this.addTextToMap(this.statusBarBottle);
-    
-    this.addToMap(this.statusBarHealth);
-    this.addTextToMap(this.statusBarHealth);
-    
-    this.addToMap(this.statusBarCoin);
-    this.addTextToMap(this.statusBarCoin);
-    
-    if(ENDBOSS_REACHED){
-      this.addToMap(this.statusBarEndboss);
-      this.addToMap(this.statusBarEndbossIcon);
+
+    if(!ENDBOSS_IS_DEAD){
+      this.addToMap(this.statusBarBottle);
+      this.addTextToMap(this.statusBarBottle);
+      
+      this.addToMap(this.statusBarHealth);
+      this.addTextToMap(this.statusBarHealth);
+      
+      this.addToMap(this.statusBarCoin);
+      this.addTextToMap(this.statusBarCoin);
+      
+      if(ENDBOSS_REACHED){
+        this.addToMap(this.statusBarEndboss);
+        this.addToMap(this.statusBarEndbossIcon);
+      }
     }
     // -- End Space for fixed objects -- //
 

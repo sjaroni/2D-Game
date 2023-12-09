@@ -1,7 +1,8 @@
 //TODO - Startscreen (Start, Anleitung, Settings wie Musik an/aus, Sounds, an/aus, Fullscreen)
 //TODO - Anleitung (vom Startbildschirm aus) welche Tasten
-//TODO - Musik im Hintergrund
-//TODO - GameOver Screen    
+//TODO - Musik im Hintergrund (in game vorhanden)
+//TODO - GameOver Screen
+//TODO - YouWin Screen    
 
 //TODO - GAME MENU
 //TODO - Game Pause
@@ -11,11 +12,13 @@
 
 //TODO - Gegner läuft bevor das Spiel startet (Startbutton startet initLevel() in Level1 - in den code gucken!)
 
-//TODO - Flaschen Kollision bei Endgegner (Sound und Splash)
+//TODO - Flaschen Kollision bei Gegner (Sound und Splash)
+
+//TODO - Endboss nach Hit kurz auf Character zubewegen (schnell)
 
 //TODO - Hintergrundbild
 
-//TODO - Kleine Hühner - springen!
+//TODO - GameOver kreisend rein Animation
 
 //TODO - Touchbedienung
 
@@ -31,8 +34,6 @@
 //TODO - Kommentare entfernen
 //TODO - Console.log entfernen
 //TODO - Checkliste DA
-
-//TODO - Anzahl der Flaschen
 
 //TODO - auf FTP testen
 

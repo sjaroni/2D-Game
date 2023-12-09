@@ -18,6 +18,7 @@ class Endboss extends MovableObject {
   intervalWalking;
   intervalAlert;
   intervalAttack;
+  intervalAfterHurt;
 
   IMAGES_WALKING = [
     'img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -62,6 +63,7 @@ class Endboss extends MovableObject {
 
   endboss_sound = new Audio('audio/endboss.mp3');
   hurt_sound = new Audio('audio/chicken.mp3');
+  win_sound = new Audio('audio/win.mp3');
 
   constructor() {
     super().loadImage(this.IMAGES_WALKING[0]);
@@ -184,6 +186,7 @@ class Endboss extends MovableObject {
         if (SOUND_ON) {
           this.endboss_sound.pause();
           this.hurt_sound.play();
+          this.win_sound.play();
         }
 
         clearInterval(this.intervalWalking);
@@ -193,18 +196,22 @@ class Endboss extends MovableObject {
         this.stopAnimation(lastInterval);
         clearInterval(lastInterval);
         this.loadImage(this.IMAGES_DEAD[2]);
-        
+
         //TODO - You win Screen
+        ENDBOSS_IS_DEAD = true;
         document.getElementById('canvas').classList.remove('alarm');
         document.getElementById('start_endscreen').classList.remove('d-none');
-        document.getElementById('start_endscreen').src = WIN;
+        document.getElementById('start_endscreen').src = WINSCREEN;
         stopGame();
       }, 500);
     }
   }
 
   endbossIsHurt(intervalId) {
-    this.playAnimation(this.IMAGES_HURT);
+    
+    let endbossIsHurtInterval = setInterval(() => {
+          this.playAnimation(this.IMAGES_HURT);
+    }, 200);
 
     if (SOUND_ON) {
       this.endboss_sound.pause();
@@ -213,6 +220,21 @@ class Endboss extends MovableObject {
 
     this.reloadCounter++;
 
+    setTimeout(() => {
+      
+      this.stopAnimation(endbossIsHurtInterval);
+      clearInterval(endbossIsHurtInterval);
+
+      this.intervalAfterHurt = setInterval(() => {
+       this.playAnimation(this.IMAGES_WALKING);
+        if (!this.otherDirection) {
+          this.moveLeft();
+        } else {
+          this.moveRight();
+        }
+      }, 50);
+    }, 800);
+
     this.stopAnimation(this.intervalWalking);
     this.stopAnimation(this.intervalAlert);
     this.stopAnimation(this.initIntervalAttack);
@@ -220,6 +242,12 @@ class Endboss extends MovableObject {
     clearInterval(this.intervalWalking);
     clearInterval(this.intervalAlert);
     clearInterval(this.intervalAttack);
-    this.reloadAnimations(intervalId);
+
+
+    setTimeout(() => {
+      this.stopAnimation(this.intervalAfterHurt);
+      clearInterval(this.intervalAfterHurt);
+      this.reloadAnimations(intervalId);
+    }, 2200);
   }
 }
