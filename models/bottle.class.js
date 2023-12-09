@@ -13,6 +13,7 @@ class Bottle extends MovableObject{
     left: 25,
     right: 25
   }
+  rotateInterval = Math.floor(Math.random() * (1000 - 500 + 1)) + 500;
 
   width = 71;
   height = 69;
@@ -27,7 +28,7 @@ class Bottle extends MovableObject{
   animate(){
     setInterval(() => {
       this.playAnimation(this.IMAGES_BOTTLE);
-    }, 200);
+    }, this.rotateInterval);
   }
 
 }

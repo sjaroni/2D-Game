@@ -14,19 +14,14 @@
 
 //TODO - Flaschen Kollision bei Gegner (Sound und Splash)
 
-//TODO - Endboss nach Hit kurz auf Character zubewegen (schnell)
-
 //TODO - Hintergrundbild
 
-//TODO - GameOver kreisend rein Animation
+//TODO - YouWin/GameOver kreisend rein Animation
+
 
 //TODO - Touchbedienung
-
 //TODO - Kamera bewegen bzw. Position ändern - wenn Pepe nach links läuft soll er statt links rechts angezeigt werden
-
-//TODO - isAboveGround dann trotzdem rechts und links möglich
-
-//TODO - Objekt-Rahmen entfernen
+//TODO - Objekt-Rahmen entfernen (ist in Settings)
 //TODO - justify-center in style.css
 //TODO - JSDoc - Dokumentation
 

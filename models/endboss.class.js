@@ -111,7 +111,8 @@ class Endboss extends MovableObject {
         this.playAnimation(this.IMAGES_WALKING);
         this.initIntervalAttack = 0;
         if (this.initIntervalWalking == 5) {
-          clearInterval(this.intervalWalking);
+          
+          this.stopAnimation(this.intervalWalking);
           this.intervalNum = 2;
           this.startInterval();
         }
@@ -125,8 +126,8 @@ class Endboss extends MovableObject {
       this.intervalAlert = setInterval(() => {
         this.playAnimation(this.IMAGES_ALERT);
         this.initIntervalWalking = 0;
-        if (this.initIntervalAlert == 5) {
-          clearInterval(this.intervalAlert);
+        if (this.initIntervalAlert == 5) {          
+          this.stopAnimation(this.intervalAlert);
           this.intervalNum = 3;
           this.startInterval();
         }
@@ -141,7 +142,7 @@ class Endboss extends MovableObject {
         this.playAnimation(this.IMAGES_ATTACK);
         this.initIntervalAlert = 0;
         if (this.initIntervalAttack == 6) {
-          clearInterval(this.intervalAttack);
+          this.stopAnimation(this.intervalAttack);
           this.intervalNum = 1;
           this.startInterval();
         }
@@ -163,10 +164,10 @@ class Endboss extends MovableObject {
 
   reloadAnimations(intervalId) {
     setTimeout(() => {
-      this.stopAnimation(intervalId);
-      clearInterval(this.intervalWalking);
-      clearInterval(this.intervalAlert);
-      clearInterval(this.intervalAttack);
+      this.stopAnimation(intervalId);      
+      this.stopAnimation(this.intervalWalking);
+      this.stopAnimation(this.intervalAlert);
+      this.stopAnimation(this.intervalAttack);
       this.reloadCounter = 0;
       this.startInterval();
       this.animate();
@@ -176,7 +177,6 @@ class Endboss extends MovableObject {
   endbossIsDead(intervalId) {
     if (this.end == 1) {
       this.stopAnimation(intervalId);
-      clearInterval(intervalId);
 
       let lastInterval = setInterval(() => {
         this.playAnimation(this.IMAGES_DEAD);
@@ -189,12 +189,11 @@ class Endboss extends MovableObject {
           this.win_sound.play();
         }
 
-        clearInterval(this.intervalWalking);
-        clearInterval(this.intervalAlert);
-        clearInterval(this.intervalAttack);
+        this.stopAnimation(this.intervalWalking);
+        this.stopAnimation(this.intervalAlert);
+        this.stopAnimation(this.intervalAttack);
         this.y = 100;
         this.stopAnimation(lastInterval);
-        clearInterval(lastInterval);
         this.loadImage(this.IMAGES_DEAD[2]);
 
         //TODO - You win Screen
@@ -223,8 +222,6 @@ class Endboss extends MovableObject {
     setTimeout(() => {
       
       this.stopAnimation(endbossIsHurtInterval);
-      clearInterval(endbossIsHurtInterval);
-
       this.intervalAfterHurt = setInterval(() => {
        this.playAnimation(this.IMAGES_WALKING);
         if (!this.otherDirection) {
@@ -232,21 +229,15 @@ class Endboss extends MovableObject {
         } else {
           this.moveRight();
         }
-      }, 50);
+      }, 100);
     }, 800);
 
     this.stopAnimation(this.intervalWalking);
     this.stopAnimation(this.intervalAlert);
     this.stopAnimation(this.initIntervalAttack);
 
-    clearInterval(this.intervalWalking);
-    clearInterval(this.intervalAlert);
-    clearInterval(this.intervalAttack);
-
-
     setTimeout(() => {
       this.stopAnimation(this.intervalAfterHurt);
-      clearInterval(this.intervalAfterHurt);
       this.reloadAnimations(intervalId);
     }, 2200);
   }

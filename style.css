@@ -42,7 +42,8 @@ h1{
   background-position: center;
   background-size: cover;
   position: absolute;
-  z-index: 3;
+  z-index: 3;  
+  animation: rotateAndScale 0.5s linear forwards;
 }
 
 canvas{
@@ -72,6 +73,15 @@ canvas{
 	100% {		
 		box-shadow: 0 0 0 0 rgba(221, 11, 11, 0);
 	}
+}
+
+@keyframes rotateAndScale {
+  0% {
+    transform: translate(0%, 0%) rotate(0) scale(0.5);
+  }
+  100% {
+    transform: translate(0%, 0%) rotate(360deg) scale(1);
+  }
 }
 
 @media only screen and (max-width: 720px){

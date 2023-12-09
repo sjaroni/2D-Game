@@ -174,7 +174,7 @@ class Character extends MovableObject {
   }
 
   playLongIdleAnimation(intervalIdle) {
-    clearInterval(intervalIdle);
+    this.stopAnimation(intervalIdle);
     const intervalLongIdle = setInterval(() => {
       this.playAnimation(this.IMAGES_LONGIDLE);
 
@@ -184,12 +184,10 @@ class Character extends MovableObject {
         this.world.keyboard.SPACE ||
         this.world.keyboard.KEYD
       ) {
-        clearInterval(intervalLongIdle);
+        this.stopAnimation(intervalLongIdle);
         this.iAmIdle = 0;
-        if (this.world.keyboard.KEYD) {
-          this.loadImage(this.IMAGES_IDLE[1]);
-        }
+        this.loadImage(this.IMAGES_WALKING[1]);
       }
-    }, 200);
+    }, 100);
   }
 }
