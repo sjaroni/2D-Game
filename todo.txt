@@ -1,12 +1,10 @@
 //TODO - Startscreen (Start, Anleitung, Settings wie Musik an/aus, Sounds, an/aus, Fullscreen)
 //TODO - Anleitung (vom Startbildschirm aus) welche Tasten
 //TODO - Musik im Hintergrund (in game vorhanden)
-//TODO - GameOver Screen
 //TODO - YouWin Screen    
 
 //TODO - GAME MENU
 //TODO - Game Pause
-//TODO - SOUND DISABLE (um alle Funktionen eine Prüfung in den Constanten)
 //TODO - FullScreen-Modus canvas.requestFullscreen
     document.getElementById('fullscreen').requestFullscreen();
 
@@ -16,8 +14,7 @@
 
 //TODO - Hintergrundbild
 
-//TODO - YouWin/GameOver kreisend rein Animation
-
+//TODO - unnötige JS löschen (auch aus Index)
 
 //TODO - Touchbedienung
 //TODO - Kamera bewegen bzw. Position ändern - wenn Pepe nach links läuft soll er statt links rechts angezeigt werden

@@ -112,5 +112,6 @@ class MovableObject extends DrawableObject {
     setTimeout(() => {
       this.y += 600;
     }, 2000);
-  }
+  } 
+
 }

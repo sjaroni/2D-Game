@@ -78,6 +78,7 @@ class Character extends MovableObject {
   world;
   walking_sound = new Audio('audio/running.mp3');
   hurt_sound = new Audio('audio/hurt.mp3');
+  dead_sound = new Audio('audio/dead.mp3');
   
   constructor() {
     super().loadImage(this.IMAGES_IDLE[1]);
@@ -138,8 +139,13 @@ class Character extends MovableObject {
         this.playAnimation(this.IMAGES_DEAD);
         this.stopAnimation(intervalId);
         this.stopIdle();
-        this.loadImage(this.IMAGES_DEAD[5]);
-        this.hideObject();
+        this.loadImage(this.IMAGES_DEAD[5]);        
+
+        if(SOUND_ON){
+          this.dead_sound.play();
+        }        
+        GAME_IS_OVER = true;
+        //this.hideAllObjects();
       } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
 

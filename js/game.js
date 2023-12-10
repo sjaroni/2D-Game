@@ -33,10 +33,10 @@ function getIndexOf(x, y, array) {
 }
 
 // Enable / Mute all sounds
-// SOUND_ON = false
+// MUSIC_ON = false
 // 
-function checkSound(SOUND_ON){
-  if (SOUND_ON) {
+function checkMusic(MUSIC_ON){
+  if (MUSIC_ON) {
     music_sound = new Audio('audio/music.mp3');    
     music_sound.loop=true;
     this.music_sound.play();

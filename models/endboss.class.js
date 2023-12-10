@@ -72,7 +72,7 @@ class Endboss extends MovableObject {
     this.loadImages(this.IMAGES_ATTACK);
     this.loadImages(this.IMAGES_HURT);
     this.loadImages(this.IMAGES_DEAD);
-    this.x = 5500;
+    this.x = 5500;    
     this.speed = this.speed + Math.random() * 0.25;
     this.intervalNum = 1;
     this.animate();
@@ -156,6 +156,7 @@ class Endboss extends MovableObject {
       if (this.isDead() && this.energy == 0) {
         this.end++;
         this.endbossIsDead(intervalId);
+        this.hideObject();
       } else if (this.isHurt() && this.reloadCounter <= 0) {
         this.endbossIsHurt(intervalId);
       }
@@ -198,10 +199,8 @@ class Endboss extends MovableObject {
 
         //TODO - You win Screen
         ENDBOSS_IS_DEAD = true;
-        document.getElementById('canvas').classList.remove('alarm');
-        document.getElementById('start_endscreen').classList.remove('d-none');
-        document.getElementById('start_endscreen').src = WINSCREEN;
-        stopGame();
+        GAME_IS_OVER = true;
+        //this.hideAllObjects();
       }, 500);
     }
   }
