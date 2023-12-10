@@ -10,9 +10,9 @@
 
 //TODO - Gegner läuft bevor das Spiel startet (Startbutton startet initLevel() in Level1 - in den code gucken!)
 
-//TODO - Flaschen Kollision bei Gegner (Sound und Splash)
-
 //TODO - Hintergrundbild
+
+//TODO - Splashed Bottle entfernen bei GameEnd
 
 //TODO - unnötige JS löschen (auch aus Index)
 

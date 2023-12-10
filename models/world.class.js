@@ -6,7 +6,7 @@ class World {
   keyboard;
   camera_x = 0;
   collectedCoins = 0;
-  collectedBottles = 1000;
+  collectedBottles = 0;
   nextThrow = 0;
   nextHit = 0;
 
@@ -89,7 +89,7 @@ class World {
           if (enemy instanceof Endboss && this.nextHit == 0) {
             enemy.hit(20);
             this.statusBarEndboss.setPercentage(enemy.energy);
-            this.nextHit = 10;
+            this.nextHit = 15;
           }
         }
 
@@ -147,7 +147,7 @@ class World {
         this.character.otherDirection,
       );
 
-      this.nextThrow = 30;
+      this.nextThrow = 40;
 
       if (SOUND_ON) {
         let throw_sound = new Audio('audio/throw.mp3');
@@ -305,10 +305,10 @@ class World {
         } else {
           document.getElementById('start_endscreen').src = LOSTSCREEN;
         }
-        this.hideAllObjects();
         stopGame();   
+        this.hideAllObjects();
       }
-    }, 200);
+    }, 8000);
   }
 
   hideAllObjects() {
@@ -322,5 +322,12 @@ class World {
     this.level.enemies.forEach((enemy) => {
       enemy.y += 600;
     });
+
+    world.statusBarBottle.y += 600;
+    world.statusBarBottle.textY += 600;
+    world.statusBarHealth.y += 600;
+    world.statusBarHealth.textY += 600;
+    world.statusBarCoin.y += 600;    
+    world.statusBarCoin.textY += 600;    
   }
 }

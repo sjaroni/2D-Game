@@ -45,5 +45,9 @@ function checkMusic(MUSIC_ON){
   }
 }
 
+function toggleSound() {    
+  SOUND_ON = !SOUND_ON
+}
+
 // Touchbuttons
 // live-call am 24.11 17:??

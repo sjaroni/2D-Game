@@ -193,15 +193,16 @@ class Endboss extends MovableObject {
         this.stopAnimation(this.intervalWalking);
         this.stopAnimation(this.intervalAlert);
         this.stopAnimation(this.intervalAttack);
-        this.y = 100;
-        this.stopAnimation(lastInterval);
-        this.loadImage(this.IMAGES_DEAD[2]);
-
-        //TODO - You win Screen
-        ENDBOSS_IS_DEAD = true;
-        GAME_IS_OVER = true;
-        //this.hideAllObjects();
-      }, 500);
+        
+        setTimeout(() => {
+          this.stopAnimation(lastInterval);
+          this.y = 100;
+          this.loadImage(this.IMAGES_DEAD[2]);
+          ENDBOSS_IS_DEAD = true;
+          GAME_IS_OVER = true;  
+        }, 1200);
+        
+      }, 300);
     }
   }
 
