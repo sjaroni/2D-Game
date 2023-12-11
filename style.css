@@ -39,10 +39,12 @@ h1{
 }
 
 #start_endscreen{  
-  /* padding-top: 63px;
-  position: absolute; */
-  /* z-index: 3;   */
-  /* animation: rotateAndScale 0.5s linear forwards; */
+  padding-top: 23px;
+  position: absolute;
+  z-index: 3;
+  animation: rotateAndScale 0.5s linear forwards; 
+  max-width: 100%;
+  height: auto;
 }
 
 canvas,
