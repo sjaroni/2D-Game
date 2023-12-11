@@ -17,7 +17,7 @@ body{
 }
 
 .d-none{
-  display: none;
+  display: none !important;
 }
 
 #fullscreen{
@@ -34,24 +34,21 @@ h1{
   letter-spacing: 3px;
   color: white;
   text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+  margin-block-start: 0;
+  margin-block-end: 0;
 }
 
+#start_endscreen{  
+  /* padding-top: 63px;
+  position: absolute; */
+  /* z-index: 3;   */
+  /* animation: rotateAndScale 0.5s linear forwards; */
+}
+
+canvas,
 #start_endscreen{
-  width: 720px;
-  height: 480px;  
-  background-position: center;
-  background-size: cover;
-  position: absolute;
-  z-index: 3;  
-  animation: rotateAndScale 0.5s linear forwards;
-}
-
-canvas{
-  background-color: black;
   display: block;
-  margin: 20px;
-  position: absolute;
-  cursor: none;
+  margin: 20px;  
 }
 
 .alarm {
@@ -85,18 +82,20 @@ canvas{
 }
 
 @media only screen and (max-width: 720px){
-  canvas{
+  canvas,
+  #start_endscreen
+  {
     width: 100%;
   }
 }
 
 @media only screen and (max-height: 480px){
-  canvas{
+  canvas,
+  #start_endscreen{
     height: 100vh;
   }
 
   #title{
     display: none;
   }
-
 }

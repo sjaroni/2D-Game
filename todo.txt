@@ -5,8 +5,7 @@
 
 //TODO - GAME MENU
 //TODO - Game Pause
-//TODO - FullScreen-Modus canvas.requestFullscreen
-    document.getElementById('fullscreen').requestFullscreen();
+//TODO - FullScreen - fertig (in GAME)
 
 //TODO - Gegner läuft bevor das Spiel startet (Startbutton startet initLevel() in Level1 - in den code gucken!)
 
@@ -28,10 +27,3 @@
 //TODO - Checkliste DA
 
 //TODO - auf FTP testen
-
-//TODO Sounds
-    bottle splash
-    hintergrundmusik (music)
-    win
-    lose
-    dying

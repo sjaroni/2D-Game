@@ -307,6 +307,12 @@ class World {
         }
         stopGame();   
         this.hideAllObjects();
+        
+        if (SOUND_ON) {
+          let lost_sound = new Audio('audio/lost.mp3');
+          lost_sound.play();
+        }
+
       }
     }, 8000);
   }
@@ -328,6 +334,8 @@ class World {
     world.statusBarHealth.y += 600;
     world.statusBarHealth.textY += 600;
     world.statusBarCoin.y += 600;    
-    world.statusBarCoin.textY += 600;    
+    world.statusBarCoin.textY += 600;
+    world.statusBarEndboss += 600;
+    world.statusBarEndbossIcon += 600;
   }
 }

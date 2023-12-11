@@ -145,7 +145,6 @@ class Character extends MovableObject {
           this.dead_sound.play();
         }        
         GAME_IS_OVER = true;
-        //this.hideAllObjects();
       } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
 
