@@ -171,7 +171,7 @@ class World {
     let endboss = enemies[enemies.length - 1];
 
     if (
-      endboss.x - this.character.x <= 570 &&
+      endboss.x - this.character.x <= 570 && endboss.x &&
       !ENDBOSS_REACHED &&
       endboss.energy > 0
     ) {
