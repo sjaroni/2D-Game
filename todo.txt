@@ -11,14 +11,11 @@
 
 //TODO - Hintergrundbild
 
-//TODO - Splashed Bottle entfernen bei GameEnd
-
 //TODO - unnötige JS löschen (auch aus Index)
 
 //TODO - Touchbedienung
 //TODO - Kamera bewegen bzw. Position ändern - wenn Pepe nach links läuft soll er statt links rechts angezeigt werden
 //TODO - Objekt-Rahmen entfernen (ist in Settings)
-//TODO - justify-center in style.css
 //TODO - JSDoc - Dokumentation
 
 //TODO - aus Join wenn hochkant bei Mobil dann fehlermeldung!
