@@ -21,6 +21,8 @@
 //TODO - justify-center in style.css
 //TODO - JSDoc - Dokumentation
 
+//TODO - aus Join wenn hochkant bei Mobil dann fehlermeldung!
+
 //TODO - CleanCode
 //TODO - Kommentare entfernen
 //TODO - Console.log entfernen

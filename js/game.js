@@ -74,3 +74,26 @@ function exitFullscreen(){
     document.webkitExitFullscreen();
   }
 }
+
+/**
+ * Show infobox if Site is in Landscape-Mode
+ */
+function checkViewPort() {
+  if (screen.availHeight > screen.availWidth) {
+
+    if(screen.availWidth < 480){
+      body = document.body;      
+      body.innerHTML = "";
+      body.innerHTML = /*html*/`
+        <div id="portrait">
+    <img id="portraitImg" src="../assets/img/favicon.png">
+    <div id="portraitText">Sorry! This game is built to be used in landscape mode.</div>
+  </div>
+       `;
+    }
+
+  }else{
+    location.reload();
+  }
+}
+//window.onresize = checkViewPort;
