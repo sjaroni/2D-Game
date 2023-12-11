@@ -24,7 +24,7 @@ body{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;  
+  justify-content: flex-start;  
   height: 100vh;
   position: relative;
 }
@@ -56,11 +56,10 @@ canvas{
 #navigation{
   display: flex;
   justify-content: space-between;
-  width: calc(100% - 40px);
-  /* height: 100%; */
+  width: calc(100% - 40px);  
   z-index: 3;
-  bottom: -20px;
-  /* position: absolute; */
+  bottom: 40px;
+  position: relative;
 }
 
 .alarm {
@@ -98,6 +97,7 @@ canvas{
   #start_endscreen
   {
     width: 100%;
+    margin: 0;
   }
 }
 
@@ -105,6 +105,7 @@ canvas{
   canvas,
   #start_endscreen{
     height: 100vh;
+    margin: 0;
   }
 
   #start_endscreen{
