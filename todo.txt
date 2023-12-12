@@ -16,6 +16,8 @@
 //TODO - Objekt-Rahmen entfernen (ist in Settings)
 //TODO - JSDoc - Dokumentation
 
+//TODO - CSS Animations und media auslagern
+
 //TODO - aus Join wenn hochkant bei Mobil dann fehlermeldung!
 
 //TODO - CleanCode
