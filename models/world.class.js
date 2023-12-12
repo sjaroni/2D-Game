@@ -6,7 +6,7 @@ class World {
   keyboard;
   camera_x = 0;
   collectedCoins = 0;
-  collectedBottles = 0;
+  collectedBottles = 1000;
   nextThrow = 0;
   nextHit = 0;
 
@@ -81,6 +81,7 @@ class World {
 
       if (this.throwableObjects.length !== 0) {
         if (this.throwableObjects[0].isColliding(enemy)) {
+          this.speed = 0;
           this.throwableObjects[0].bottleSplash();
 
           if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
@@ -89,7 +90,7 @@ class World {
           if (enemy instanceof Endboss && this.nextHit == 0) {
             enemy.hit(20);
             this.statusBarEndboss.setPercentage(enemy.energy);
-            this.nextHit = 15;
+            this.nextHit = 50;
           }
         }
 

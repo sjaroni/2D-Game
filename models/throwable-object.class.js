@@ -45,22 +45,25 @@ class ThrowableObject extends MovableObject {
     this.applyGravity();
 
     this.throwIntervalId = setInterval(() => {
-      this.playAnimation(this.IMAGES_THROW);
-      if (this.otherDirection == false) {        
-        this.x += 10;
-      } else {                
-        this.x -= 10;
+      
+      if(this.y < 360){
+        this.playAnimation(this.IMAGES_THROW);
+        if (this.otherDirection == false) {        
+            this.x += 10;
+          } else {                
+            this.x -= 10;
+          }
+      } else {
+        this.bottleSplash();
       }
-    }, 25);
+    }, 1000 / 25);
   }
 
   bottleSplash(){
-    this.stopAnimation(this.throwIntervalId);
-    
+    this.stopAnimation(this.throwIntervalId);    
     if(SOUND_ON){
       this.glass_sound.play();
-    }
-    
+    }    
     setInterval(() => {
       this.playAnimation(this.IMAGES_SPLASH);    
     }, 50);

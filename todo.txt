@@ -9,8 +9,6 @@
 
 //TODO - Gegner läuft bevor das Spiel startet (Startbutton startet initLevel() in Level1 - in den code gucken!)
 
-//TODO - Hintergrundbild
-
 //TODO - unnötige JS löschen (auch aus Index)
 
 //TODO - Touchbedienung

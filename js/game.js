@@ -3,6 +3,10 @@ let world;
 let keyboard = new Keyboard();
 
 function init() {
+
+  // startGame = document.getElementById('start_endscreen');  
+  // startGame.classList.add('d-none');
+
   canvas = document.getElementById('canvas');
   world = new World(canvas, keyboard);  
   //TODO - entfernen
