@@ -65,8 +65,8 @@ h1{
   cursor: pointer;
   height: 50px;
   width: 150px;
-  border-radius: 4px;
-  border-style: 1px solid white;
+  border-radius: 6px;
+  border: 2px solid white;
   text-align: center;
   background-color: #e98f36;
   font-size: 40px;
