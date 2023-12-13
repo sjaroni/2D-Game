@@ -3,6 +3,9 @@
 //TODO - Musik im Hintergrund (in game vorhanden)
 //TODO - YouWin Screen    
 
+//TODO - Out of bottles - info new bottle arrived left/right
+//TODO - Menü von oben mit Steuerung als GIF
+
 //TODO - GAME MENU
 //TODO - Game Pause
 //TODO - FullScreen - fertig (in GAME)
