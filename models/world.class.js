@@ -6,7 +6,7 @@ class World {
   keyboard;
   camera_x = 0;
   collectedCoins = 0;
-  collectedBottles = 1000;
+  collectedBottles = 0;
   nextThrow = 0;
   nextHit = 0;
 
@@ -300,11 +300,12 @@ class World {
     setInterval(() => {
       if (GAME_IS_OVER) {
         document.getElementById('canvas').classList.remove('alarm');
-        document.getElementById('start_endscreen').classList.remove('d-none');
+        document.getElementById('start-endscreen').classList.remove('d-none');
         if (ENDBOSS_IS_DEAD) {
-          document.getElementById('start_endscreen').src = WINSCREEN;
+          document.getElementById('start-endscreen').src = WINSCREEN;
         } else {
-          document.getElementById('start_endscreen').src = LOSTSCREEN;
+          document.getElementById('start-endscreen').src = LOSTSCREEN;
+          document.getElementById('restart-btn').classList.remove('d-none');
         }
         stopGame();   
         this.hideAllObjects();

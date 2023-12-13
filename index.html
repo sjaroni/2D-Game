@@ -43,16 +43,29 @@
 
   <!-- TODO https://juri-sajzew.developerakademie.net/ElPolloLoco/ElPolloLoco/index.html -->
 
-  <body onload="init()">   
-
+  <body>
     <div id="fullscreen">      
         <h1 id="title">El Pollo Loco</h1>        
         <div class="content">
-          <button id="btn" class="btn" onclick="gameStart()">    
+          <button title="Start" id="start-btn" class="btn" onclick="gameStart()">
             <span id="typewriter-text"></span>
           </button>
-          <img id="start_endscreen" class="d-none" src="img/9_intro_outro_screens/start/startscreen_2.png"/>
-          <canvas id="canvas" width="720" height="480"></canvas>          
+          <button title="Restart" id="restart-btn" class="btn d-none">
+            <img src="img/menu/restart.png" onclick="gameRestart()">
+          </button>
+          <div class="game-settings">
+            <button title="Music" id="music-btn" class="btn">
+              <img src="img/menu/music_on.png" onclick="toggleMusic()">
+            </button>
+            <button title="Sound" id="sound-btn" class="btn">
+              <img src="img/menu/sound_on.png" onclick="toggleSound()">
+            </button>
+            <button title="Fullscreen" id="fullscreen-btn" class="btn" onclick="fullscreen()">
+              <img src="img/menu/fullscreen.png">
+            </button>
+          </div>
+          <img id="start-endscreen" src="img/9_intro_outro_screens/start/startscreen_2.png"/>
+          <canvas id="canvas" class="d-none" width="720" height="480"></canvas>          
         </div>
       </div>
     </body>

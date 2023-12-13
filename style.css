@@ -49,7 +49,7 @@ h1{
   position: relative;
 }
 
-#start_endscreen{  
+#start-endscreen{  
   position: absolute;
   z-index: 3;
   animation: rotateAndScale 0.5s linear forwards;   
@@ -62,9 +62,10 @@ h1{
 }
 
 .btn {
-  cursor: pointer;
-  height: 50px;
-  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;  
   border-radius: 6px;
   border: 2px solid white;
   text-align: center;
@@ -80,30 +81,48 @@ h1{
   overflow: hidden;
 }
 
+.btn:hover{
+  scale: 1.1;
+}
+
+#start-btn{
+  height: 50px;
+  width: 150px;
+}
+
+#restart-btn img {
+  animation: rotateAnimation 2s linear infinite;
+}
+
+.game-settings {
+  top: 40px;
+  right: 40px;
+  display: flex;  
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  /* background-color: purple; */
+  width: 160px;
+  height: 70px;
+  z-index: 9;
+  position: absolute;
+}
+
+.game-settings button{
+  position: relative;
+  top: 0;
+  height: 45px;
+  width: 45px;
+}
+
+.game-settings button img{
+  object-fit: fill;
+  overflow: hidden;
+}
+
 canvas{
   display: block;
   margin: 20px;
-}
-
-#navigation{
-  display: flex;
-  justify-content: space-between;
-  width: calc(100% - 40px);  
-  z-index: 3;
-  bottom: 40px;
-  position: relative;
-}
-
-.nav{
-  background-color: blue;
-  gap: 108px;
-}
-
-.navigation-icon{
-  background-color: red;
-  cursor: pointer;
-  width: 2.75rem;
-  height: 2.75rem;
 }
 
 .alarm {
@@ -136,6 +155,15 @@ canvas{
   }
 }
 
+@keyframes rotateAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes typing {
   from { width: 0 }
   to { width: 100% }
@@ -157,7 +185,7 @@ canvas{
 
 @media only screen and (max-width: 720px){  
   canvas,
-  #start_endscreen
+  #start-endscreen
   {
     width: 100%;
     margin: 0;
@@ -166,7 +194,7 @@ canvas{
 
 @media only screen and (max-height: 480px){  
   canvas,
-  #start_endscreen{
+  #start-endscreen{
     height: 100vh;
     margin: 0;
   }

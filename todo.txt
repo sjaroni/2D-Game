@@ -1,6 +1,8 @@
 //TODO - Startscreen (Start, Anleitung, Settings wie Musik an/aus, Sounds, an/aus, Fullscreen)
+
+//TODO - nach Klick auf Start loading Animation für 2 Sek? (FTP prüfen)
+
 //TODO - Anleitung (vom Startbildschirm aus) welche Tasten
-//TODO - Musik im Hintergrund (in game vorhanden)
 //TODO - YouWin Screen    
 
 //TODO - Out of bottles - info new bottle arrived left/right
@@ -8,12 +10,13 @@
 
 //TODO - GAME MENU
 //TODO - Game Pause
-//TODO - FullScreen - fertig (in GAME)
 
-//TODO - Gegner läuft bevor das Spiel startet (Startbutton startet initLevel() in Level1 - in den code gucken!)
+
+//TODO - Menü-Buttons focus wegnehmen!
+//TODO - Fullscreen kein Hintergrundbild mehr
 
 //TODO - unnötige JS löschen (auch aus Index)
-
+//TODO - iOS 16 Glyph bei icons8.Com
 //TODO - Touchbedienung
 //TODO - Kamera bewegen bzw. Position ändern - wenn Pepe nach links läuft soll er statt links rechts angezeigt werden
 //TODO - Objekt-Rahmen entfernen (ist in Settings)

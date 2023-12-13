@@ -5,7 +5,7 @@ class EndbossIcon extends DrawableObject {
   ]
 
   x = 664;
-  y = 28;  
+  y = 78;
 
   width = 57;
   height = 57;  

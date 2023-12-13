@@ -2,11 +2,26 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
-function init() {
-  // startGame = document.getElementById('start_endscreen');
-  // startGame.classList.add('d-none');
+function gameStart() {
+  document.getElementById('start-btn').classList.add('d-none');
+  document.getElementById('start-endscreen').classList.add('d-none');
+  ENDBOSS_REACHED = false;
+  ENDBOSS_FIRST_CONTACT = false;
+  ENDBOSS_IS_DEAD = false;
+  GAME_IS_OVER = false;
+  initLevel();
+  init();
+  checkMusic();
+}
 
+function gameRestart() {
+  document.getElementById('restart-btn').classList.add('d-none');
+  gameStart();
+}
+
+function init() {
   canvas = document.getElementById('canvas');
+  canvas.classList.remove('d-none');
   world = new World(canvas, keyboard);
   //TODO - entfernen
   console.log('My Character is', world.character);
@@ -35,21 +50,33 @@ function getIndexOf(x, y, array) {
   return -1;
 }
 
-// Enable / Mute all sounds
-// MUSIC_ON = false
-//
-function checkMusic(MUSIC_ON) {
+function checkMusic() {
   if (MUSIC_ON) {
     music_sound = new Audio('audio/music.mp3');
     music_sound.loop = true;
-    this.music_sound.play();
+    music_sound.volume = 0.1;
+    music_sound.play();
   } else {
-    this.music_sound.pause();
+    music_sound.pause();
   }
 }
 
 function toggleSound() {
-  SOUND_ON = !SOUND_ON;
+  SOUND_ON = !SOUND_ON;  
+  let soundBtn = document.getElementById("sound-btn");
+  let soundImg = soundBtn.getElementsByTagName("img")[0];
+    
+  // Beispielhaftes Umschalten zwischen sound_on und sound_off Bildern
+  if (!SOUND_ON) {
+    soundImg.src = "img/menu/sound_off.png";    
+  } else {
+    soundImg.src = "img/menu/sound_on.png";
+  }
+}
+
+function toggleMusic() {
+  MUSIC_ON = !MUSIC_ON;
+  checkMusic();
 }
 
 // Touchbuttons
@@ -78,14 +105,12 @@ function exitFullscreen() {
   }
 }
 
-// const texts = ['Start', 'Lets go', '¡Vamos!'];
-
-document.addEventListener('DOMContentLoaded', function () {
-  const texts = ['Start', 'Lets go', '¡Vamos!'];
-  const speed = 150; // Geschwindigkeit in Millisekunden
-  const fadeOutSpeed = 500; // Geschwindigkeit des Ausblendens in Millisekunden
+document.addEventListener('DOMContentLoaded', function () {  
+  const texts = ['Start', 'Let`s go!', '¡Vamos!'];
+  const speed = 150;
+  const fadeOutSpeed = 500;
   const typewriterText = document.getElementById('typewriter-text');
-  const button = document.getElementById('btn');
+  const button = document.getElementById('start-btn');
   let textIndex = 0;
   let charIndex = 0;
 
@@ -95,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
       charIndex++;
       setTimeout(type, speed);
     } else {
-      setTimeout(fadeOut, 1000); // Warte 1 Sekunde und beginne mit dem Ausblenden
+      setTimeout(fadeOut, 1000);
     }
   }
 
@@ -116,5 +141,5 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }, fadeOutSpeed / 10);
   }
-  type();
+  type();  
 });
