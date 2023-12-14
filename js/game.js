@@ -6,6 +6,10 @@ let music_sound = new Audio('audio/music.mp3');
 function gameStart() {
   document.getElementById('startBtn').classList.add('d-none');
   document.getElementById('start-endscreen').classList.add('d-none');
+  // document.getElementById('playPauseBtn').classList.add('d-none');
+  document.getElementById('helpBtn').classList.add('d-none');
+  document.getElementById('panel').classList.remove('d-none');  
+
   ENDBOSS_REACHED = false;
   ENDBOSS_FIRST_CONTACT = false;
   ENDBOSS_IS_DEAD = false;
@@ -17,6 +21,7 @@ function gameStart() {
 
 function gameRestart() {
   document.getElementById('restartBtn').classList.add('d-none');
+  document.getElementById('gameSettingsRight').classList.remove('d-none');
   gameStart();
 }
 
@@ -32,15 +37,16 @@ function stopGame() {
   for (let i = 0; i < 9999; i++) window.clearInterval(i);
 }
 
-window.addEventListener('keydown', (e) => {
+window.addEventListener("keydown", (e) => {
   let key = e.code.toUpperCase();
   keyboard[key] = true;
-  keyboard.setDirectionTrue(key);
 });
 
-window.addEventListener('keyup', (e) => {
-  keyboard.setDirectionFalse();
+window.addEventListener("keyup", (e) => {
+  let key = e.code.toUpperCase();
+  keyboard[key] = false;
 });
+
 
 function getIndexOf(x, y, array) {
   for (let i = 0; i < array.length; i++) {

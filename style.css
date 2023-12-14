@@ -1,3 +1,6 @@
+@import url('css/animation.css');
+@import url('css/media.css');
+
 @font-face{
   font-family: 'zabars';
   src:url('fonts/zabars.ttf') format('truetype');
@@ -75,7 +78,6 @@ h1{
   color: white;
   text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
   font-family: 'zabars';  
-  top: 50px;
   position: absolute;
   z-index: 4;
   overflow: hidden;
@@ -88,14 +90,26 @@ h1{
 #startBtn{
   height: 45px;
   width: 150px;
+  top: 50px;
+}
+
+#restartBtn{
+  top: 50px;
 }
 
 #restartBtn img {
   animation: rotateAnimation 2s linear infinite;
 }
 
-.gameSettingsLeft,
-.gameSettingsRight {
+#throwBtn img{
+  transform: scale(1.5) rotate(0deg);
+}
+
+#throwBtn img:hover{
+  transform: scale(1.5) rotate(5deg);
+}
+
+.gameSettings{
   top: 40px;  
   display: flex;    
   align-items: center;
@@ -106,27 +120,65 @@ h1{
   position: absolute;
 }
 
-.gameSettingsLeft{
+#gameSettingsLeft{
   left: 40px;
 }
 
-.gameSettingsRight{
+#gameSettingsRight{
   right: 40px;
   justify-content: space-around;
 }
 
-.gameSettingsLeft button,
-.gameSettingsRight button{
+.gameSettings button{
   position: relative;
   top: 0;
   height: 45px;
   width: 45px;
 }
 
-.gameSettingsRight button img,
-.gameSettingsLeft button img{
+.gameSettings button img,
+.touchBtnLeft button img,
+.touchBtnRight button img{
   object-fit: fill;
   overflow: hidden;
+}
+
+.panel{
+  bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(100% - 80px);
+  height: 70px;
+  z-index: 9;
+  position: absolute;
+  left: 40px;
+  right: 40px;
+}
+
+.touchBtnLeft,
+.touchBtnRight { 
+  display: flex;    
+  align-items: center;  
+  flex-direction: row;  
+  height: 70px;
+  z-index: 9;
+  width: 50%;
+  gap: 8px;
+}
+
+.touchBtnLeft { 
+  justify-content: flex-start;  
+}
+.touchBtnRight { 
+  justify-content: flex-end;
+}
+
+.touchBtnRight button,
+.touchBtnLeft button{
+  height: 45px;
+  width: 45px;
+  position: relative;
 }
 
 canvas{
@@ -139,76 +191,4 @@ canvas{
 	margin: 20px;
 	box-shadow: 0 0 0 0 rgb(221, 11, 11);
 	animation: pulse 1.2s infinite;
-}
-
-@keyframes pulse {
-	0% {
-		box-shadow: 0 0 0 0 rgba(221, 11, 11, 1);
-	}
-
-	70% {		
-		box-shadow: 0 0 0 15px rgba(221, 11, 11, 0.7);
-	}
-
-	100% {		
-		box-shadow: 0 0 0 0 rgba(221, 11, 11, 0);
-	}
-}
-
-@keyframes rotateAndScale {
-  0% {
-    transform: translate(0%, 0%) rotate(0) scale(0.5);
-  }
-  100% {
-    transform: translate(0%, 0%) rotate(360deg) scale(1);
-  }
-}
-
-@keyframes rotateAnimation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-
-@media only screen and (max-width: 760px){
-  content
-  {
-    width: 100%;
-    margin: 0;
-  }
-}
-
-@media only screen and (max-height: 520px){  
-    content{
-      height: 100vh;
-    }
-}
-
-@media only screen and (max-width: 720px){  
-  canvas,
-  #start-endscreen
-  {
-    width: 100%;
-    margin: 0;
-  }
-}
-
-@media only screen and (max-height: 480px){  
-  canvas,
-  #start-endscreen{
-    height: 100vh;
-    margin: 0;
-  }
-
-  #title{
-    display: none;
-  }
 }

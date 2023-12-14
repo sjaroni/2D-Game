@@ -1,8 +1,5 @@
-//TODO - Startscreen (Start, Anleitung, Settings wie Musik an/aus, Sounds, an/aus, Fullscreen)
-
 //TODO - nach Klick auf Start loading Animation für 2 Sek? (FTP prüfen)
 
-//TODO - Anleitung (vom Startbildschirm aus) welche Tasten
 //TODO - YouWin Screen    
 
 //TODO - extra Datei für Sounds (auch in index.html einbinden)
@@ -13,18 +10,13 @@
 //TODO - Menü von oben mit Steuerung als GIF
 
 //TODO - GAME MENU
-//TODO - Game Pause
+//TODO - Game Close/End
 
 //TODO - Fullscreen kein Hintergrundbild mehr
 
-//TODO - unnötige JS löschen (auch aus Index)
-//TODO - iOS 16 Glyph bei icons8.Com
 //TODO - Touchbedienung
 //TODO - Kamera bewegen bzw. Position ändern - wenn Pepe nach links läuft soll er statt links rechts angezeigt werden
-//TODO - Objekt-Rahmen entfernen (ist in Settings)
 //TODO - JSDoc - Dokumentation
-
-//TODO - CSS Animations und media auslagern
 
 //TODO - aus Join wenn hochkant bei Mobil dann fehlermeldung!
 
