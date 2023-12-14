@@ -47,20 +47,25 @@
     <div id="fullscreen">      
         <h1 id="title">El Pollo Loco</h1>        
         <div class="content">
-          <button title="Start" id="start-btn" class="btn" onclick="gameStart()">
+          <div class="gameSettingsLeft">
+            <button title="Help" id="helpBtn" class="btn">
+              <img src="img/menu/help.png" onclick="help()">
+            </button>
+          </div>
+          <button title="Start" id="startBtn" class="btn" onclick="gameStart()">
             <span id="typewriter-text"></span>
           </button>
-          <button title="Restart" id="restart-btn" class="btn d-none">
+          <button title="New Game" id="restartBtn" class="btn d-none">
             <img src="img/menu/restart.png" onclick="gameRestart()">
           </button>
-          <div class="game-settings">
-            <button title="Music" id="music-btn" class="btn">
+          <div class="gameSettingsRight">
+            <button title="Music" id="musicBtn" class="btn">
               <img src="img/menu/music_on.png" onclick="toggleMusic()">
             </button>
-            <button title="Sound" id="sound-btn" class="btn">
+            <button title="Sound" id="soundBtn" class="btn">
               <img src="img/menu/sound_on.png" onclick="toggleSound()">
             </button>
-            <button title="Fullscreen" id="fullscreen-btn" class="btn" onclick="fullscreen()">
+            <button title="Fullscreen" id="fullscreenBtn" class="btn" onclick="fullscreen()">
               <img src="img/menu/fullscreen.png">
             </button>
           </div>

@@ -5,14 +5,16 @@
 //TODO - Anleitung (vom Startbildschirm aus) welche Tasten
 //TODO - YouWin Screen    
 
+//TODO - extra Datei für Sounds (auch in index.html einbinden)
+
+//TODO - Kamerafahrt Hintergrund Ebenen unterschiedlich schnell
+
 //TODO - Out of bottles - info new bottle arrived left/right
 //TODO - Menü von oben mit Steuerung als GIF
 
 //TODO - GAME MENU
 //TODO - Game Pause
 
-
-//TODO - Menü-Buttons focus wegnehmen!
 //TODO - Fullscreen kein Hintergrundbild mehr
 
 //TODO - unnötige JS löschen (auch aus Index)

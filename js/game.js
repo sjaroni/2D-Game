@@ -1,9 +1,10 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let music_sound = new Audio('audio/music.mp3');
 
 function gameStart() {
-  document.getElementById('start-btn').classList.add('d-none');
+  document.getElementById('startBtn').classList.add('d-none');
   document.getElementById('start-endscreen').classList.add('d-none');
   ENDBOSS_REACHED = false;
   ENDBOSS_FIRST_CONTACT = false;
@@ -15,7 +16,7 @@ function gameStart() {
 }
 
 function gameRestart() {
-  document.getElementById('restart-btn').classList.add('d-none');
+  document.getElementById('restartBtn').classList.add('d-none');
   gameStart();
 }
 
@@ -52,7 +53,6 @@ function getIndexOf(x, y, array) {
 
 function checkMusic() {
   if (MUSIC_ON) {
-    music_sound = new Audio('audio/music.mp3');
     music_sound.loop = true;
     music_sound.volume = 0.1;
     music_sound.play();
@@ -61,30 +61,46 @@ function checkMusic() {
   }
 }
 
+function toggleMusic() {
+  MUSIC_ON = !MUSIC_ON;
+  let musicBtn = document.getElementById("musicBtn");
+  let musicImg = musicBtn.getElementsByTagName("img")[0];
+
+  if (!MUSIC_ON) {
+    musicImg.src = "img/menu/music_off.png";    
+  } else {
+    musicImg.src = "img/menu/music_on.png";
+  }
+  checkMusic();
+  musicBtn.blur();
+}
+
 function toggleSound() {
   SOUND_ON = !SOUND_ON;  
-  let soundBtn = document.getElementById("sound-btn");
+  let soundBtn = document.getElementById("soundBtn");
   let soundImg = soundBtn.getElementsByTagName("img")[0];
-    
-  // Beispielhaftes Umschalten zwischen sound_on und sound_off Bildern
+
   if (!SOUND_ON) {
     soundImg.src = "img/menu/sound_off.png";    
   } else {
     soundImg.src = "img/menu/sound_on.png";
   }
-}
-
-function toggleMusic() {
-  MUSIC_ON = !MUSIC_ON;
-  checkMusic();
+  soundBtn.blur();
 }
 
 // Touchbuttons
 // live-call am 24.11 17:??
 
 function fullscreen() {
-  let fullscreen = document.getElementById('fullscreen');
-  enterFullscreen(fullscreen);
+  let fullscreenBtn = document.getElementById("fullscreenBtn");
+  FULLSCREEN = !FULLSCREEN;
+  if(FULLSCREEN){
+    let fullscreen = document.getElementById('fullscreen');
+    enterFullscreen(fullscreen);
+  } else {
+    exitFullscreen();
+  }  
+  fullscreenBtn.blur();
 }
 
 function enterFullscreen(element) {
@@ -94,7 +110,7 @@ function enterFullscreen(element) {
     element.msRequestFullscreen();
   } else if (element.webkitRequestFullscreen) {
     element.webkitRequestFullscreen();
-  }
+  }  
 }
 
 function exitFullscreen() {
@@ -110,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const speed = 150;
   const fadeOutSpeed = 500;
   const typewriterText = document.getElementById('typewriter-text');
-  const button = document.getElementById('start-btn');
+  const button = document.getElementById('startBtn');
   let textIndex = 0;
   let charIndex = 0;
 

@@ -1,5 +1,6 @@
 let SOUND_ON = true;
 let MUSIC_ON = true;
+let FULLSCREEN = false;
 let DRAWALLFRAMES = false;
 
 let ENDBOSS_REACHED = false;

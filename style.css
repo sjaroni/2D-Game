@@ -85,37 +85,46 @@ h1{
   scale: 1.1;
 }
 
-#start-btn{
-  height: 50px;
+#startBtn{
+  height: 45px;
   width: 150px;
 }
 
-#restart-btn img {
+#restartBtn img {
   animation: rotateAnimation 2s linear infinite;
 }
 
-.game-settings {
-  top: 40px;
-  right: 40px;
-  display: flex;  
-  justify-content: space-around;
+.gameSettingsLeft,
+.gameSettingsRight {
+  top: 40px;  
+  display: flex;    
   align-items: center;
   flex-direction: row;
-  /* background-color: purple; */
   width: 160px;
   height: 70px;
   z-index: 9;
   position: absolute;
 }
 
-.game-settings button{
+.gameSettingsLeft{
+  left: 40px;
+}
+
+.gameSettingsRight{
+  right: 40px;
+  justify-content: space-around;
+}
+
+.gameSettingsLeft button,
+.gameSettingsRight button{
   position: relative;
   top: 0;
   height: 45px;
   width: 45px;
 }
 
-.game-settings button img{
+.gameSettingsRight button img,
+.gameSettingsLeft button img{
   object-fit: fill;
   overflow: hidden;
 }
