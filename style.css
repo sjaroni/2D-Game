@@ -30,8 +30,10 @@ body{
   align-items: center;
   justify-content: center;  
   position: relative;  
-  flex-direction: column;  
-  overflow: hidden;
+  flex-direction: column;
+  overflow: hidden;  
+  background: none;  
+  background-position: center;
 }
 
 h1{

@@ -12,9 +12,8 @@
 //TODO - GAME MENU
 //TODO - Game Close/End
 
-//TODO - Fullscreen kein Hintergrundbild mehr
-
 //TODO - Touchbedienung
+
 //TODO - Kamera bewegen bzw. Position ändern - wenn Pepe nach links läuft soll er statt links rechts angezeigt werden
 //TODO - JSDoc - Dokumentation
 

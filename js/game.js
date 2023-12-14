@@ -17,6 +17,7 @@ function gameStart() {
   initLevel();
   init();
   checkMusic();
+  bindTouchBtns();
 }
 
 function gameRestart() {
@@ -37,16 +38,29 @@ function stopGame() {
   for (let i = 0; i < 9999; i++) window.clearInterval(i);
 }
 
-window.addEventListener("keydown", (e) => {
+window.addEventListener('keydown', (e) => {
   let key = e.code.toUpperCase();
   keyboard[key] = true;
 });
 
-window.addEventListener("keyup", (e) => {
+window.addEventListener('keyup', (e) => {
   let key = e.code.toUpperCase();
   keyboard[key] = false;
 });
 
+function bindTouchBtns() {
+  
+  document.getElementById('leftBtn').addEventListener('touchstart', (e) =>{
+    e.preventDefault();
+    console.log('yo');
+    keyboard['ARROWlEFT'] = true;
+  });
+  
+  document.getElementById('leftBtn').addEventListener('touchend', (e) =>{
+    e.preventDefault();
+    keyboard['ARROWlEFT'] = false;
+  });
+}
 
 function getIndexOf(x, y, array) {
   for (let i = 0; i < array.length; i++) {
@@ -98,15 +112,18 @@ function toggleSound() {
 // live-call am 24.11 17:??
 
 function fullscreen() {
-  let fullscreenBtn = document.getElementById("fullscreenBtn");
+  let fullscreen = document.getElementById('fullscreen');
+  let fullscreenBtn = document.getElementById("fullscreenBtn");  
+  fullscreenBtn.blur();
+
   FULLSCREEN = !FULLSCREEN;
   if(FULLSCREEN){
-    let fullscreen = document.getElementById('fullscreen');
     enterFullscreen(fullscreen);
+    fullscreen.style.background = "url('img/desert.png') no-repeat";
   } else {
     exitFullscreen();
+    fullscreen.style.background = "none";    
   }  
-  fullscreenBtn.blur();
 }
 
 function enterFullscreen(element) {
@@ -119,12 +136,20 @@ function enterFullscreen(element) {
   }  
 }
 
-function exitFullscreen() {
-  if (document.exitFullscreen) {
-    document.exitFullscreen();
-  } else if (document.webkitExitFullscreen) {
-    document.webkitExitFullscreen();
+document.addEventListener("fullscreenchange", function () {
+  if (!document.fullscreenElement) {
+    let fullscreen = document.getElementById('fullscreen');
+    fullscreen.style.background = "none";
+    FULLSCREEN = false;
   }
+});
+
+function exitFullscreen() {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();    
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    }  
 }
 
 document.addEventListener('DOMContentLoaded', function () {  
