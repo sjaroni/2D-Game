@@ -16,8 +16,7 @@ function gameStart() {
   GAME_IS_OVER = false;
   initLevel();
   init();
-  checkMusic();
-  bindTouchBtns();
+  checkMusic();  
 }
 
 function gameRestart() {
@@ -30,6 +29,7 @@ function init() {
   canvas = document.getElementById('canvas');
   canvas.classList.remove('d-none');
   world = new World(canvas, keyboard);
+  world.keyboard.bindTouchBtns();
   //TODO - entfernen
   console.log('My Character is', world.character);
 }
@@ -47,20 +47,6 @@ window.addEventListener('keyup', (e) => {
   let key = e.code.toUpperCase();
   keyboard[key] = false;
 });
-
-function bindTouchBtns() {
-  
-  document.getElementById('leftBtn').addEventListener('touchstart', (e) =>{
-    e.preventDefault();
-    console.log('yo');
-    keyboard['ARROWlEFT'] = true;
-  });
-  
-  document.getElementById('leftBtn').addEventListener('touchend', (e) =>{
-    e.preventDefault();
-    keyboard['ARROWlEFT'] = false;
-  });
-}
 
 function getIndexOf(x, y, array) {
   for (let i = 0; i < array.length; i++) {

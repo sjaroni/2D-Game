@@ -1,7 +1,7 @@
 let SOUND_ON = true;
 let MUSIC_ON = true;
 let FULLSCREEN = false;
-let DRAWALLFRAMES = false;
+let DRAWALLFRAMES = true;
 
 let ENDBOSS_REACHED = false;
 let ENDBOSS_FIRST_CONTACT = false;

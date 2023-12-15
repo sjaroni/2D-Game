@@ -13,6 +13,7 @@
 //TODO - Game Close/End
 
 //TODO - Touchbedienung
+//TODO - auch Start, Sound etc.
 
 //TODO - Kamera bewegen bzw. Position ändern - wenn Pepe nach links läuft soll er statt links rechts angezeigt werden
 //TODO - JSDoc - Dokumentation
