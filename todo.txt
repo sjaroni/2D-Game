@@ -1,19 +1,11 @@
-//TODO - nach Klick auf Start loading Animation für 2 Sek? (FTP prüfen)
-
-//TODO - YouWin Screen    
+//TODO - YouWin Screen
 
 //TODO - extra Datei für Sounds (auch in index.html einbinden)
 
 //TODO - Kamerafahrt Hintergrund Ebenen unterschiedlich schnell
 
 //TODO - Out of bottles - info new bottle arrived left/right
-//TODO - Menü von oben mit Steuerung als GIF
-
-//TODO - GAME MENU
-//TODO - Game Close/End
-
-//TODO - Touchbedienung
-//TODO - auch Start, Sound etc.
+//TODO - Panel erst sichtbar wenn mobile
 
 //TODO - Kamera bewegen bzw. Position ändern - wenn Pepe nach links läuft soll er statt links rechts angezeigt werden
 //TODO - JSDoc - Dokumentation

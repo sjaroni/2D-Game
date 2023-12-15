@@ -105,7 +105,7 @@ class Character extends MovableObject {
         }
         this.otherDirection = false;
         this.stopIdle();
-        this.world.camera_x = -this.x + 100;
+        // this.world.camera_x = -this.x + 100;
       }
 
       if (this.world.keyboard.ARROWLEFT && this.x > 0) {
@@ -130,7 +130,10 @@ class Character extends MovableObject {
         this.playIdleAnimation(300);
       }
 
+      
       this.world.camera_x = -this.x + 100;
+
+
       this.iAmIdle++;
     }, 1000 / 60);
 

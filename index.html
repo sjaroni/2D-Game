@@ -42,27 +42,47 @@
   <body>
     <div id="fullscreen">      
         <h1 id="title">El Pollo Loco</h1>        
-        <div class="content">
-          <div class="gameSettings" id="gameSettingsLeft">
-            <button title="Help" id="helpBtn" class="btn">
-              <img src="img/menu/help.png" onclick="help()">
-            </button>
+        <div class="content" id="content">
+          
+          <div id="loadGame" class="d-none">
+            <img src="img/menu/restart.png"></img>
+            <span id="loadGameText">... loading ...</span>
           </div>
-          <button title="Start" id="startBtn" class="btn" onclick="gameStart()">
+
+          <table id="help" class="d-none">
+            <th>Keyboard</th>
+            <tr>
+              <td>Left / Right</td>
+              <td><img src="img/menu/help1.gif"></td>
+            </tr>
+            <tr>
+              <td>Space</td>
+              <td><img src="img/menu/help1.gif"></td>
+            </tr>
+            <tr>
+              <td>D</td>
+              <td><img src="img/menu/help1.gif"></td>
+            </tr>
+          </table>
+
+          <button title="Start" id="startBtn" class="btn" onclick="loadGame()">
             <span id="typewriter-text"></span>
+          </button>          
+          <button title="New Game" id="restartBtn" class="btn d-none" onclick="gameRestart()">
+            <img src="img/menu/restart.png">
           </button>
-          <button title="New Game" id="restartBtn" class="btn d-none">
-            <img src="img/menu/restart.png" onclick="gameRestart()">
-          </button>
-          <div class="gameSettings" id="gameSettingsRight">
-            <button title="Music" id="musicBtn" class="btn">
-              <img src="img/menu/music_on.png" onclick="toggleMusic()">
+          <div class="gameSettings" id="gameSettings">
+            <button title="Music" id="musicBtn" class="btn" onclick="toggleMusic()">
+              <img src="img/menu/music_on.png">
             </button>
-            <button title="Sound" id="soundBtn" class="btn">
-              <img src="img/menu/sound_on.png" onclick="toggleSound()">
+            <button title="Sound" id="soundBtn" class="btn" onclick="toggleSound()">
+              <img src="img/menu/sound_on.png">
             </button>
             <button title="Fullscreen" id="fullscreenBtn" class="btn" onclick="fullscreen()">
               <img src="img/menu/fullscreen.png">
+            </button>
+            <button title="Help" id="helpBtn" class="btn" onclick="help()">
+              <img src="img/menu/help.png">
             </button>
           </div>
           <img id="start-endscreen" src="img/9_intro_outro_screens/start/startscreen_2.png"/>

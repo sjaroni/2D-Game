@@ -66,6 +66,17 @@ h1{
   width: 720px;
 }
 
+.blur {
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+}
+
+#help{
+  z-index: 9;
+  color: white;
+}
+
 .btn {
   display: flex;
   justify-content: center;
@@ -93,14 +104,40 @@ h1{
   height: 45px;
   width: 150px;
   top: 50px;
+  left: 40px;
 }
 
 #restartBtn{
   top: 50px;
 }
 
+.whiteBorder{
+  border: 1px solid white;
+}
+
+#loadGame{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+#loadGame img{
+  height: 70px;
+  width: 70px;
+}
+
+#loadGame img,
 #restartBtn img {
   animation: rotateAnimation 2s linear infinite;
+}
+
+#help,
+#loadGameText{
+  font-size: 48px;
+  letter-spacing: 3px;
+  color: white;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
 }
 
 #throwBtn img{
@@ -116,17 +153,10 @@ h1{
   display: flex;    
   align-items: center;
   flex-direction: row;
-  width: 160px;
+  width: 200px;
   height: 70px;
   z-index: 9;
   position: absolute;
-}
-
-#gameSettingsLeft{
-  left: 40px;
-}
-
-#gameSettingsRight{
   right: 40px;
   justify-content: space-around;
 }

@@ -3,13 +3,22 @@ let world;
 let keyboard = new Keyboard();
 let music_sound = new Audio('audio/music.mp3');
 
-function gameStart() {
+function loadGame() {
   document.getElementById('startBtn').classList.add('d-none');
   document.getElementById('start-endscreen').classList.add('d-none');
   // document.getElementById('playPauseBtn').classList.add('d-none');
-  document.getElementById('helpBtn').classList.add('d-none');
-  document.getElementById('panel').classList.remove('d-none');  
+  document.getElementById('helpBtn').classList.add('d-none');  
+  document.getElementById('content').classList.add('whiteBorder');
+  document.getElementById('loadGame').classList.remove('d-none');  
+  setTimeout(() => {
+    document.getElementById('loadGame').classList.add('d-none');
+    document.getElementById('panel').classList.remove('d-none');
+    document.getElementById('content').classList.remove('whiteBorder');
+    gameStart();
+  }, 2500);
+}
 
+function gameStart() {
   ENDBOSS_REACHED = false;
   ENDBOSS_FIRST_CONTACT = false;
   ENDBOSS_IS_DEAD = false;
@@ -21,8 +30,15 @@ function gameStart() {
 
 function gameRestart() {
   document.getElementById('restartBtn').classList.add('d-none');
-  document.getElementById('gameSettingsRight').classList.remove('d-none');
-  gameStart();
+  document.getElementById('gameSettings').classList.remove('d-none');
+  loadGame();
+}
+
+function help() {
+  document.getElementById('start-endscreen').classList.toggle('blur');
+  document.getElementById('gameSettings').classList.toggle('d-none');
+  document.getElementById('startBtn').classList.toggle('d-none');
+  document.getElementById('help').classList.toggle('d-none');
 }
 
 function init() {
