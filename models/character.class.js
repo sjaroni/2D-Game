@@ -10,6 +10,9 @@ class Character extends MovableObject {
     right: 35,
   };
 
+  i = 100;
+  j = 495;
+
   iAmIdle = 0;
 
   IMAGES_IDLE = [
@@ -105,7 +108,7 @@ class Character extends MovableObject {
         }
         this.otherDirection = false;
         this.stopIdle();
-        // this.world.camera_x = -this.x + 100;
+        //this.world.camera_x = -this.x + 100;
       }
 
       if (this.world.keyboard.ARROWLEFT && this.x > 0) {
@@ -115,6 +118,9 @@ class Character extends MovableObject {
         }
         this.otherDirection = true;
         this.stopIdle();
+
+        // if(this.x )
+
       }
 
       if (this.world.keyboard.KEYD) {
@@ -129,10 +135,51 @@ class Character extends MovableObject {
       if (this.iAmIdle == 300) {
         this.playIdleAnimation(300);
       }
+    
+      //console.log(this.otherDirection);
 
+      if(this.otherDirection && this.world.keyboard.ARROWLEFT){
+        console.log('A', this.world.camera_x);
+        //this.world.camera_x = -this.x + 495;
+
+        if(this.world.camera_x >= this.j && this.world.camera_x > 0){
+          this.world.camera_x = -this.x + this.j;
+          this.j -= 10;
+        }
+        else {
+          this.world.camera_x = -this.x + 495;
+        }
+
+      }
       
-      this.world.camera_x = -this.x + 100;
+      if(!this.otherDirection && this.world.keyboard.ARROWRIGHT){
+        console.log('B', -this.x);
+        if(-this.x < -1000){
+          this.world.camera_x = -this.x + this.i;
+          this.i += 10;
+        }
+        else {
+          this.world.camera_x = -this.x + 100;
+        }
 
+        // if(this.world.camera_x <= -5000){
+        //   this.world.camera_x = -this.x + 500;
+        // }
+        // else{
+        //   this.world.camera_x = -this.x + 100;
+        // }
+        // Annahme: Deine Bedingung ist, dass der Wert von -this.x kleiner als 600 ist
+        // while (-this.x < 600) {
+        //   this.world.camera_x = -this.x + 100;
+
+        //   // Hier wird -this.x schrittweise um 10 erhöht
+        //   this.x += 10;
+
+        //   // Füge hier eine Verzögerung ein, wenn du möchtest, dass die Änderungen sichtbar werden
+        //   // Beispiel: await new Promise(resolve => setTimeout(resolve, 1000));
+        // }
+      }
+      
 
       this.iAmIdle++;
     }, 1000 / 60);

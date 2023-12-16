@@ -1,5 +1,5 @@
-let SOUND_ON = true;
-let MUSIC_ON = true;
+let SOUND_ON = false;
+let MUSIC_ON = false;
 let FULLSCREEN = false;
 let DRAWALLFRAMES = false;
 

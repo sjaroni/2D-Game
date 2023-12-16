@@ -302,8 +302,8 @@ class World {
         document.getElementById('canvas').classList.remove('alarm');
         document.getElementById('start-endscreen').classList.remove('d-none');
         document.getElementById('restartBtn').classList.remove('d-none');
-        document.getElementById('panel').classList.add('d-none');
-        document.getElementById('gameSettingsRight').classList.add('d-none');
+        document.getElementById('panel').classList.add('d-none');        
+        document.getElementById('gameSettings').classList.add('d-none');
 
         if (ENDBOSS_IS_DEAD) {
           document.getElementById('start-endscreen').src = WINSCREEN;          

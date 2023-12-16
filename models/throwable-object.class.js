@@ -53,6 +53,7 @@ class ThrowableObject extends MovableObject {
             this.x -= 10;
           }
       } else {
+        this.speed = 0;
         this.bottleSplash();        
       }
     }, 1000 / 25);
@@ -63,7 +64,6 @@ class ThrowableObject extends MovableObject {
     if(SOUND_ON){
       this.glass_sound.play();
     }
-    this.speed = 0
     this.speedY = 0;    
 
     setInterval(() => {
