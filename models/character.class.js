@@ -10,9 +10,9 @@ class Character extends MovableObject {
     right: 35,
   };
 
-  characterLeft = 100;
-  characterRight = 495;
   iAmIdle = 0;
+
+  steps = 0;
 
   IMAGES_IDLE = [
     'img/2_character_pepe/1_idle/idle/I-1.png',
@@ -135,33 +135,23 @@ class Character extends MovableObject {
         this.playIdleAnimation(300);
       }
     
-      // Nach rechts gehen
-      //if(!this.otherDirection && this.world.keyboard.ARROWRIGHT){
+      // Nach rechts gehen      
       if(!this.otherDirection){
-        this.characterRight = 495;
-        if(this.x < MAXBACKGROUNDWITH - LEVEL_WIDTH){
-          this.world.camera_x = -this.x + 100;
+        if(this.steps < 100){
+          this.steps += 10;
         }
-        else {
-          if(this.characterLeft < this.characterRight){
-            this.characterLeft += 10;
-          }
-          this.world.camera_x = -this.x + this.characterLeft;
-        }
+        //this.world.camera_x = -this.x + this.steps;
+        //this.world.camera_x = -this.x + 100;
       }
-      
       // Nach links gehen
       if(this.otherDirection){
-        this.characterLeft = 100;
-        if(this.world.camera_x >= this.characterRight && this.world.camera_x > 100){
-          this.world.camera_x = this.x + this.characterRight;
-          this.characterRight -= 10;
+        if(this.steps < 495){
+          this.steps += 10;
         }
-        else {
-          this.world.camera_x = -this.x + this.characterRight;
-        }
-      }
-      
+        //this.steps += 10;
+        //this.world.camera_x = -this.x + 495;
+      } 
+      this.world.camera_x = -this.x + this.steps;
 
       this.iAmIdle++;
     }, 1000 / 60);
