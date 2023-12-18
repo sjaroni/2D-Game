@@ -40,31 +40,31 @@
   </head>
 
   <body>
-    <div id="fullscreen">      
-        <h1 id="title">El Pollo Loco</h1>        
+    <div id="fullscreen">    
+      
+      <h1 id="title">El Pollo Loco</h1>
+      <table id="help" class="d-none">
+        <th>Keyboard</th>
+        <tr>
+          <td>Left / Right = Walk</td>
+          <td><img src="img/menu/help1.gif"></td>
+        </tr>
+        <tr>
+          <td>Space = Jump</td>
+          <td><img src="img/menu/help1.gif"></td>
+        </tr>
+        <tr>
+          <td>D = Throw</td>
+          <td><img src="img/menu/help1.gif"></td>
+        </tr>
+      </table>
+
         <div class="content" id="content">
           
           <div id="loadGame" class="d-none">
             <img src="img/menu/restart.png"></img>
             <span id="loadGameText">... loading ...</span>
           </div>
-
-          <table id="help" class="d-none">
-            <th>Keyboard</th>
-            <tr>
-              <td>Left / Right</td>
-              <td><img src="img/menu/help1.gif"></td>
-            </tr>
-            <tr>
-              <td>Space</td>
-              <td><img src="img/menu/help1.gif"></td>
-            </tr>
-            <tr>
-              <td>D</td>
-              <td><img src="img/menu/help1.gif"></td>
-            </tr>
-          </table>
-
           <button title="Start" id="startBtn" class="btn" onclick="loadGame()">
             <span id="typewriter-text"></span>
           </button>          
@@ -84,6 +84,9 @@
             <button title="Help" id="helpBtn" class="btn" onclick="help()">
               <img src="img/menu/help.png">
             </button>
+            <button title="Help" id="helpBtnGame" class="btn d-none" onclick="helpGame()">
+              <img src="img/menu/help.png">
+            </button>
           </div>
           <img id="start-endscreen" src="img/9_intro_outro_screens/start/startscreen_2.png"/>
           <canvas id="canvas" class="d-none" width="720" height="480"></canvas>
@@ -91,17 +94,21 @@
             <div class="touchBtnLeft">
               <button title="Left" id="leftBtn" class="btn">
                 <img src="img/menu/left.png">
+                <span>Left</span>
               </button>
               <button title="Right" id="rightBtn" class="btn">
                 <img src="img/menu/right.png">
+                <span>Right</span>
               </button>
             </div>
             <div class="touchBtnRight">
               <button title="Throw" id="throwBtn" class="btn">
-                <img src="img/6_salsa_bottle/salsa_bottle.png">
+                <span>D</span>
+                <span>Throw</span>
               </button>
               <button title="Jump" id="jumpBtn" class="btn">
                 <img src="img/menu/jump.png">
+                <span>Jump</span>
               </button>
             </div>
           </div>

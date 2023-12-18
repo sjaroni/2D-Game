@@ -7,11 +7,14 @@ checkMusic();
 
 function loadGame() {
   document.getElementById('startBtn').classList.add('d-none');
+  document.getElementById('helpBtn').classList.add('d-none');
+  document.getElementById('helpBtnGame').classList.remove('d-none');
   document.getElementById('start-endscreen').classList.add('d-none');  
   document.getElementById('content').classList.add('whiteBorder');
-  document.getElementById('loadGame').classList.remove('d-none');
-  document.getElementById('loadGame').classList.remove('d-none');
+  document.getElementById('loadGame').classList.remove('d-none');  
   document.getElementById('canvas').classList.add('d-none');
+  document.getElementById('canvas').classList.remove('blur');
+  document.getElementById('help').classList.add('d-none');
 
   setTimeout(() => {
     document.getElementById('loadGame').classList.add('d-none');
@@ -39,12 +42,24 @@ function gameRestart() {
 
 function help() {
   document.getElementById('start-endscreen').classList.toggle('blur');  
-  document.getElementById('startBtn').classList.toggle('d-none');
+  document.getElementById('canvas').classList.toggle('blur');  
   document.getElementById('help').classList.toggle('d-none');
-  
   document.getElementById('musicBtn').classList.toggle('d-none');
   document.getElementById('soundBtn').classList.toggle('d-none');
   document.getElementById('fullscreenBtn').classList.toggle('d-none');
+  document.getElementById('startBtn').classList.toggle('d-none');
+}
+
+function helpGame() {
+  document.getElementById('musicBtn').classList.toggle('d-none');
+  document.getElementById('soundBtn').classList.toggle('d-none');
+  document.getElementById('fullscreenBtn').classList.toggle('d-none');
+  document.getElementById('canvas').classList.toggle('blur');
+  document.getElementById('help').classList.toggle('d-none');
+  document.getElementById('panel').classList.toggle('d-none');
+
+  //TODO - Pause für das Game einbauen
+
 }
 
 function init() {

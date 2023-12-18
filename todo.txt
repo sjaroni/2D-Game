@@ -1,7 +1,7 @@
 //TODO - YouWin Screen
 
 //TODO - Music/Sound in localStorage
-
+//TODO - Beschriftung Buttons 
 //TODO - TODOS suchen über Anchor
 
 //TODO - Help-Button pausiert das Spiel
@@ -9,7 +9,6 @@
 //TODO - MobileFirst
 
 //TODO - extra Datei für Sounds (auch in index.html einbinden)
-
 //TODO - Kamerafahrt Hintergrund Ebenen unterschiedlich schnell
 
 //TODO - Out of bottles - info new bottle arrived left/right

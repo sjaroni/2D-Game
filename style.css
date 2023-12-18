@@ -66,8 +66,7 @@ h1{
   width: 720px;
 }
 
-.blur {
-  /* Add the blur effect */
+.blur {  
   filter: blur(8px);
   -webkit-filter: blur(8px);
 }
@@ -77,6 +76,8 @@ h1{
   color: white;
   width: 75%;
   text-align: left;
+  position: absolute;
+  margin-top: 15%;
 }
 
 th{
@@ -87,6 +88,7 @@ th{
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   cursor: pointer;  
   border-radius: 6px;
   border: 2px solid white;
@@ -104,6 +106,19 @@ th{
 
 .btn:hover{
   scale: 1.1;
+}
+
+.btn span{
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.btn span:first-child {
+  font-size: 26px;
+}
+
+#typewriter-text{
+  font-size: 40px !important;
 }
 
 #startBtn{
