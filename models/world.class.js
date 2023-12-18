@@ -6,7 +6,7 @@ class World {
   keyboard;
   camera_x = 0;
   collectedCoins = 0;
-  collectedBottles = 0;
+  collectedBottles = 8;
   nextThrow = 0;
   nextHit = 0;
 
