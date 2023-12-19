@@ -3,19 +3,15 @@ let world;
 let keyboard = new Keyboard();
 let music_sound = new Audio('audio/music.mp3');
 
-checkMusic();  
-
 function loadGame() {
   document.getElementById('startBtn').classList.add('d-none');
-  document.getElementById('helpBtn').classList.add('d-none');
-  document.getElementById('helpBtnGame').classList.remove('d-none');
+  document.getElementById('helpBtn').classList.add('d-none');  
   document.getElementById('start-endscreen').classList.add('d-none');  
   document.getElementById('content').classList.add('whiteBorder');
   document.getElementById('loadGame').classList.remove('d-none');  
   document.getElementById('canvas').classList.add('d-none');
   document.getElementById('canvas').classList.remove('blur');
   document.getElementById('help').classList.add('d-none');
-
   setTimeout(() => {
     document.getElementById('loadGame').classList.add('d-none');
     document.getElementById('panel').classList.remove('d-none');
@@ -42,24 +38,17 @@ function gameRestart() {
 
 function help() {
   document.getElementById('start-endscreen').classList.toggle('blur');  
-  document.getElementById('canvas').classList.toggle('blur');  
-  document.getElementById('help').classList.toggle('d-none');
-  document.getElementById('musicBtn').classList.toggle('d-none');
-  document.getElementById('soundBtn').classList.toggle('d-none');
-  document.getElementById('fullscreenBtn').classList.toggle('d-none');
   document.getElementById('startBtn').classList.toggle('d-none');
+  toggleElements();
 }
 
-function helpGame() {
+function toggleElements(){
   document.getElementById('musicBtn').classList.toggle('d-none');
   document.getElementById('soundBtn').classList.toggle('d-none');
   document.getElementById('fullscreenBtn').classList.toggle('d-none');
-  document.getElementById('canvas').classList.toggle('blur');
+  //document.getElementById('canvas').classList.toggle('blur');
+  document.getElementById('canvas').classList.remove('blur');
   document.getElementById('help').classList.toggle('d-none');
-  document.getElementById('panel').classList.toggle('d-none');
-
-  //TODO - Pause für das Game einbauen
-
 }
 
 function init() {
@@ -71,6 +60,7 @@ function init() {
   console.log('My Character is', world.character);
 }
 
+//TODO - necessary?
 function stopGame() {
   for (let i = 0; i < 9999; i++) window.clearInterval(i);
 }
@@ -95,31 +85,35 @@ function getIndexOf(x, y, array) {
 }
 
 function checkMusic() {
-  if (MUSIC_ON) {
-    music_sound.loop = true;
-    music_sound.volume = 0.1;
-    music_sound.play();
-  } else {
-    music_sound.pause();
-  }
-}
-
-function toggleMusic() {
-  MUSIC_ON = !MUSIC_ON;
   let musicBtn = document.getElementById("musicBtn");
   let musicImg = musicBtn.getElementsByTagName("img")[0];
 
   if (!MUSIC_ON) {
     musicImg.src = "img/menu/music_off.png";    
+    music_sound.pause();
   } else {
     musicImg.src = "img/menu/music_on.png";
+    music_sound.loop = true;
+    music_sound.volume = 0.1;
+    music_sound.play();
   }
-  checkMusic();
   musicBtn.blur();
 }
 
+function toggleMusic() {
+  MUSIC_ON = !MUSIC_ON;
+  storeValue('MUSIC_ON', MUSIC_ON);  
+  checkMusic();
+}
+
 function toggleSound() {
-  SOUND_ON = !SOUND_ON;  
+  SOUND_ON = !SOUND_ON;
+  storeValue('SOUND_ON', SOUND_ON);
+  checkSound();  
+}
+
+function checkSound() {
+  
   let soundBtn = document.getElementById("soundBtn");
   let soundImg = soundBtn.getElementsByTagName("img")[0];
 
@@ -131,8 +125,6 @@ function toggleSound() {
   soundBtn.blur();
 }
 
-// Touchbuttons
-// live-call am 24.11 17:??
 
 function fullscreen() {
   let fullscreen = document.getElementById('fullscreen');
@@ -175,7 +167,19 @@ function exitFullscreen() {
     }  
 }
 
-document.addEventListener('DOMContentLoaded', function () {  
+document.addEventListener('DOMContentLoaded', function () {
+  SOUND_ON = getName('SOUND_ON');  
+  if(SOUND_ON === null){
+    SOUND_ON = true;
+  }
+  checkSound();
+
+  MUSIC_ON = getName('MUSIC_ON');  
+  if(MUSIC_ON === null){
+    MUSIC_ON = true;
+  }
+  checkMusic(); 
+
   const texts = ['Start', 'Let`s go!', '¡Vamos!'];
   const speed = 150;
   const fadeOutSpeed = 500;
@@ -213,3 +217,11 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   type();  
 });
+
+function getName(key) {
+  return JSON.parse(localStorage.getItem(key));
+}
+
+function storeValue(key, value) {  
+  localStorage.setItem(key, JSON.stringify(value));
+}

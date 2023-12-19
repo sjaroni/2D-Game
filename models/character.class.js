@@ -12,7 +12,9 @@ class Character extends MovableObject {
 
   iAmIdle = 0;
 
-  steps = 0;
+  cameraSteps = 5;
+  cameraLeft = 100;
+  cameraRight = 495;
 
   IMAGES_IDLE = [
     'img/2_character_pepe/1_idle/idle/I-1.png',
@@ -92,6 +94,7 @@ class Character extends MovableObject {
     this.loadImages(this.IMAGES_HURT);
     this.applyGravity();
     this.animate();
+    this.cameraStart = 100;
   }  
 
   animate() {
@@ -107,7 +110,6 @@ class Character extends MovableObject {
         }
         this.otherDirection = false;
         this.stopIdle();
-        //this.world.camera_x = -this.x + 100;
       }
 
       if (this.world.keyboard.ARROWLEFT && this.x > 0) {
@@ -117,16 +119,13 @@ class Character extends MovableObject {
         }
         this.otherDirection = true;
         this.stopIdle();
-
-        // if(this.x )
-
       }
 
       if (this.world.keyboard.KEYD) {
         this.stopIdle();
       }
 
-      if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+      if (this.world.keyboard.ARROWUP && !this.isAboveGround()) {
         this.jump();
         this.stopIdle();
       }
@@ -135,23 +134,14 @@ class Character extends MovableObject {
         this.playIdleAnimation(300);
       }
     
-      // Nach rechts gehen      
-      if(!this.otherDirection){
-        if(this.steps < 100){
-          this.steps += 10;
-        }
-        //this.world.camera_x = -this.x + this.steps;
-        //this.world.camera_x = -this.x + 100;
+      if (this.otherDirection) {
+        this.cameraStart = Math.min(this.cameraStart + this.cameraSteps, this.cameraRight);
+        this.world.camera_x = -this.x + this.cameraStart;
+      } else {
+        this.cameraStart = Math.max(this.cameraStart - this.cameraSteps, this.cameraLeft);
+        this.world.camera_x = -this.x + this.cameraStart;
       }
-      // Nach links gehen
-      if(this.otherDirection){
-        if(this.steps < 495){
-          this.steps += 10;
-        }
-        //this.steps += 10;
-        //this.world.camera_x = -this.x + 495;
-      } 
-      this.world.camera_x = -this.x + this.steps;
+
 
       this.iAmIdle++;
     }, 1000 / 60);
@@ -208,7 +198,7 @@ class Character extends MovableObject {
       if (
         this.world.keyboard.ARROWLEFT ||
         this.world.keyboard.ARROWRIGHT ||
-        this.world.keyboard.SPACE ||
+        this.world.keyboard.ARROWUP ||
         this.world.keyboard.KEYD
       ) {
         this.stopAnimation(intervalLongIdle);

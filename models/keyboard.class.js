@@ -3,7 +3,7 @@ class Keyboard {
   constructor(){
     this.ARROWLEFT = false;
     this.ARROWRIGHT = false;
-    this.SPACE = false;
+    this.ARROWUP = false;
     this.KEYD = false;
   }
 
@@ -42,12 +42,12 @@ class Keyboard {
 
     document.getElementById('jumpBtn').addEventListener('touchstart', (e) =>{
       e.preventDefault();      
-      this.SPACE = true;
+      this.ARROWUP = true;
     });
     
     document.getElementById('jumpBtn').addEventListener('touchend', (e) =>{
       e.preventDefault();
-      this.SPACE = false;
+      this.ARROWUP = false;
     });
   }
 

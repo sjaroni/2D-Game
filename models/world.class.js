@@ -6,7 +6,7 @@ class World {
   keyboard;
   camera_x = 0;
   collectedCoins = 0;
-  collectedBottles = 8;
+  collectedBottles = 0;
   nextThrow = 0;
   nextHit = 0;
 
@@ -46,10 +46,10 @@ class World {
 
   run() {
     setInterval(() => {
-      this.checkCollisions();
-      this.checkThrowObjects();
-      this.reachedEndboss();
-      this.gameIsOver();
+        this.checkCollisions();
+        this.checkThrowObjects();
+        this.reachedEndboss();
+        this.gameIsOver();
     }, 50);
   }
 
