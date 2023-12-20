@@ -133,15 +133,19 @@ class Character extends MovableObject {
       if (this.iAmIdle == 300) {
         this.playIdleAnimation(300);
       }
-    
+
       if (this.otherDirection) {
-        this.cameraStart = Math.min(this.cameraStart + this.cameraSteps, this.cameraRight);
-        this.world.camera_x = -this.x + this.cameraStart;
+        if(this.x < 50){
+          this.cameraStart = Math.max(this.cameraStart - (this.cameraSteps*3), this.cameraLeft);
+          this.world.camera_x = -this.x + this.cameraStart;
+        } else{
+          this.cameraStart = Math.min(this.cameraStart + this.cameraSteps, this.cameraRight);
+          this.world.camera_x = -this.x + this.cameraStart;
+        }
       } else {
         this.cameraStart = Math.max(this.cameraStart - this.cameraSteps, this.cameraLeft);
         this.world.camera_x = -this.x + this.cameraStart;
       }
-
 
       this.iAmIdle++;
     }, 1000 / 60);

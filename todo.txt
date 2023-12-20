@@ -7,7 +7,8 @@
 
 //TODO - Out of bottles - info new bottle arrived left/right
 
-//TODO - Kamera bewegen bzw. Position ändern - wenn Pepe nach links läuft soll er statt links rechts angezeigt werden
+//TODO - isColliding Bottle geht noch weiter mit x und y
+
 //TODO - JSDoc - Dokumentation
 
 //TODO - aus Join wenn hochkant bei Mobil dann fehlermeldung!
