@@ -12,12 +12,35 @@
     }
 }
 
+@media only screen and (max-width: 935px){  
+  .gameSettings{
+    right: 15% !important;
+  }
+
+  .panel{
+    width: 70% !important;
+    left: 15% !important;
+    right: 15% !important;
+  }
+
+}
+
 @media only screen and (max-width: 720px){  
   canvas,
   #start-endscreen
   {
     width: 100%;
     margin: 0;
+  }
+
+  .panel{
+    width: 70% !important;
+    left: 10% !important;
+    right: 10% !important;
+  }
+
+  .gameSettings{
+    right: 5% !important;
   }
 }
 

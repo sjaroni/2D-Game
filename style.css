@@ -124,8 +124,8 @@ th{
 #startBtn{
   height: 45px;
   width: 150px;
-  top: 50px;
-  left: 40px;
+  top: 8%;
+  left: 5%;
 }
 
 #restartBtn{
@@ -170,7 +170,7 @@ th{
 }
 
 .gameSettings{
-  top: 40px;  
+  top: 5%;  
   display: flex;    
   align-items: center;
   flex-direction: row;
@@ -178,7 +178,7 @@ th{
   height: 70px;
   z-index: 9;
   position: absolute;
-  right: 40px;
+  right: 5%;
   justify-content: flex-end;
   gap: 8px;
 }
@@ -198,7 +198,7 @@ th{
 }
 
 .panel{
-  bottom: 16px;
+  bottom: 3%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -206,8 +206,8 @@ th{
   height: 70px;
   z-index: 9;
   position: absolute;
-  left: 40px;
-  right: 40px;
+  left: 5%;
+  right: 5%;
 }
 
 .touchBtnLeft,
