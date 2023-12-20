@@ -1,17 +1,12 @@
 class EndbossIcon extends DrawableObject {
-
-  IMAGES = [
-    'img/7_statusbars/3_icons/icon_health_endboss.png'
-  ]
-
   x = 664;
   y = 78;
-
   width = 57;
-  height = 57;  
-  maxBackgroundWidth = 1400;
+  height = 57;
 
-  constructor(){
+  IMAGES = ['img/7_statusbars/3_icons/icon_health_endboss.png'];
+
+  constructor() {
     super().loadImage(this.IMAGES);
   }
 }

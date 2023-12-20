@@ -1,5 +1,4 @@
 class StatusIcons extends DrawableObject {
-
   text = 0;
   x;
   y = 10;
@@ -8,13 +7,13 @@ class StatusIcons extends DrawableObject {
   width;
   height;
   percentage = 100;
-  
-  constructor(){
+
+  constructor() {
     super();
   }
 
-  collected(item){
+  collected(item) {
     let itemName = `collected${item}`;
-    this.text = world[itemName];    
+    this.text = world[itemName];
   }
 }

@@ -23,8 +23,7 @@ class ThrowableObject extends MovableObject {
     left: 20,
   };
 
-  throwIntervalId;
-  glass_sound = new Audio('audio/glass.mp3');
+  throwIntervalId;  
 
   constructor(x, y, otherDirection) {
     super().loadImage('img/6_salsa_bottle/salsa_bottle.png');
@@ -60,10 +59,8 @@ class ThrowableObject extends MovableObject {
   }
 
   bottleSplash(){
-    this.stopAnimation(this.throwIntervalId);    
-    if(SOUND_ON){
-      this.glass_sound.play();
-    }
+    this.stopAnimation(this.throwIntervalId);
+    playSound(GLASS_SOUND);
     this.speedY = 0;    
 
     setInterval(() => {

@@ -96,9 +96,8 @@ class Endboss extends MovableObject {
 
   startWalkingInterval() {
     if (this.energy > 0) {
-      if (SOUND_ON) {
-        this.ENDBOSS_SOUND.play();
-      }
+      playSound(ENDBOSS_SOUND);
+
       this.intervalWalking = setInterval(() => {
         if (!this.otherDirection) {
           this.moveLeft();
@@ -181,11 +180,9 @@ class Endboss extends MovableObject {
       }, 400);
 
       setTimeout(() => {
-        if (SOUND_ON) {
-          this.ENDBOSS_SOUND.pause();
-          this.CHICKEN_SOUND.play();
-          this.WIN_SOUND.play();
-        }
+        pauseSound(ENDBOSS_SOUND);
+        playSound(CHICKEN_SOUND);
+        playSound(WIN_SOUND);
 
         this.stopAnimation(this.intervalWalking);
         this.stopAnimation(this.intervalAlert);
@@ -207,10 +204,8 @@ class Endboss extends MovableObject {
       this.playAnimation(this.IMAGES_HURT);
     }, 200);
 
-    if (SOUND_ON) {
-      this.ENDBOSS_SOUND.pause();
-      this.CHICKEN_SOUND.play();
-    }
+    pauseSound(ENDBOSS_SOUND);
+    playSound(CHICKEN_SOUND);
 
     this.reloadCounter++;
 

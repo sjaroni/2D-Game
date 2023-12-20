@@ -1,4 +1,4 @@
-class StatusBarBottle extends StatusIcons {  
+class StatusBarBottle extends StatusIcons {
   x = 10;
   y = 20;
   textX = 60;

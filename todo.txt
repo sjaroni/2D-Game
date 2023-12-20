@@ -1,12 +1,10 @@
 //TODO - TODOS suchen über Anchor
 
-//TODO - MobileFirst erledigt?
-
 //TODO - Kamerafahrt Hintergrund Ebenen unterschiedlich schnell
 
 //TODO - Out of bottles - info new bottle arrived left/right
-
 //TODO - isColliding Bottle geht noch weiter mit x und y
+//TODO - Endboss Animations
 
 //TODO - JSDoc - Dokumentation
 

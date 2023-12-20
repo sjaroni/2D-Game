@@ -97,21 +97,18 @@ class Character extends MovableObject {
 
   animate() {
     setInterval(() => {
-      WALKING_SOUND.pause();
+      pauseSound(WALKING_SOUND);
+
       if (this.world.keyboard.ARROWRIGHT && this.x < CHARACTER_LEVEL_END) {
         this.moveRight();
-        if (SOUND_ON) {
-          WALKING_SOUND.play();
-        }
+        playSound(WALKING_SOUND);
         this.otherDirection = false;
         this.stopIdle();
       }
 
       if (this.world.keyboard.ARROWLEFT && this.x > 0) {
         this.moveLeft();
-        if (SOUND_ON) {
-          WALKING_SOUND.play();
-        }
+        playSound(WALKING_SOUND);
         this.otherDirection = true;
         this.stopIdle();
       }
@@ -160,18 +157,11 @@ class Character extends MovableObject {
         this.stopAnimation(intervalId);
         this.stopIdle();
         this.loadImage(this.IMAGES_DEAD[5]);
-
-        if (SOUND_ON) {
-          this.DEAD_SOUND.play();
-        }
+        playSound(DEAD_SOUND);
         GAME_IS_OVER = true;
       } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
-
-        if (SOUND_ON) {
-          this.HURT_SOUND.play();
-        }
-
+        playSound(HURT_SOUND);
         this.stopIdle();
       } else if (this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
