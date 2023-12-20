@@ -1,7 +1,6 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-let music_sound = new Audio('audio/music.mp3');
 
 function loadGame() {
   document.getElementById('startBtn').classList.add('d-none');
@@ -46,7 +45,6 @@ function toggleElements(){
   document.getElementById('musicBtn').classList.toggle('d-none');
   document.getElementById('soundBtn').classList.toggle('d-none');
   document.getElementById('fullscreenBtn').classList.toggle('d-none');
-  //document.getElementById('canvas').classList.toggle('blur');
   document.getElementById('canvas').classList.remove('blur');
   document.getElementById('help').classList.toggle('d-none');
 }
@@ -89,13 +87,13 @@ function checkMusic() {
   let musicImg = musicBtn.getElementsByTagName("img")[0];
 
   if (!MUSIC_ON) {
-    musicImg.src = "img/menu/music_off.png";    
-    music_sound.pause();
+    musicImg.src = "img/menu/music_off.png";
+    MUSIC_SOUND.pause();
   } else {
     musicImg.src = "img/menu/music_on.png";
-    music_sound.loop = true;
-    music_sound.volume = 0.1;
-    music_sound.play();
+    MUSIC_SOUND.loop = true;
+    MUSIC_SOUND.volume = 0.1;
+    MUSIC_SOUND.play();
   }
   musicBtn.blur();
 }

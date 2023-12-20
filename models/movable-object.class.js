@@ -15,11 +15,11 @@ class MovableObject extends DrawableObject {
     }, 1000 / 25);
   }
 
-  moveRight() {    
-      this.x += this.speed;
+  moveRight() {
+    this.x += this.speed;
   }
 
-  moveLeft() {    
+  moveLeft() {
     this.x -= this.speed;
   }
 
@@ -99,8 +99,7 @@ class MovableObject extends DrawableObject {
   jump() {
     if (SOUND_ON) {
       if (this instanceof Character) {
-        let jump_sound = new Audio('audio/jump.mp3');
-        jump_sound.play();
+        JUMP_SOUND.play();
       }
     }
     this.speedY = 30;
@@ -111,7 +110,4 @@ class MovableObject extends DrawableObject {
       this.y += 600;
     }, 2000);
   }
-
-
-  
 }

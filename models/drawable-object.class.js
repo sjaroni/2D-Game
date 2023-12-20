@@ -9,6 +9,7 @@ class DrawableObject {
 
   otherDirection = false;
   text;
+
   offset = {
     right: 10,
     left: 10,

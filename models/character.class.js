@@ -3,6 +3,14 @@ class Character extends MovableObject {
   height = 250;
   speed = 10;
   y = 180;
+
+  iAmIdle = 0;
+
+  cameraStart = 100;
+  cameraSteps = 5;
+  cameraLeft = 100;
+  cameraRight = 495;
+
   offset = {
     top: 120,
     bottom: 10,
@@ -10,11 +18,7 @@ class Character extends MovableObject {
     right: 35,
   };
 
-  iAmIdle = 0;
-
-  cameraSteps = 5;
-  cameraLeft = 100;
-  cameraRight = 495;
+  world;
 
   IMAGES_IDLE = [
     'img/2_character_pepe/1_idle/idle/I-1.png',
@@ -79,11 +83,6 @@ class Character extends MovableObject {
     'img/2_character_pepe/4_hurt/H-43.png',
   ];
 
-  world;
-  walking_sound = new Audio('audio/running.mp3');
-  hurt_sound = new Audio('audio/hurt.mp3');
-  dead_sound = new Audio('audio/dead.mp3');
-  
   constructor() {
     super().loadImage(this.IMAGES_IDLE[1]);
     this.loadImages(this.IMAGES_IDLE);
@@ -94,19 +93,15 @@ class Character extends MovableObject {
     this.loadImages(this.IMAGES_HURT);
     this.applyGravity();
     this.animate();
-    this.cameraStart = 100;
-  }  
+  }
 
   animate() {
-    setInterval(() => {      
-      this.walking_sound.pause();
-      if (
-        this.world.keyboard.ARROWRIGHT &&
-        this.x < CHARACTER_LEVEL_END
-      ) {
+    setInterval(() => {
+      WALKING_SOUND.pause();
+      if (this.world.keyboard.ARROWRIGHT && this.x < CHARACTER_LEVEL_END) {
         this.moveRight();
-        if(SOUND_ON){
-          this.walking_sound.play();
+        if (SOUND_ON) {
+          WALKING_SOUND.play();
         }
         this.otherDirection = false;
         this.stopIdle();
@@ -114,8 +109,8 @@ class Character extends MovableObject {
 
       if (this.world.keyboard.ARROWLEFT && this.x > 0) {
         this.moveLeft();
-        if(SOUND_ON){
-          this.walking_sound.play();
+        if (SOUND_ON) {
+          WALKING_SOUND.play();
         }
         this.otherDirection = true;
         this.stopIdle();
@@ -135,15 +130,24 @@ class Character extends MovableObject {
       }
 
       if (this.otherDirection) {
-        if(this.x < 50){
-          this.cameraStart = Math.max(this.cameraStart - (this.cameraSteps*3), this.cameraLeft);
+        if (this.x < 50) {
+          this.cameraStart = Math.max(
+            this.cameraStart - this.cameraSteps * 3,
+            this.cameraLeft,
+          );
           this.world.camera_x = -this.x + this.cameraStart;
-        } else{
-          this.cameraStart = Math.min(this.cameraStart + this.cameraSteps, this.cameraRight);
+        } else {
+          this.cameraStart = Math.min(
+            this.cameraStart + this.cameraSteps,
+            this.cameraRight,
+          );
           this.world.camera_x = -this.x + this.cameraStart;
         }
       } else {
-        this.cameraStart = Math.max(this.cameraStart - this.cameraSteps, this.cameraLeft);
+        this.cameraStart = Math.max(
+          this.cameraStart - this.cameraSteps,
+          this.cameraLeft,
+        );
         this.world.camera_x = -this.x + this.cameraStart;
       }
 
@@ -155,17 +159,17 @@ class Character extends MovableObject {
         this.playAnimation(this.IMAGES_DEAD);
         this.stopAnimation(intervalId);
         this.stopIdle();
-        this.loadImage(this.IMAGES_DEAD[5]);        
+        this.loadImage(this.IMAGES_DEAD[5]);
 
-        if(SOUND_ON){
-          this.dead_sound.play();
-        }        
+        if (SOUND_ON) {
+          this.DEAD_SOUND.play();
+        }
         GAME_IS_OVER = true;
       } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
 
-        if(SOUND_ON){
-          this.hurt_sound.play();
+        if (SOUND_ON) {
+          this.HURT_SOUND.play();
         }
 
         this.stopIdle();

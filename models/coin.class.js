@@ -1,23 +1,19 @@
 class Coin extends MovableObject {
+  x = 300;
+  y = 100;
+  width = 120;
+  height = 120;
 
-  IMAGES = [
-    'img/8_coin/coin_1.png',
-    'img/8_coin/coin_2.png'
-  ]
-
-  x = 300; // Wert zwischen 0 und maximaler Breite
-  y = 100; // Wert zwischen 100 und 300
   offset = {
     top: 40,
     bottom: 40,
     left: 40,
-    right: 40
-  }
+    right: 40,
+  };
 
-  width = 120;
-  height = 120;
-  
-  constructor(){
+  IMAGES = ['img/8_coin/coin_1.png', 'img/8_coin/coin_2.png'];
+
+  constructor() {
     super().loadImage(this.IMAGES[0]);
     this.x = this.x + Math.random() * OBJECT_LEVEL_END;
     this.y = this.height + Math.random() * 180;
@@ -25,10 +21,9 @@ class Coin extends MovableObject {
     this.animate();
   }
 
-  animate(){
+  animate() {
     setInterval(() => {
       this.playAnimation(this.IMAGES);
     }, 500);
   }
-
 }

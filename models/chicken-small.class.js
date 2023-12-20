@@ -1,27 +1,24 @@
+class ChickenSmall extends MovableObject {
+  y = 345;
+  width = 80;
+  height = 80;
 
-class ChickenSmall extends MovableObject{
- 
-   y = 345;
-   width = 80;
-   height = 80;
-   chicken_sound = new Audio('audio/chicken_small.mp3');
-   yPosition = this.y;
-   jumpInterval = Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000;
+  yPosition = this.y;
+  jumpInterval = Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000;
 
   IMAGES_WALKING = [
     'img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
     'img/3_enemies_chicken/chicken_small/1_walk/2_w.png',
-    'img/3_enemies_chicken/chicken_small/1_walk/3_w.png'
+    'img/3_enemies_chicken/chicken_small/1_walk/3_w.png',
   ];
-  
+
   IMAGES_DEAD = [
     'img/3_enemies_chicken/chicken_small/2_dead/dead.png',
     'img/3_enemies_chicken/chicken_small/2_dead/dead.png',
-    'img/3_enemies_chicken/chicken_small/2_dead/dead.png'
-  ]
+    'img/3_enemies_chicken/chicken_small/2_dead/dead.png',
+  ];
 
-  constructor(){
-
+  constructor() {
     super().loadImage(this.IMAGES_WALKING[0]);
     this.loadImages(this.IMAGES_WALKING);
     this.loadImages(this.IMAGES_DEAD);
@@ -31,26 +28,25 @@ class ChickenSmall extends MovableObject{
     this.animate();
   }
 
-  animate(){    
-
+  animate() {
     const intervalIdWalking = setInterval(() => {
-      if(!this.otherDirection){        
+      if (!this.otherDirection) {
         this.moveLeft();
       } else {
         this.moveRight();
       }
     }, 1000 / 60);
-    
+
     setInterval(() => {
       if (!this.isAboveGround() && this.energy > 0) {
         this.jump();
-     }  
+      }
     }, this.jumpInterval);
 
     const intervalId = setInterval(() => {
-      if (this.isDead()) {        
-        if(SOUND_ON){
-          this.chicken_sound.play();
+      if (this.isDead()) {
+        if (SOUND_ON) {
+          this.CHICKEN_SMALL_SOUND.play();
         }
         this.playAnimation(this.IMAGES_DEAD);
         this.stopAnimation(intervalIdWalking);
@@ -60,5 +56,5 @@ class ChickenSmall extends MovableObject{
         this.playAnimation(this.IMAGES_WALKING);
       }
     }, 200);
-  }  
+  }
 }

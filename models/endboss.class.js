@@ -1,14 +1,9 @@
 class Endboss extends MovableObject {
   y = 55;
-  offset = {
-    top: 70,
-    bottom: 40,
-    left: 30,
-    right: 35,
-  };
   width = 250;
   height = 400;
   speed = 12;
+
   initIntervalWalking = 0;
   initIntervalAlert = 0;
   initIntervalAttack = 0;
@@ -19,6 +14,13 @@ class Endboss extends MovableObject {
   intervalAlert;
   intervalAttack;
   intervalAfterHurt;
+
+  offset = {
+    top: 70,
+    bottom: 40,
+    left: 30,
+    right: 35,
+  };
 
   IMAGES_WALKING = [
     'img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -61,17 +63,13 @@ class Endboss extends MovableObject {
     'img/4_enemie_boss_chicken/5_dead/G26.png',
   ];
 
-  endboss_sound = new Audio('audio/endboss.mp3');
-  hurt_sound = new Audio('audio/chicken.mp3');
-  win_sound = new Audio('audio/win.mp3');
-
   constructor() {
     super().loadImage(this.IMAGES_WALKING[0]);
     this.loadImages(this.IMAGES_WALKING);
     this.loadImages(this.IMAGES_ALERT);
     this.loadImages(this.IMAGES_ATTACK);
     this.loadImages(this.IMAGES_HURT);
-    this.loadImages(this.IMAGES_DEAD);    
+    this.loadImages(this.IMAGES_DEAD);
     this.x = MAXBACKGROUNDWITH - 250;
     this.speed = this.speed + Math.random() * 0.25;
     this.intervalNum = 1;
@@ -99,7 +97,7 @@ class Endboss extends MovableObject {
   startWalkingInterval() {
     if (this.energy > 0) {
       if (SOUND_ON) {
-        this.endboss_sound.play();
+        this.ENDBOSS_SOUND.play();
       }
       this.intervalWalking = setInterval(() => {
         if (!this.otherDirection) {
@@ -111,7 +109,6 @@ class Endboss extends MovableObject {
         this.playAnimation(this.IMAGES_WALKING);
         this.initIntervalAttack = 0;
         if (this.initIntervalWalking == 5) {
-          
           this.stopAnimation(this.intervalWalking);
           this.intervalNum = 2;
           this.startInterval();
@@ -126,7 +123,7 @@ class Endboss extends MovableObject {
       this.intervalAlert = setInterval(() => {
         this.playAnimation(this.IMAGES_ALERT);
         this.initIntervalWalking = 0;
-        if (this.initIntervalAlert == 5) {          
+        if (this.initIntervalAlert == 5) {
           this.stopAnimation(this.intervalAlert);
           this.intervalNum = 3;
           this.startInterval();
@@ -165,7 +162,7 @@ class Endboss extends MovableObject {
 
   reloadAnimations(intervalId) {
     setTimeout(() => {
-      this.stopAnimation(intervalId);      
+      this.stopAnimation(intervalId);
       this.stopAnimation(this.intervalWalking);
       this.stopAnimation(this.intervalAlert);
       this.stopAnimation(this.intervalAttack);
@@ -185,45 +182,42 @@ class Endboss extends MovableObject {
 
       setTimeout(() => {
         if (SOUND_ON) {
-          this.endboss_sound.pause();
-          this.hurt_sound.play();
-          this.win_sound.play();
+          this.ENDBOSS_SOUND.pause();
+          this.CHICKEN_SOUND.play();
+          this.WIN_SOUND.play();
         }
 
         this.stopAnimation(this.intervalWalking);
         this.stopAnimation(this.intervalAlert);
         this.stopAnimation(this.intervalAttack);
-        
+
         setTimeout(() => {
           this.stopAnimation(lastInterval);
           this.y = 100;
           this.loadImage(this.IMAGES_DEAD[2]);
           ENDBOSS_IS_DEAD = true;
-          GAME_IS_OVER = true;  
+          GAME_IS_OVER = true;
         }, 1200);
-        
       }, 300);
     }
   }
 
   endbossIsHurt(intervalId) {
-    
     let endbossIsHurtInterval = setInterval(() => {
-          this.playAnimation(this.IMAGES_HURT);
+      this.playAnimation(this.IMAGES_HURT);
     }, 200);
 
     if (SOUND_ON) {
-      this.endboss_sound.pause();
-      this.hurt_sound.play();
+      this.ENDBOSS_SOUND.pause();
+      this.CHICKEN_SOUND.play();
     }
 
     this.reloadCounter++;
 
     setTimeout(() => {
-      
       this.stopAnimation(endbossIsHurtInterval);
       this.intervalAfterHurt = setInterval(() => {
-       this.playAnimation(this.IMAGES_WALKING);
+        this.playAnimation(this.IMAGES_WALKING);
         if (!this.otherDirection) {
           this.moveLeft();
         } else {
