@@ -5,6 +5,7 @@ let ENDBOSS_REACHED = false;
 let ENDBOSS_FIRST_CONTACT = false;
 let ENDBOSS_IS_DEAD = false;
 let GAME_IS_OVER = false;
+let ADD_NEW_BOTTLE = false;
 
 const LEVEL_WIDTH = 719;
 const BACKGROUNDREPEAT = 8;

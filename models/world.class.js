@@ -6,7 +6,7 @@ class World {
   keyboard;
   camera_x = 0;
   collectedCoins = 0;
-  collectedBottles = 1;
+  collectedBottles = 0;
   nextThrow = 0;
   nextHit = 0;
 
@@ -16,6 +16,7 @@ class World {
   statusBarCoin = new StatusBarCoin();
   statusBarEndboss = new StatusBarEndboss();
   statusBarEndbossIcon = new EndbossIcon();
+  bottleText = new BottleText();
 
   coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
   bottles = [
@@ -105,24 +106,15 @@ class World {
 
       if (this.collectedBottles == 0 && this.bottles.length == 0) {
         this.bottles.push(new Bottle());
-
-        // Stefan
-        //TODO
-        //console.log(this.character.x);
-        //console.log(world.bottles[0].x);
-
+        let side;
         if (this.character.x < world.bottles[0].x) {
-          console.log('new bottle arrived on your right');
-          ctx.fillText('this.text', 100, 100);
+          side = 'right';
         } else {
-          console.log('new bottle arrived on your left');
-          ctx.fillText('this.text2', 100, 100);
+          side = 'left';
         }
 
-        //this.addTextToMap(this.statusBarBottle);
-        this.addTextToMap(this.statusBarBottle);
-        //mo.drawText(this.ctx);
-        //ctx.fillText(this.text, this.textX, this.textY);
+        ADD_NEW_BOTTLE = true;
+        this.bottleText.animate(side);
       }
     });
 
@@ -224,6 +216,10 @@ class World {
     this.addObjectsToMap(this.bottles);
 
     this.ctx.translate(-this.camera_x, 0);
+
+    if (ADD_NEW_BOTTLE) {
+      this.addTextToMap(this.bottleText);
+    }
 
     // -- Space for fixed objects -- //
 
@@ -338,6 +334,10 @@ class World {
 
     world.statusBarBottle.y += 600;
     world.statusBarBottle.textY += 600;
+
+    //TODO - ausblenden?
+    world.bottleText.textY += 600;
+
     world.statusBarHealth.y += 600;
     world.statusBarHealth.textY += 600;
     world.statusBarCoin.y += 600;
