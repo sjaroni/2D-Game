@@ -4,10 +4,10 @@ let keyboard = new Keyboard();
 
 function loadGame() {
   document.getElementById('startBtn').classList.add('d-none');
-  document.getElementById('helpBtn').classList.add('d-none');  
-  document.getElementById('start-endscreen').classList.add('d-none');  
+  document.getElementById('helpBtn').classList.add('d-none');
+  document.getElementById('start-endscreen').classList.add('d-none');
   document.getElementById('content').classList.add('whiteBorder');
-  document.getElementById('loadGame').classList.remove('d-none');  
+  document.getElementById('loadGame').classList.remove('d-none');
   document.getElementById('canvas').classList.add('d-none');
   document.getElementById('canvas').classList.remove('blur');
   document.getElementById('help').classList.add('d-none');
@@ -25,23 +25,23 @@ function gameStart() {
   ENDBOSS_IS_DEAD = false;
   GAME_IS_OVER = false;
   initLevel();
-  init();  
+  init();
 }
 
 function gameRestart() {
   document.getElementById('restartBtn').classList.add('d-none');
-  document.getElementById('loadGame').classList.add('d-none');  
+  document.getElementById('loadGame').classList.add('d-none');
   document.getElementById('gameSettings').classList.remove('d-none');
   loadGame();
 }
 
 function help() {
-  document.getElementById('start-endscreen').classList.toggle('blur');  
+  document.getElementById('start-endscreen').classList.toggle('blur');
   document.getElementById('startBtn').classList.toggle('d-none');
   toggleElements();
 }
 
-function toggleElements(){
+function toggleElements() {
   document.getElementById('musicBtn').classList.toggle('d-none');
   document.getElementById('soundBtn').classList.toggle('d-none');
   document.getElementById('fullscreenBtn').classList.toggle('d-none');
@@ -83,14 +83,14 @@ function getIndexOf(x, y, array) {
 }
 
 function checkMusic() {
-  let musicBtn = document.getElementById("musicBtn");
-  let musicImg = musicBtn.getElementsByTagName("img")[0];
+  let musicBtn = document.getElementById('musicBtn');
+  let musicImg = musicBtn.getElementsByTagName('img')[0];
 
   if (!MUSIC_ON) {
-    musicImg.src = "img/menu/music_off.png";
+    musicImg.src = 'img/menu/music_off.png';
     MUSIC_SOUND.pause();
   } else {
-    musicImg.src = "img/menu/music_on.png";
+    musicImg.src = 'img/menu/music_on.png';
     MUSIC_SOUND.loop = true;
     MUSIC_SOUND.volume = 0.1;
     MUSIC_SOUND.play();
@@ -100,43 +100,41 @@ function checkMusic() {
 
 function toggleMusic() {
   MUSIC_ON = !MUSIC_ON;
-  storeValue('MUSIC_ON', MUSIC_ON);  
+  storeValue('MUSIC_ON', MUSIC_ON);
   checkMusic();
 }
 
 function toggleSound() {
   SOUND_ON = !SOUND_ON;
   storeValue('SOUND_ON', SOUND_ON);
-  checkSound();  
+  checkSound();
 }
 
 function checkSound() {
-  
-  let soundBtn = document.getElementById("soundBtn");
-  let soundImg = soundBtn.getElementsByTagName("img")[0];
+  let soundBtn = document.getElementById('soundBtn');
+  let soundImg = soundBtn.getElementsByTagName('img')[0];
 
   if (!SOUND_ON) {
-    soundImg.src = "img/menu/sound_off.png";    
+    soundImg.src = 'img/menu/sound_off.png';
   } else {
-    soundImg.src = "img/menu/sound_on.png";
+    soundImg.src = 'img/menu/sound_on.png';
   }
   soundBtn.blur();
 }
 
-
 function fullscreen() {
   let fullscreen = document.getElementById('fullscreen');
-  let fullscreenBtn = document.getElementById("fullscreenBtn");  
+  let fullscreenBtn = document.getElementById('fullscreenBtn');
   fullscreenBtn.blur();
 
   FULLSCREEN = !FULLSCREEN;
-  if(FULLSCREEN){
+  if (FULLSCREEN) {
     enterFullscreen(fullscreen);
     fullscreen.style.background = "url('img/desert.png') no-repeat";
   } else {
     exitFullscreen();
-    fullscreen.style.background = "none";    
-  }  
+    fullscreen.style.background = 'none';
+  }
 }
 
 function enterFullscreen(element) {
@@ -146,37 +144,37 @@ function enterFullscreen(element) {
     element.msRequestFullscreen();
   } else if (element.webkitRequestFullscreen) {
     element.webkitRequestFullscreen();
-  }  
+  }
 }
 
-document.addEventListener("fullscreenchange", function () {
+document.addEventListener('fullscreenchange', function () {
   if (!document.fullscreenElement) {
     let fullscreen = document.getElementById('fullscreen');
-    fullscreen.style.background = "none";
+    fullscreen.style.background = 'none';
     FULLSCREEN = false;
   }
 });
 
 function exitFullscreen() {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();    
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    }  
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  SOUND_ON = getName('SOUND_ON');  
-  if(SOUND_ON === null){
+  SOUND_ON = getName('SOUND_ON');
+  if (SOUND_ON === null) {
     SOUND_ON = true;
   }
   checkSound();
 
-  MUSIC_ON = getName('MUSIC_ON');  
-  if(MUSIC_ON === null){
+  MUSIC_ON = getName('MUSIC_ON');
+  if (MUSIC_ON === null) {
     MUSIC_ON = true;
   }
-  checkMusic(); 
+  checkMusic();
 
   const texts = ['Start', 'Let`s go!', '¡Vamos!'];
   const speed = 150;
@@ -213,13 +211,13 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }, fadeOutSpeed / 10);
   }
-  type();  
+  type();
 });
 
 function getName(key) {
   return JSON.parse(localStorage.getItem(key));
 }
 
-function storeValue(key, value) {  
+function storeValue(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
 }

@@ -6,7 +6,7 @@ class World {
   keyboard;
   camera_x = 0;
   collectedCoins = 0;
-  collectedBottles = 0;
+  collectedBottles = 10; //TODO - auf 0  
   nextThrow = 0;
   nextHit = 0;
 
@@ -21,13 +21,13 @@ class World {
   coins = [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()];
   bottles = [
     new Bottle(),
-    // new Bottle(),
-    // new Bottle(),
-    // new Bottle(),
-    // new Bottle(),
-    // new Bottle(),
-    // new Bottle(),
-    // new Bottle(),
+    new Bottle(),
+    new Bottle(),
+    new Bottle(),
+    new Bottle(),
+    new Bottle(),
+    new Bottle(),
+    new Bottle(),
   ];
 
   throwableObjects = [];
@@ -82,7 +82,11 @@ class World {
 
       if (this.throwableObjects.length !== 0) {
         if (this.throwableObjects[0].isColliding(enemy)) {
-          this.speed = 0;
+          
+          //TODO - Stefan          
+          //this.throwableObjects[0].speedY = 0;
+          //console.log('getroffen');
+          this.throwableObjects[0].speed = 0;
           this.throwableObjects[0].bottleSplash();
 
           if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {

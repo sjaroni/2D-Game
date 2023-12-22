@@ -69,3 +69,14 @@
     width: 100% !important;
   }
 }
+
+@media (max-width: 720px) and (orientation: portrait) {
+  #orientationMessage {
+      display: flex !important;
+  }
+
+  #fullscreen{
+    display: none !important;
+  }
+
+}
