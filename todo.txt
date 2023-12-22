@@ -3,7 +3,13 @@
 //TODO - Kamerafahrt Hintergrund Ebenen unterschiedlich schnell
 
 //TODO - Story/Erklärung beim 1. Start (localStorage speichern)
-//TODO - Help-Button unten links?
+
+//TODO - Jump after pause
+//TODO - Blur inGame (background)
+//TODO - Help-Button blur inGame
+
+//TODO - Character after hit more damage
+
 
 //TODO - Endboss Animations
 

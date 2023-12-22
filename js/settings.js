@@ -1,9 +1,12 @@
 let FULLSCREEN = false;
-let DRAWALLFRAMES = false;
+let DRAWALLFRAMES = true;
 
 let ENDBOSS_REACHED = false;
 let ENDBOSS_FIRST_CONTACT = false;
 let ENDBOSS_IS_DEAD = false;
+
+let GAME_IS_STARTED = false;
+let GAME_IS_PAUSED = false;
 let GAME_IS_OVER = false;
 let ADD_NEW_BOTTLE = false;
 

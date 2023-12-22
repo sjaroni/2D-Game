@@ -4,7 +4,6 @@ let keyboard = new Keyboard();
 
 function loadGame() {
   document.getElementById('startBtn').classList.add('d-none');
-  document.getElementById('helpBtn').classList.add('d-none');
   document.getElementById('start-endscreen').classList.add('d-none');
   document.getElementById('content').classList.add('whiteBorder');
   document.getElementById('loadGame').classList.remove('d-none');
@@ -23,6 +22,7 @@ function gameStart() {
   ENDBOSS_REACHED = false;
   ENDBOSS_FIRST_CONTACT = false;
   ENDBOSS_IS_DEAD = false;
+  GAME_IS_STARTED = true;
   GAME_IS_OVER = false;
   initLevel();
   init();
@@ -36,9 +36,43 @@ function gameRestart() {
 }
 
 function help() {
-  document.getElementById('start-endscreen').classList.toggle('blur');
-  document.getElementById('startBtn').classList.toggle('d-none');
-  toggleElements();
+  GAME_IS_PAUSED = !GAME_IS_PAUSED;
+  if (GAME_IS_PAUSED) {
+    document.getElementById('startBtn').classList.add('d-none');
+    stopGame();
+    toggleElements();
+  } else {
+    document.getElementById('startBtn').classList.remove('d-none');
+    continueGame();
+    toggleElements();
+  }
+}
+
+function continueGame() {
+  if (!GAME_IS_STARTED) {
+    document.getElementById('startBtn').classList.remove('d-none');
+    type();
+  } else {
+    document.getElementById('startBtn').classList.add('d-none');
+    world.run();
+    animateItems(world.character); // jump geht noch nicht
+    world.character.applyGravity();
+    animateArray(world.bottles);
+    animateArray(world.coins);
+    animateArray(world.level.clouds);
+    animateArray(world.level.enemies);
+    world.level.enemies.applyGravity();
+  }
+}
+
+function animateItems(item) {
+  item.animate();
+}
+
+function animateArray(array) {
+  array.forEach((item) => {
+    animateItems(item);
+  });
 }
 
 function toggleElements() {
@@ -47,6 +81,7 @@ function toggleElements() {
   document.getElementById('fullscreenBtn').classList.toggle('d-none');
   document.getElementById('canvas').classList.remove('blur');
   document.getElementById('help').classList.toggle('d-none');
+  document.getElementById('start-endscreen').classList.toggle('blur');
 }
 
 function init() {
@@ -58,7 +93,6 @@ function init() {
   console.log('My Character is', world.character);
 }
 
-//TODO - necessary?
 function stopGame() {
   for (let i = 0; i < 9999; i++) window.clearInterval(i);
 }
@@ -175,44 +209,44 @@ document.addEventListener('DOMContentLoaded', function () {
     MUSIC_ON = true;
   }
   checkMusic();
-
-  const texts = ['Start', 'Let`s go!', '¡Vamos!'];
-  const speed = 150;
-  const fadeOutSpeed = 500;
-  const typewriterText = document.getElementById('typewriter-text');
-  const button = document.getElementById('startBtn');
-  let textIndex = 0;
-  let charIndex = 0;
-
-  function type() {
-    if (charIndex < texts[textIndex].length) {
-      typewriterText.innerHTML += texts[textIndex].charAt(charIndex);
-      charIndex++;
-      setTimeout(type, speed);
-    } else {
-      setTimeout(fadeOut, 1000);
-    }
-  }
-
-  function fadeOut() {
-    let opacity = 1;
-    const fadeOutInterval = setInterval(function () {
-      button.style.opacity = 1;
-      if (opacity > 0) {
-        opacity -= 0.1;
-        typewriterText.style.opacity = opacity;
-      } else {
-        clearInterval(fadeOutInterval);
-        typewriterText.innerHTML = '';
-        charIndex = 0;
-        textIndex = (textIndex + 1) % texts.length;
-        typewriterText.style.opacity = 1;
-        setTimeout(type, 500);
-      }
-    }, fadeOutSpeed / 10);
-  }
   type();
 });
+
+const texts = ['Start', 'Let`s go!', '¡Vamos!'];
+const speed = 150;
+const fadeOutSpeed = 500;
+const typewriterText = document.getElementById('typewriter-text');
+const button = document.getElementById('startBtn');
+let textIndex = 0;
+let charIndex = 0;
+
+function type() {
+  if (charIndex < texts[textIndex].length) {
+    typewriterText.innerHTML += texts[textIndex].charAt(charIndex);
+    charIndex++;
+    setTimeout(type, speed);
+  } else {
+    setTimeout(fadeOut, 1000);
+  }
+}
+
+function fadeOut() {
+  let opacity = 1;
+  const fadeOutInterval = setInterval(function () {
+    button.style.opacity = 1;
+    if (opacity > 0) {
+      opacity -= 0.1;
+      typewriterText.style.opacity = opacity;
+    } else {
+      clearInterval(fadeOutInterval);
+      typewriterText.innerHTML = '';
+      charIndex = 0;
+      textIndex = (textIndex + 1) % texts.length;
+      typewriterText.style.opacity = 1;
+      setTimeout(type, 500);
+    }
+  }, fadeOutSpeed / 10);
+}
 
 function getName(key) {
   return JSON.parse(localStorage.getItem(key));
