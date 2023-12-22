@@ -46,44 +46,15 @@ class ThrowableObject extends MovableObject {
       if (this.y < 380) {
         this.playAnimation(this.IMAGES_THROW);
 
-        if(this.speed == 0){
-          this.x += 0;
+        if (this.speed !== 0) {
+          this.x += this.otherDirection ? -10 : 10;
         }
-        
-        if (!this.otherDirection && this.speed != 0) {
-          this.x += 10;
-          console.log('hier');
-        } else {
-          this.x -= 10;
-        }
-
-      } else {
+      } else if (this.speed !== 0) {
         this.speed = 0;
         this.bottleSplash();
       }
     }, 1000 / 25);
   }
-
-  // Sicherung
-  // throw() {
-  //   this.speedY = 30;
-  //   this.applyGravity();
-
-  //   this.throwIntervalId = setInterval(() => {
-  //     if(this.y < 380){
-  //       this.playAnimation(this.IMAGES_THROW);
-  //       if (!this.otherDirection) {
-  //           this.x += 10;
-  //           console.log('hier')
-  //         } else {
-  //           this.x -= 10;
-  //       }
-  //     } else {
-  //       this.speed = 0;
-  //       this.bottleSplash();
-  //     }
-  //   }, 1000 / 25);
-  // }
 
   bottleSplash() {
     this.stopAnimation(this.throwIntervalId);

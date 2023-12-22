@@ -81,11 +81,8 @@ class World {
       }
 
       if (this.throwableObjects.length !== 0) {
-        if (this.throwableObjects[0].isColliding(enemy)) {
+        if (this.throwableObjects[0].isColliding(enemy)) {          
           
-          //TODO - Stefan          
-          //this.throwableObjects[0].speedY = 0;
-          //console.log('getroffen');
           this.throwableObjects[0].speed = 0;
           this.throwableObjects[0].bottleSplash();
 

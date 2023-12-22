@@ -5,7 +5,6 @@
 //TODO - Story/Erklärung beim 1. Start (localStorage speichern)
 //TODO - Help-Button unten links?
 
-//TODO - isColliding Bottle geht noch weiter mit x und y
 //TODO - Endboss Animations
 
 //TODO - JSDoc - Dokumentation
