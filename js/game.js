@@ -1,6 +1,7 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let onlyChickenSmall;
 
 function loadGame() {
   document.getElementById('startBtn').classList.add('d-none');
@@ -54,26 +55,44 @@ function continueGame() {
     type();
   } else {
     document.getElementById('startBtn').classList.add('d-none');
+    document.getElementById('helpBtn').blur();
     world.run();
-    animateItems(world.character); // jump geht noch nicht
-    world.character.applyGravity();
+    animateObjects(world.character);
+    startGravityObject(world.character);
     animateArray(world.bottles);
     animateArray(world.coins);
     animateArray(world.level.clouds);
     animateArray(world.level.enemies);
-    world.level.enemies.applyGravity();
+    onlyChickenSmall = world.level.enemies.filter(item => item instanceof ChickenSmall);
+    startGravityArray(onlyChickenSmall);
   }
 }
 
-function animateItems(item) {
-  item.animate();
+function animateObjects(object) {
+  object.animate();
+}
+
+function startGravityObject(object) {
+  object.applyGravity();  
 }
 
 function animateArray(array) {
-  array.forEach((item) => {
-    animateItems(item);
+  array.forEach((object) => {
+    animateObjects(object);
   });
 }
+
+
+function startGravityArray(array) {
+  array.forEach((object) => {
+    startGravityObject(object);
+  });
+}
+
+// onlyChickenSmall.forEach((object) => {
+//   startGravityObject(object);
+// });
+
 
 function toggleElements() {
   document.getElementById('musicBtn').classList.toggle('d-none');
