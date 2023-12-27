@@ -9,6 +9,10 @@
   content {
     height: 100vh;
   }
+
+  #directions{
+    display: none !important;
+  }
 }
 
 @media only screen and (max-width: 935px) {

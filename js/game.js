@@ -7,14 +7,15 @@ function loadGame() {
   document.getElementById('startBtn').classList.add('d-none');
   document.getElementById('start-endscreen').classList.add('d-none');
   document.getElementById('content').classList.add('whiteBorder');
+  document.getElementById('help').classList.add('d-none');  
   document.getElementById('loadGame').classList.remove('d-none');
   document.getElementById('canvas').classList.add('d-none');
   document.getElementById('canvas').classList.remove('blur');
-  document.getElementById('help').classList.add('d-none');
+  switchFirstStart();
   setTimeout(() => {
     document.getElementById('loadGame').classList.add('d-none');
     document.getElementById('panel').classList.remove('d-none');
-    document.getElementById('content').classList.remove('whiteBorder');
+    document.getElementById('content').classList.remove('whiteBorder');    
     gameStart();
   }, 2500);
 }
@@ -37,13 +38,16 @@ function gameRestart() {
 }
 
 function help() {
+  
+  switchFirstStart();
+
   GAME_IS_PAUSED = !GAME_IS_PAUSED;
   if (GAME_IS_PAUSED) {
     document.getElementById('startBtn').classList.add('d-none');
-    stopGame();
     toggleElements();
+    stopGame();
   } else {
-    document.getElementById('startBtn').classList.remove('d-none');
+    document.getElementById('startBtn').classList.remove('d-none');    
     continueGame();
     toggleElements();
   }
@@ -64,6 +68,9 @@ function continueGame() {
 function continueActiveGame(){
   document.getElementById('startBtn').classList.add('d-none');
   document.getElementById('helpBtn').blur();
+  document.getElementById('panel').classList.remove('d-none');
+  document.getElementById('canvas').classList.remove('blur');
+
   world.run();
   animateObjects(world.character);
   startGravityObject(world.character);
@@ -117,6 +124,8 @@ function init() {
 
 function stopGame() {
   for (let i = 0; i < 9999; i++) window.clearInterval(i);
+  document.getElementById('panel').classList.add('d-none');
+  document.getElementById('canvas').classList.add('blur');  
 }
 
 window.addEventListener('keydown', (e) => {
@@ -220,6 +229,13 @@ function exitFullscreen() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+  
+  GAME_FIRST_START = getName('GAME_FIRST_START');
+  if (GAME_FIRST_START || GAME_FIRST_START === null) {    
+    storeValue('GAME_FIRST_START', GAME_FIRST_START);
+    document.getElementById('helpBtn').classList.add('alarm2');    
+  }
+
   SOUND_ON = getName('SOUND_ON');
   if (SOUND_ON === null) {
     SOUND_ON = true;
@@ -276,4 +292,10 @@ function getName(key) {
 
 function storeValue(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
+}
+
+function switchFirstStart() {  
+  GAME_FIRST_START = false;
+  storeValue('GAME_FIRST_START', GAME_FIRST_START);
+  document.getElementById('helpBtn').classList.remove('alarm2');
 }

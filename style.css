@@ -74,7 +74,7 @@ h1{
 #help{
   z-index: 9;
   color: white;
-  width: 75%;
+  width: 90%;
   text-align: left;
   position: absolute;
   margin-top: 15%;
@@ -82,6 +82,11 @@ h1{
 
 th{
   text-decoration: underline;
+  font-size: 32px;
+}
+
+tr{
+  font-size: 24px;
 }
 
 .btn {
@@ -247,6 +252,13 @@ canvas{
 	animation: pulse 1.2s infinite;
 }
 
+.alarm2 {
+	background: red;	
+	margin: 2px;
+	box-shadow: 0 0 0 0 rgb(221, 11, 11);
+	animation: pulse 1.2s infinite;
+}
+
 #orientationMessage {
   display: none;
   align-items: center;
@@ -263,7 +275,15 @@ canvas{
 }
 
 #directions{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   width: 50vw;
   color: #ffffff;
   font-size: 1.5em;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+  word-wrap: break-word;
+  margin-top: 16px;
 }

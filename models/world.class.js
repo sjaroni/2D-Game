@@ -66,7 +66,7 @@ class World {
         this.character.energy > 0 &&
         this.character.isAboveGroundCharacter() == false
       ) {
-        this.character.hit(1);
+        this.character.hit(2);
         this.statusBarHealth.setPercentage(this.character.energy);
       } else {
         if (
