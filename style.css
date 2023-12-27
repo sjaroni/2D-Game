@@ -1,12 +1,12 @@
 @import url('css/animation.css');
 @import url('css/media.css');
 
-@font-face{
+@font-face {
   font-family: 'zabars';
-  src:url('fonts/zabars.ttf') format('truetype');
+  src: url('fonts/zabars.ttf') format('truetype');
 }
 
-body{
+body {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,30 +21,35 @@ body{
   height: 100vh;
 }
 
-.d-none{
+.d-none {
   display: none !important;
 }
 
-#fullscreen{
-  display: flex;  
+#fullscreen {
+  display: flex;
   align-items: center;
-  justify-content: center;  
-  position: relative;  
+  justify-content: center;
+  position: relative;
   flex-direction: column;
-  overflow: hidden;  
-  background: none;  
+  overflow: hidden;
+  background: none;
   background-position: center;
 }
 
-h1{
+h1 {
   font-size: 64px;
   letter-spacing: 3px;
   color: white;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-  margin-block-end: 0;  
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  margin-block-end: 0;
 }
 
-.content{
+h2{
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.content {
   width: 760px;
   height: 520px;
   display: flex;
@@ -54,10 +59,10 @@ h1{
   position: relative;
 }
 
-#start-endscreen{  
+#start-endscreen {
   position: absolute;
   z-index: 3;
-  animation: rotateAndScale 0.5s linear forwards;   
+  animation: rotateAndScale 0.5s linear forwards;
   object-fit: cover;
   display: flex;
   align-items: baseline;
@@ -66,27 +71,39 @@ h1{
   width: 720px;
 }
 
-.blur {  
+.blur {
   filter: blur(8px);
   -webkit-filter: blur(8px);
 }
 
-#help{
+#help {
   z-index: 9;
   color: white;
   width: 90%;
-  text-align: left;
   position: absolute;
-  margin-top: 15%;
+  top: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
-th{
+#manual{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#helpHeadline{
+  position: relative;
+  top: 5%;
+  display: flex;
+  gap: 32px;
+  height: 70px;
+}
+
+.underline{
   text-decoration: underline;
-  font-size: 32px;
-}
-
-tr{
-  font-size: 24px;
 }
 
 .btn {
@@ -94,7 +111,7 @@ tr{
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  cursor: pointer;  
+  cursor: pointer;
   border-radius: 6px;
   border: 2px solid white;
   text-align: center;
@@ -102,18 +119,18 @@ tr{
   font-size: 40px;
   letter-spacing: 3px;
   color: white;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-  font-family: 'zabars';  
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  font-family: 'zabars';
   position: absolute;
   z-index: 4;
   overflow: hidden;
 }
 
-.btn:hover{
+.btn:hover {
   scale: 1.1;
 }
 
-.btn span{
+.btn span {
   font-size: 14px;
   letter-spacing: 1px;
 }
@@ -122,33 +139,33 @@ tr{
   font-size: 26px;
 }
 
-#typewriter-text{
+#typewriter-text {
   font-size: 40px !important;
 }
 
-#startBtn{
+#startBtn {
   height: 45px;
   width: 150px;
   top: 8%;
   left: 5%;
 }
 
-#restartBtn{
+#restartBtn {
   top: 50px;
 }
 
-.whiteBorder{
+.whiteBorder {
   border: 1px solid white;
 }
 
-#loadGame{
+#loadGame {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
 }
 
-#loadGame img{
+#loadGame img {
   height: 70px;
   width: 70px;
 }
@@ -159,24 +176,24 @@ tr{
 }
 
 #help,
-#loadGameText{
-  font-size: 32px;
+#loadGameText {
+  font-size: 1.5rem;
   letter-spacing: 3px;
   color: white;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
 }
 
-#throwBtn img{
+#throwBtn img {
   transform: scale(1.5) rotate(0deg);
 }
 
-#throwBtn img:hover{
+#throwBtn img:hover {
   transform: scale(1.5) rotate(5deg);
 }
 
-.gameSettings{
-  top: 5%;  
-  display: flex;    
+.gameSettings {
+  top: 5%;
+  display: flex;
   align-items: center;
   flex-direction: row;
   width: 200px;
@@ -188,7 +205,7 @@ tr{
   gap: 8px;
 }
 
-.gameSettings button{
+.gameSettings button {
   position: relative;
   top: 0;
   height: 45px;
@@ -197,12 +214,12 @@ tr{
 
 .gameSettings button img,
 .touchBtnLeft button img,
-.touchBtnRight button img{
+.touchBtnRight button img {
   object-fit: fill;
   overflow: hidden;
 }
 
-.panel{
+.panel {
   bottom: 3%;
   display: flex;
   align-items: center;
@@ -216,47 +233,47 @@ tr{
 }
 
 .touchBtnLeft,
-.touchBtnRight { 
-  display: flex;    
-  align-items: center;  
-  flex-direction: row;  
+.touchBtnRight {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
   height: 70px;
   z-index: 9;
   width: 50%;
   gap: 8px;
 }
 
-.touchBtnLeft { 
-  justify-content: flex-start;  
+.touchBtnLeft {
+  justify-content: flex-start;
 }
-.touchBtnRight { 
+.touchBtnRight {
   justify-content: flex-end;
 }
 
 .touchBtnRight button,
-.touchBtnLeft button{
+.touchBtnLeft button {
   height: 45px;
   width: 45px;
   position: relative;
 }
 
-canvas{
+canvas {
   display: block;
   margin: 20px;
 }
 
+.alarm,
+.alarm2 {
+  background: red;
+  box-shadow: 0 0 0 0 rgb(221, 11, 11);
+  animation: pulse 1.2s infinite;
+}
 .alarm {
-	background: red;	
-	margin: 20px;
-	box-shadow: 0 0 0 0 rgb(221, 11, 11);
-	animation: pulse 1.2s infinite;
+  margin: 20px;
 }
 
 .alarm2 {
-	background: red;	
-	margin: 2px;
-	box-shadow: 0 0 0 0 rgb(221, 11, 11);
-	animation: pulse 1.2s infinite;
+  margin: 2px;
 }
 
 #orientationMessage {
@@ -269,21 +286,7 @@ canvas{
   background-color: #e98f36;
   color: #ffffff;
   text-align: center;
-  z-index: 999;  
+  z-index: 999;
   font-size: 2em;
   gap: 16px;
-}
-
-#directions{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  width: 50vw;
-  color: #ffffff;
-  font-size: 1.5em;
-  letter-spacing: 1px;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-  word-wrap: break-word;
-  margin-top: 16px;
 }

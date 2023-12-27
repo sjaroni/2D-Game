@@ -7,7 +7,7 @@ function loadGame() {
   document.getElementById('startBtn').classList.add('d-none');
   document.getElementById('start-endscreen').classList.add('d-none');
   document.getElementById('content').classList.add('whiteBorder');
-  document.getElementById('help').classList.add('d-none');  
+  document.getElementById('help').classList.add('d-none');
   document.getElementById('loadGame').classList.remove('d-none');
   document.getElementById('canvas').classList.add('d-none');
   document.getElementById('canvas').classList.remove('blur');
@@ -15,7 +15,7 @@ function loadGame() {
   setTimeout(() => {
     document.getElementById('loadGame').classList.add('d-none');
     document.getElementById('panel').classList.remove('d-none');
-    document.getElementById('content').classList.remove('whiteBorder');    
+    document.getElementById('content').classList.remove('whiteBorder');
     gameStart();
   }, 2500);
 }
@@ -38,16 +38,17 @@ function gameRestart() {
 }
 
 function help() {
-  
-  switchFirstStart();
+  switchFirstStart();  
 
   GAME_IS_PAUSED = !GAME_IS_PAUSED;
   if (GAME_IS_PAUSED) {
     document.getElementById('startBtn').classList.add('d-none');
     toggleElements();
     stopGame();
+    startSlider();
   } else {
-    document.getElementById('startBtn').classList.remove('d-none');    
+    document.getElementById('startBtn').classList.remove('d-none');
+    stopGame();
     continueGame();
     toggleElements();
   }
@@ -65,7 +66,7 @@ function continueGame() {
 /**
  * Continue active Game
  */
-function continueActiveGame(){
+function continueActiveGame() {
   document.getElementById('startBtn').classList.add('d-none');
   document.getElementById('helpBtn').blur();
   document.getElementById('panel').classList.remove('d-none');
@@ -78,7 +79,9 @@ function continueActiveGame(){
   animateArray(world.coins);
   animateArray(world.level.clouds);
   animateArray(world.level.enemies);
-  onlyChickenSmall = world.level.enemies.filter(item => item instanceof ChickenSmall);
+  onlyChickenSmall = world.level.enemies.filter(
+    (item) => item instanceof ChickenSmall,
+  );
   startGravityArray(onlyChickenSmall);
   world.bottleText.hideInfo();
 }
@@ -88,7 +91,7 @@ function animateObjects(object) {
 }
 
 function startGravityObject(object) {
-  object.applyGravity();  
+  object.applyGravity();
 }
 
 function animateArray(array) {
@@ -96,7 +99,6 @@ function animateArray(array) {
     animateObjects(object);
   });
 }
-
 
 function startGravityArray(array) {
   array.forEach((object) => {
@@ -125,7 +127,7 @@ function init() {
 function stopGame() {
   for (let i = 0; i < 9999; i++) window.clearInterval(i);
   document.getElementById('panel').classList.add('d-none');
-  document.getElementById('canvas').classList.add('blur');  
+  document.getElementById('canvas').classList.add('blur');
 }
 
 window.addEventListener('keydown', (e) => {
@@ -229,11 +231,10 @@ function exitFullscreen() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  
   GAME_FIRST_START = getName('GAME_FIRST_START');
-  if (GAME_FIRST_START || GAME_FIRST_START === null) {    
+  if (GAME_FIRST_START || GAME_FIRST_START === null) {
     storeValue('GAME_FIRST_START', GAME_FIRST_START);
-    document.getElementById('helpBtn').classList.add('alarm2');    
+    document.getElementById('helpBtn').classList.add('alarm2');
   }
 
   SOUND_ON = getName('SOUND_ON');
@@ -294,8 +295,25 @@ function storeValue(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
 }
 
-function switchFirstStart() {  
+function switchFirstStart() {
   GAME_FIRST_START = false;
   storeValue('GAME_FIRST_START', GAME_FIRST_START);
   document.getElementById('helpBtn').classList.remove('alarm2');
+}
+
+function startSlider() {  
+  setTimeout(() => {
+    document.getElementById('story').classList.add('d-none');
+    document.getElementById('manual').classList.remove('d-none');
+    document.getElementById('help1').classList.remove('underline');
+    document.getElementById('help2').classList.add('underline');
+  }, 6000);
+
+  setTimeout(() => {
+    document.getElementById('story').classList.remove('d-none');
+    document.getElementById('manual').classList.add('d-none');
+    document.getElementById('help1').classList.add('underline');
+    document.getElementById('help2').classList.remove('underline');
+    startSlider();
+  }, 12000);
 }

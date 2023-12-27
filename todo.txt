@@ -2,8 +2,7 @@
 
 //TODO - Kamerafahrt Hintergrund Ebenen unterschiedlich schnell
 
-//TODO - Story/Erklärung beim 1. Start (localStorage speichern)
-  // hinter content
+//TODO - responsive View Help anpassen
 
 //TODO - Endboss Animations
 
