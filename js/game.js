@@ -54,18 +54,26 @@ function continueGame() {
     document.getElementById('startBtn').classList.remove('d-none');
     type();
   } else {
-    document.getElementById('startBtn').classList.add('d-none');
-    document.getElementById('helpBtn').blur();
-    world.run();
-    animateObjects(world.character);
-    startGravityObject(world.character);
-    animateArray(world.bottles);
-    animateArray(world.coins);
-    animateArray(world.level.clouds);
-    animateArray(world.level.enemies);
-    onlyChickenSmall = world.level.enemies.filter(item => item instanceof ChickenSmall);
-    startGravityArray(onlyChickenSmall);
+    continueActiveGame();
   }
+}
+
+/**
+ * Continue active Game
+ */
+function continueActiveGame(){
+  document.getElementById('startBtn').classList.add('d-none');
+  document.getElementById('helpBtn').blur();
+  world.run();
+  animateObjects(world.character);
+  startGravityObject(world.character);
+  animateArray(world.bottles);
+  animateArray(world.coins);
+  animateArray(world.level.clouds);
+  animateArray(world.level.enemies);
+  onlyChickenSmall = world.level.enemies.filter(item => item instanceof ChickenSmall);
+  startGravityArray(onlyChickenSmall);
+  world.bottleText.hideInfo();
 }
 
 function animateObjects(object) {
@@ -88,11 +96,6 @@ function startGravityArray(array) {
     startGravityObject(object);
   });
 }
-
-// onlyChickenSmall.forEach((object) => {
-//   startGravityObject(object);
-// });
-
 
 function toggleElements() {
   document.getElementById('musicBtn').classList.toggle('d-none');

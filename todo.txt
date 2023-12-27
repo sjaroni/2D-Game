@@ -3,8 +3,8 @@
 //TODO - Kamerafahrt Hintergrund Ebenen unterschiedlich schnell
 
 //TODO - Story/Erklärung beim 1. Start (localStorage speichern)
+  // hinter content
 
-//TODO - Jump after pause
 //TODO - Blur inGame (background)
 //TODO - Help-Button blur inGame
 

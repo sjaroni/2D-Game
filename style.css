@@ -261,3 +261,9 @@ canvas{
   font-size: 2em;
   gap: 16px;
 }
+
+#directions{
+  width: 50vw;
+  color: #ffffff;
+  font-size: 1.5em;
+}

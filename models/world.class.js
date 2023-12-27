@@ -6,7 +6,7 @@ class World {
   keyboard;
   camera_x = 0;
   collectedCoins = 0;
-  collectedBottles = 10; //TODO - auf 0  
+  collectedBottles = 0;
   nextThrow = 0;
   nextHit = 0;
 
@@ -25,9 +25,7 @@ class World {
     new Bottle(),
     new Bottle(),
     new Bottle(),
-    new Bottle(),
-    new Bottle(),
-    new Bottle(),
+    new Bottle()
   ];
 
   throwableObjects = [];
@@ -218,11 +216,11 @@ class World {
 
     this.ctx.translate(-this.camera_x, 0);
 
+    
+    // -- Space for fixed objects -- //
     if (ADD_NEW_BOTTLE) {
       this.addTextToMap(this.bottleText);
     }
-
-    // -- Space for fixed objects -- //
 
     if (!ENDBOSS_IS_DEAD) {
       this.addToMap(this.statusBarBottle);

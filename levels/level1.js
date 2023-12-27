@@ -138,34 +138,6 @@ function initLevel() {
         'img/5_background/layers/1_first_layer/1.png',
         LEVEL_WIDTH * 6,
       ),
-
-      new BackgroundObject('img/5_background/layers/air.png', LEVEL_WIDTH * 7),
-      new BackgroundObject(
-        'img/5_background/layers/3_third_layer/2.png',
-        LEVEL_WIDTH * 7,
-      ),
-      new BackgroundObject(
-        'img/5_background/layers/2_second_layer/2.png',
-        LEVEL_WIDTH * 7,
-      ),
-      new BackgroundObject(
-        'img/5_background/layers/1_first_layer/2.png',
-        LEVEL_WIDTH * 7,
-      ),
-
-      new BackgroundObject('img/5_background/layers/air.png', LEVEL_WIDTH * 8),
-      new BackgroundObject(
-        'img/5_background/layers/3_third_layer/1.png',
-        LEVEL_WIDTH * 8,
-      ),
-      new BackgroundObject(
-        'img/5_background/layers/2_second_layer/1.png',
-        LEVEL_WIDTH * 8,
-      ),
-      new BackgroundObject(
-        'img/5_background/layers/1_first_layer/1.png',
-        LEVEL_WIDTH * 8,
-      ),
     ],
   );
 }
