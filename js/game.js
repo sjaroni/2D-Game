@@ -2,15 +2,19 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let onlyChickenSmall;
+const texts = ['Start', 'Let`s go!', '¡Vamos!'];
+const speed = 150;
+const fadeOutSpeed = 500;
+const typewriterText = document.getElementById('typewriter-text');
+const button = document.getElementById('startBtn');
+let textIndex = 0;
+let charIndex = 0;
 
+/**
+ * Start game
+ */
 function loadGame() {
-  document.getElementById('startBtn').classList.add('d-none');
-  document.getElementById('start-endscreen').classList.add('d-none');
-  document.getElementById('content').classList.add('whiteBorder');
-  document.getElementById('help').classList.add('d-none');
-  document.getElementById('loadGame').classList.remove('d-none');
-  document.getElementById('canvas').classList.add('d-none');
-  document.getElementById('canvas').classList.remove('blur');
+  hideMenuItems();
   switchFirstStart();
   setTimeout(() => {
     document.getElementById('loadGame').classList.add('d-none');
@@ -20,6 +24,22 @@ function loadGame() {
   }, 2500);
 }
 
+/**
+ * Hide Menu-Buttons and add blur-effect on background
+ */
+function hideMenuItems() {
+  document.getElementById('startBtn').classList.add('d-none');
+  document.getElementById('start-endscreen').classList.add('d-none');
+  document.getElementById('content').classList.add('whiteBorder');
+  document.getElementById('help').classList.add('d-none');
+  document.getElementById('loadGame').classList.remove('d-none');
+  document.getElementById('canvas').classList.add('d-none');
+  document.getElementById('canvas').classList.remove('blur');
+}
+
+/**
+ * Reset Values and start game
+ */
 function gameStart() {
   ENDBOSS_REACHED = false;
   ENDBOSS_FIRST_CONTACT = false;
@@ -30,30 +50,33 @@ function gameStart() {
   init();
 }
 
+/**
+ * Restart Game
+ */
 function gameRestart() {
-  document.getElementById('restartBtn').classList.add('d-none');
-  document.getElementById('loadGame').classList.add('d-none');
-  document.getElementById('gameSettings').classList.remove('d-none');
-  loadGame();
+  location.reload();
 }
 
+/**
+ * Help-Menu
+ */
 function help() {
-  switchFirstStart();  
-
+  switchFirstStart();
+  toggleElements();
+  stopGame();
   GAME_IS_PAUSED = !GAME_IS_PAUSED;
   if (GAME_IS_PAUSED) {
     document.getElementById('startBtn').classList.add('d-none');
-    toggleElements();
-    stopGame();
     startSlider();
   } else {
     document.getElementById('startBtn').classList.remove('d-none');
-    stopGame();
     continueGame();
-    toggleElements();
   }
 }
 
+/**
+ * Continue game
+ */
 function continueGame() {
   if (!GAME_IS_STARTED) {
     document.getElementById('startBtn').classList.remove('d-none');
@@ -67,23 +90,37 @@ function continueGame() {
  * Continue active Game
  */
 function continueActiveGame() {
+  setMenuOfActiveGame();
+  world.run();
+  onlyChickenSmall = world.level.enemies.filter(
+    (item) => item instanceof ChickenSmall,
+  );
+  animateAll(onlyChickenSmall);
+  world.bottleText.hideInfo();
+}
+
+/**
+ * Show/Hide Menu-Buttons
+ */
+function setMenuOfActiveGame() {
   document.getElementById('startBtn').classList.add('d-none');
   document.getElementById('helpBtn').blur();
   document.getElementById('panel').classList.remove('d-none');
   document.getElementById('canvas').classList.remove('blur');
+}
 
-  world.run();
+/**
+ * Restart animate and gravity on all objects
+ * @param {array} onlyChickenSmall - All small chicken that jumps
+ */
+function animateAll(onlyChickenSmall) {
   animateObjects(world.character);
   startGravityObject(world.character);
   animateArray(world.bottles);
   animateArray(world.coins);
   animateArray(world.level.clouds);
   animateArray(world.level.enemies);
-  onlyChickenSmall = world.level.enemies.filter(
-    (item) => item instanceof ChickenSmall,
-  );
   startGravityArray(onlyChickenSmall);
-  world.bottleText.hideInfo();
 }
 
 function animateObjects(object) {
@@ -120,26 +157,40 @@ function init() {
   canvas.classList.remove('d-none');
   world = new World(canvas, keyboard);
   world.keyboard.bindTouchBtns();
-  //TODO - entfernen
-  console.log('My Character is', world.character);
 }
 
+/**
+ * Stop all interval and timeout-functions
+ */
 function stopGame() {
   for (let i = 0; i < 9999; i++) window.clearInterval(i);
   document.getElementById('panel').classList.add('d-none');
   document.getElementById('canvas').classList.add('blur');
 }
 
+/**
+ * Waiting for Event and set variable
+ */
 window.addEventListener('keydown', (e) => {
   let key = e.code.toUpperCase();
   keyboard[key] = true;
 });
 
+/**
+ * Waiting for Event and set variable
+ */
 window.addEventListener('keyup', (e) => {
   let key = e.code.toUpperCase();
   keyboard[key] = false;
 });
 
+/**
+ * Get index of element in array
+ * @param {number} x - coordinate
+ * @param {number} y - coordinate
+ * @param {array} array - array to search something
+ * @returns 
+ */
 function getIndexOf(x, y, array) {
   for (let i = 0; i < array.length; i++) {
     if (array[i].x === x && array[i].y === y) {
@@ -149,6 +200,9 @@ function getIndexOf(x, y, array) {
   return -1;
 }
 
+/**
+ * Check if music is enabled/disabled
+ */
 function checkMusic() {
   let musicBtn = document.getElementById('musicBtn');
   let musicImg = musicBtn.getElementsByTagName('img')[0];
@@ -165,18 +219,27 @@ function checkMusic() {
   musicBtn.blur();
 }
 
+/**
+ * Toggle music state
+ */
 function toggleMusic() {
   MUSIC_ON = !MUSIC_ON;
   storeValue('MUSIC_ON', MUSIC_ON);
   checkMusic();
 }
 
+/**
+ * Toggle sound state
+ */
 function toggleSound() {
   SOUND_ON = !SOUND_ON;
   storeValue('SOUND_ON', SOUND_ON);
   checkSound();
 }
 
+/**
+ * Check if sound is enabled/disabled
+ */
 function checkSound() {
   let soundBtn = document.getElementById('soundBtn');
   let soundImg = soundBtn.getElementsByTagName('img')[0];
@@ -189,6 +252,9 @@ function checkSound() {
   soundBtn.blur();
 }
 
+/** 
+ * Check if fullscreen is enabled/disabled
+ */
 function fullscreen() {
   let fullscreen = document.getElementById('fullscreen');
   let fullscreenBtn = document.getElementById('fullscreenBtn');
@@ -204,6 +270,10 @@ function fullscreen() {
   }
 }
 
+/**
+ * Go into fullscreen
+ * @param {string} element - element-id
+ */
 function enterFullscreen(element) {
   if (element.requestFullscreen) {
     element.requestFullscreen();
@@ -214,6 +284,9 @@ function enterFullscreen(element) {
   }
 }
 
+/**
+ * Check change on fullscreen
+ */
 document.addEventListener('fullscreenchange', function () {
   if (!document.fullscreenElement) {
     let fullscreen = document.getElementById('fullscreen');
@@ -222,6 +295,9 @@ document.addEventListener('fullscreenchange', function () {
   }
 });
 
+/**
+ * Exit fullscreen
+ */
 function exitFullscreen() {
   if (document.exitFullscreen) {
     document.exitFullscreen();
@@ -230,6 +306,9 @@ function exitFullscreen() {
   }
 }
 
+/**
+ * 
+ */
 document.addEventListener('DOMContentLoaded', function () {
   GAME_FIRST_START = getName('GAME_FIRST_START');
   if (GAME_FIRST_START || GAME_FIRST_START === null) {
@@ -250,14 +329,6 @@ document.addEventListener('DOMContentLoaded', function () {
   checkMusic();
   type();
 });
-
-const texts = ['Start', 'Let`s go!', '¡Vamos!'];
-const speed = 150;
-const fadeOutSpeed = 500;
-const typewriterText = document.getElementById('typewriter-text');
-const button = document.getElementById('startBtn');
-let textIndex = 0;
-let charIndex = 0;
 
 function type() {
   if (charIndex < texts[textIndex].length) {
@@ -301,7 +372,7 @@ function switchFirstStart() {
   document.getElementById('helpBtn').classList.remove('alarm2');
 }
 
-function startSlider() {  
+function startSlider() {
   setTimeout(() => {
     document.getElementById('story').classList.add('d-none');
     document.getElementById('manual').classList.remove('d-none');

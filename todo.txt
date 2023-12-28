@@ -1,11 +1,5 @@
 //TODO - TODOS suchen über Anchor
 
-//TODO - Kamerafahrt Hintergrund Ebenen unterschiedlich schnell
-
-//TODO - responsive View Help anpassen
-
-//TODO - Endboss Animations
-
 //TODO - JSDoc - Dokumentation
 //TODO - CleanCode
 //TODO - Kommentare entfernen

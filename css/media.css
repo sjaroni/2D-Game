@@ -10,7 +10,7 @@
     height: 100vh;
   }
 
-  #directions{
+  #directions {
     display: none !important;
   }
 }
@@ -59,6 +59,13 @@
   .btn {
     transform: scale(0.8) !important;
   }
+  #helpHeadline {
+    height: 24px !important;
+  }
+
+  table img {
+    transform: scale(0.8) !important;
+  }
 
 }
 
@@ -76,11 +83,10 @@
 
 @media (max-width: 720px) and (orientation: portrait) {
   #orientationMessage {
-      display: flex !important;
+    display: flex !important;
   }
 
-  #fullscreen{
+  #fullscreen {
     display: none !important;
   }
-
 }

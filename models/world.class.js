@@ -102,7 +102,7 @@ class World {
           }
         }
       }
-
+            
       if (this.collectedBottles == 0 && this.bottles.length == 0) {
         this.bottles.push(new Bottle());
         let side;
@@ -213,6 +213,7 @@ class World {
     this.addObjectsToMap(this.level.clouds);
     this.addObjectsToMap(this.coins);
     this.addObjectsToMap(this.bottles);
+    this.addObjectsToMap(this.level.enemies);
 
     this.ctx.translate(-this.camera_x, 0);
 
@@ -241,7 +242,6 @@ class World {
 
     this.ctx.translate(this.camera_x, 0);
     this.addToMap(this.character);
-    this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.throwableObjects);
 
     this.ctx.translate(-this.camera_x, 0);
@@ -333,10 +333,6 @@ class World {
 
     world.statusBarBottle.y += 600;
     world.statusBarBottle.textY += 600;
-
-    //TODO - ausblenden?
-    world.bottleText.textY += 600;
-
     world.statusBarHealth.y += 600;
     world.statusBarHealth.textY += 600;
     world.statusBarCoin.y += 600;
