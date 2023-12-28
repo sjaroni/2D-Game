@@ -2,7 +2,7 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let onlyChickenSmall;
-const texts = ['Start', 'Let`s go!', '¡Vamos!'];
+const texts = ['Start!', 'Let`s go!', '¡Vamos!'];
 const speed = 150;
 const fadeOutSpeed = 500;
 const typewriterText = document.getElementById('typewriter-text');
@@ -66,8 +66,7 @@ function help() {
   stopGame();
   GAME_IS_PAUSED = !GAME_IS_PAUSED;
   if (GAME_IS_PAUSED) {
-    document.getElementById('startBtn').classList.add('d-none');
-    startSlider();
+    document.getElementById('startBtn').classList.add('d-none');    
   } else {
     document.getElementById('startBtn').classList.remove('d-none');
     continueGame();
@@ -143,6 +142,9 @@ function startGravityArray(array) {
   });
 }
 
+/**
+ * Toggle view on elements
+ */
 function toggleElements() {
   document.getElementById('musicBtn').classList.toggle('d-none');
   document.getElementById('soundBtn').classList.toggle('d-none');
@@ -152,6 +154,9 @@ function toggleElements() {
   document.getElementById('start-endscreen').classList.toggle('blur');
 }
 
+/**
+ * Initialize world
+ */
 function init() {
   canvas = document.getElementById('canvas');
   canvas.classList.remove('d-none');
@@ -189,7 +194,7 @@ window.addEventListener('keyup', (e) => {
  * @param {number} x - coordinate
  * @param {number} y - coordinate
  * @param {array} array - array to search something
- * @returns 
+ * @returns
  */
 function getIndexOf(x, y, array) {
   for (let i = 0; i < array.length; i++) {
@@ -252,7 +257,7 @@ function checkSound() {
   soundBtn.blur();
 }
 
-/** 
+/**
  * Check if fullscreen is enabled/disabled
  */
 function fullscreen() {
@@ -307,29 +312,59 @@ function exitFullscreen() {
 }
 
 /**
- * 
+ * Check if all code is loaded
  */
 document.addEventListener('DOMContentLoaded', function () {
   GAME_FIRST_START = getName('GAME_FIRST_START');
-  if (GAME_FIRST_START || GAME_FIRST_START === null) {
-    storeValue('GAME_FIRST_START', GAME_FIRST_START);
-    document.getElementById('helpBtn').classList.add('alarm2');
+  if (isThisFirstStart()) {
+    setFirstStart();
   }
+  setSound();
+  setMusic();
+  type();
+});
 
+/**
+ * Check if it´s the first start of the game
+ * @returns true/false
+ */
+function isThisFirstStart() {
+  return GAME_FIRST_START || GAME_FIRST_START === null;
+}
+
+/**
+ * Store that this is the first start
+ */
+function setFirstStart() {
+  storeValue('GAME_FIRST_START', GAME_FIRST_START);
+  document.getElementById('helpBtn').classList.add('alarm2');
+}
+
+/**
+ * Set Sound from localstorage
+ */
+function setSound() {
   SOUND_ON = getName('SOUND_ON');
   if (SOUND_ON === null) {
     SOUND_ON = true;
   }
   checkSound();
+}
 
+/**
+ * Set Music from localstorage
+ */
+function setMusic() {
   MUSIC_ON = getName('MUSIC_ON');
   if (MUSIC_ON === null) {
     MUSIC_ON = true;
   }
   checkMusic();
-  type();
-});
+}
 
+/**
+ * Typewriter animation on startscreen
+ */
 function type() {
   if (charIndex < texts[textIndex].length) {
     typewriterText.innerHTML += texts[textIndex].charAt(charIndex);
@@ -340,6 +375,9 @@ function type() {
   }
 }
 
+/**
+ * Fadeout animation on startscreen
+ */
 function fadeOut() {
   let opacity = 1;
   const fadeOutInterval = setInterval(function () {
@@ -348,43 +386,64 @@ function fadeOut() {
       opacity -= 0.1;
       typewriterText.style.opacity = opacity;
     } else {
-      clearInterval(fadeOutInterval);
-      typewriterText.innerHTML = '';
-      charIndex = 0;
-      textIndex = (textIndex + 1) % texts.length;
-      typewriterText.style.opacity = 1;
-      setTimeout(type, 500);
+      opacityIsNull(fadeOutInterval);
     }
   }, fadeOutSpeed / 10);
 }
 
+/**
+ * Used to change typewriter effect on startscreen
+ * @param {number} fadeOutInterval
+ */
+function opacityIsNull(fadeOutInterval) {
+  clearInterval(fadeOutInterval);
+  typewriterText.innerHTML = '';
+  charIndex = 0;
+  textIndex = (textIndex + 1) % texts.length;
+  typewriterText.style.opacity = 1;
+  setTimeout(type, 500);
+}
+
+/**
+ * Gets values from localstorage
+ * @param {string} key - key on localstorage
+ * @returns json
+ */
 function getName(key) {
   return JSON.parse(localStorage.getItem(key));
 }
 
+/**
+ * Sets values on localstorage
+ * @param {string} key - key on localstorage
+ * @param {string} value - value on localstorage
+ */
 function storeValue(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
 }
 
+/**
+ * Stop animation after first start of the game
+ */
 function switchFirstStart() {
   GAME_FIRST_START = false;
   storeValue('GAME_FIRST_START', GAME_FIRST_START);
   document.getElementById('helpBtn').classList.remove('alarm2');
 }
 
-function startSlider() {
-  setTimeout(() => {
-    document.getElementById('story').classList.add('d-none');
-    document.getElementById('manual').classList.remove('d-none');
-    document.getElementById('help1').classList.remove('underline');
-    document.getElementById('help2').classList.add('underline');
-  }, 6000);
+/**
+* Show story or manual on help-menu
+*/
+function showStory() {
+  document.getElementById('story').classList.remove('d-none');
+  document.getElementById('manual').classList.add('d-none');
+  document.getElementById('help1').classList.add('underline');
+  document.getElementById('help2').classList.remove('underline');
+}
 
-  setTimeout(() => {
-    document.getElementById('story').classList.remove('d-none');
-    document.getElementById('manual').classList.add('d-none');
-    document.getElementById('help1').classList.add('underline');
-    document.getElementById('help2').classList.remove('underline');
-    startSlider();
-  }, 12000);
+function showManual() {
+  document.getElementById('story').classList.add('d-none');
+  document.getElementById('manual').classList.remove('d-none');
+  document.getElementById('help1').classList.remove('underline');
+  document.getElementById('help2').classList.add('underline');
 }

@@ -1,6 +1,6 @@
 class BottleText extends StatusIcons {
-  textX = 170;
-  textY = 160;
+  textX = 190;
+  textY = 465;
 
   counter = 0;
   intervalTextId;
@@ -17,6 +17,9 @@ class BottleText extends StatusIcons {
     }, 25);
   }
 
+  /**
+   * Hide info text after new bottle arrived
+   */
   hideInfo() {
     setInterval(() => {
       if (this.counter == 120) {

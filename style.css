@@ -25,6 +25,10 @@ body {
   display: none !important;
 }
 
+.pointer{
+  cursor: pointer;
+}
+
 #fullscreen {
   display: flex;
   align-items: center;
@@ -72,17 +76,14 @@ h2{
 }
 
 .blur {
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
+  filter: blur(12px);
+  -webkit-filter: blur(12px);
 }
 
 #help {
   z-index: 9;
-  color: white;
-  
-  
+  color: white;  
   width: 565px;
-
   position: absolute;
   top: 10%;
   display: flex;

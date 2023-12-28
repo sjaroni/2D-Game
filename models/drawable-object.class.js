@@ -41,41 +41,47 @@ class DrawableObject {
   }
 
   drawFrame(ctx) {
-    if (
-      this instanceof Character ||
-      this instanceof Chicken ||
-      this instanceof ChickenSmall ||
-      this instanceof Coin ||
-      this instanceof ThrowableObject ||
-      this instanceof Bottle
-    ) {
-      ctx.beginPath();
-      ctx.lineWidth = '2';
-      ctx.strokeStyle = 'white';
-      ctx.rect(this.x, this.y, this.width, this.height);
-      ctx.stroke();
+    if (this.isInstanceOf()) {
+      this.drawOuterWhiteFrame(ctx);
     }
   }
 
   drawInnerFrame(ctx) {
-    if (
+    if (this.isInstanceOf()) {
+      this.drawInnerRedFrame(ctx);
+    }
+  }
+
+  isInstanceOf() {
+    return (
       this instanceof Character ||
       this instanceof Chicken ||
       this instanceof ChickenSmall ||
-      this instanceof Endboss ||
       this instanceof Coin ||
+      this instanceof Endboss ||
+      this instanceof ThrowableObject ||
       this instanceof Bottle
-    ) {
-      ctx.beginPath();
-      ctx.lineWidth = '2';
-      ctx.strokeStyle = 'red';
-      ctx.rect(
-        this.x + this.offset.left,
-        this.y + this.offset.top,
-        this.width - this.offset.right - this.offset.left,
-        this.height - this.offset.bottom - this.offset.top,
-      );
-      ctx.stroke();
-    }
+    );
+  }
+
+  drawOuterWhiteFrame(ctx) {
+    ctx.beginPath();
+    ctx.lineWidth = '2';
+    ctx.strokeStyle = 'white';
+    ctx.rect(this.x, this.y, this.width, this.height);
+    ctx.stroke();
+  }
+
+  drawInnerRedFrame(ctx) {
+    ctx.beginPath();
+    ctx.lineWidth = '2';
+    ctx.strokeStyle = 'red';
+    ctx.rect(
+      this.x + this.offset.left,
+      this.y + this.offset.top,
+      this.width - this.offset.right - this.offset.left,
+      this.height - this.offset.bottom - this.offset.top,
+    );
+    ctx.stroke();
   }
 }

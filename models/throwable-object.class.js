@@ -16,10 +16,10 @@ class ThrowableObject extends MovableObject {
   ];
 
   offset = {
-    top: 15,
-    right: 40,
-    bottom: 25,
-    left: 20,
+    top: 10,
+    right: 15,
+    bottom: 10,
+    left: 15,
   };
 
   throwIntervalId;

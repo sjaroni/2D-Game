@@ -217,7 +217,6 @@ class World {
 
     this.ctx.translate(-this.camera_x, 0);
 
-    
     // -- Space for fixed objects -- //
     if (ADD_NEW_BOTTLE) {
       this.addTextToMap(this.bottleText);

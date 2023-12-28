@@ -1,9 +1,6 @@
-//TODO - TODOS suchen über Anchor
-
 //TODO - JSDoc - Dokumentation
+
 //TODO - CleanCode
-//TODO - Kommentare entfernen
-//TODO - Console.log entfernen
 //TODO - Checkliste DA
 
 //TODO - auf FTP testen
