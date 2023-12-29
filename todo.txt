@@ -1,3 +1,6 @@
+//TODO - bottleanimation after help
+//TODO - endboss-animation
+
 //TODO - Checkliste DA
 //TODO - code einrücken mit SHIFT+Option+F
 //TODO - auf Handy testen
