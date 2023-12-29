@@ -25,7 +25,7 @@ class World {
     new Bottle(),
     new Bottle(),
     new Bottle(),
-    new Bottle()
+    new Bottle(),
   ];
 
   throwableObjects = [];
@@ -43,6 +43,9 @@ class World {
     this.character.world = this;
   }
 
+  /**
+   * Start animation and intervals
+   */
   run() {
     setInterval(() => {
       this.checkCollisions();
@@ -52,13 +55,19 @@ class World {
     }, 50);
   }
 
+  /**
+   * Check all collisions or collectings
+   */
   checkCollisions() {
+    this.checkCollisionsEnemies();
+    this.checkCollectingCoin();
+    this.checkCollectingBottle();
+  }
+
+  checkCollisionsEnemies() {
     this.level.enemies.forEach((enemy) => {
-      if (!this.character.checkCharacterPosition(enemy)) {
-        enemy.otherDirection = true;
-      } else {
-        enemy.otherDirection = false;
-      }
+      if (this.isOtherDirectionToEnemy(enemy)) enemy.otherDirection = true;
+      else enemy.otherDirection = false;
 
       if (
         this.character.isColliding(enemy) &&
@@ -79,8 +88,7 @@ class World {
       }
 
       if (this.throwableObjects.length !== 0) {
-        if (this.throwableObjects[0].isColliding(enemy)) {          
-          
+        if (this.throwableObjects[0].isColliding(enemy)) {
           this.throwableObjects[0].speed = 0;
           this.throwableObjects[0].bottleSplash();
 
@@ -102,21 +110,55 @@ class World {
           }
         }
       }
-            
-      if (this.collectedBottles == 0 && this.bottles.length == 0) {
-        this.bottles.push(new Bottle());
-        let side;
-        if (this.character.x < world.bottles[0].x) {
-          side = 'right';
-        } else {
-          side = 'left';
-        }
 
-        ADD_NEW_BOTTLE = true;
-        this.bottleText.animate(side);
-      }
+      this.addNewBottle();
     });
+  }
 
+  /**
+   * Add new bottle-objects
+   */
+  addNewBottle() {
+    if (this.outOfBottles()) {
+      this.bottles.push(new Bottle());
+      let side;
+      if (this.newBottleOnRightSide()) side = 'right';
+      else side = 'left';
+
+      ADD_NEW_BOTTLE = true;
+      this.bottleText.animate(side);
+    }
+  }
+
+  /**
+   * Out of bottles?
+   * @returns true/false
+   */
+  outOfBottles() {
+    return this.collectedBottles == 0 && this.bottles.length == 0;
+  }
+
+  /**
+   * Check on which side a new bottle arrived
+   * @returns true/false
+   */
+  newBottleOnRightSide() {
+    return this.character.x < world.bottles[0].x;
+  }
+
+  /**
+   * Check position character and current enemy
+   * @param {object} enemy 
+   * @returns true/false
+   */
+  isOtherDirectionToEnemy(enemy) {
+    return !this.character.checkCharacterPosition(enemy);
+  }
+
+  /**
+   * Check colliding a coin
+   */
+  checkCollectingCoin() {
     this.coins.forEach((coin) => {
       if (this.character.isColliding(coin)) {
         let coinIndex = getIndexOf(coin.x, coin.y, this.coins);
@@ -126,7 +168,12 @@ class World {
         playSound(COLLECT_SOUND);
       }
     });
+  }
 
+  /**
+   * Check colliding a bottle
+   */
+  checkCollectingBottle() {
     this.bottles.forEach((bottle) => {
       if (this.character.isColliding(bottle)) {
         let bottleIndex = getIndexOf(bottle.x, bottle.y, this.bottles);
@@ -204,6 +251,9 @@ class World {
     }
   }
 
+  /**
+   * Draw objects on canvas
+   */
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -251,33 +301,42 @@ class World {
     });
   }
 
+  /**
+   * Adding objects to map
+   * @param {object} objects 
+   */
   addObjectsToMap(objects) {
     objects.forEach((o) => {
       this.addToMap(o);
     });
   }
 
+  /**
+   * Add object to map
+   * @param {object} objects 
+   */
   addToMap(mo) {
-    if (mo.otherDirection) {
-      this.flipImage(mo);
-    }
-
+    if (mo.otherDirection) this.flipImage(mo);
     mo.draw(this.ctx);
-
     if (DRAWALLFRAMES) {
       mo.drawFrame(this.ctx);
       mo.drawInnerFrame(this.ctx);
     }
-
-    if (mo.otherDirection) {
-      this.flipImageBack(mo);
-    }
+    if (mo.otherDirection) this.flipImageBack(mo);
   }
 
+  /**
+   * Add text on canvas
+   * @param {object} mo 
+   */
   addTextToMap(mo) {
     mo.drawText(this.ctx);
   }
 
+  /**
+   * Reflect image
+   * @param {object} mo 
+   */
   flipImage(mo) {
     this.ctx.save();
     this.ctx.translate(mo.width, 0);
@@ -285,32 +344,37 @@ class World {
     mo.x = mo.x * -1;
   }
 
+  /**
+   * Reflect image back to normal
+   * @param {object} mo 
+   */
   flipImageBack(mo) {
     mo.x = mo.x * -1;
     this.ctx.restore();
   }
 
+  /**
+   * Reached/leave endboss
+   */
   endboss_reached() {
     document.getElementById('canvas').classList.add('alarm');
   }
+ 
   endboss_left() {
     document.getElementById('canvas').classList.remove('alarm');
   }
 
+  /**
+   * Game over function
+   */
   gameIsOver() {
     setInterval(() => {
       if (GAME_IS_OVER) {
-        document.getElementById('canvas').classList.remove('alarm');
-        document.getElementById('start-endscreen').classList.remove('d-none');
-        document.getElementById('restartBtn').classList.remove('d-none');
-        document.getElementById('panel').classList.add('d-none');
-        document.getElementById('gameSettings').classList.add('d-none');
-
-        if (ENDBOSS_IS_DEAD) {
+        this.switchElementView();
+        if (ENDBOSS_IS_DEAD)
           document.getElementById('start-endscreen').src = WINSCREEN;
-        } else {
-          document.getElementById('start-endscreen').src = LOSTSCREEN;
-        }
+        else document.getElementById('start-endscreen').src = LOSTSCREEN;
+
         stopGame();
         this.hideAllObjects();
         playSound(LOST_SOUND);
@@ -318,18 +382,32 @@ class World {
     }, 8000);
   }
 
+  /**
+   * Switch visibility
+   */
+  switchElementView() {
+    document.getElementById('canvas').classList.remove('alarm');
+    document.getElementById('start-endscreen').classList.remove('d-none');
+    document.getElementById('restartBtn').classList.remove('d-none');
+    document.getElementById('panel').classList.add('d-none');
+    document.getElementById('gameSettings').classList.add('d-none');
+  }
+
+  /**
+   * Hide all objects
+   */
   hideAllObjects() {
     this.character.y += 600;
-    this.bottles.forEach((bottle) => {
-      bottle.y += 600;
-    });
-    this.coins.forEach((coin) => {
-      coin.y += 600;
-    });
-    this.level.enemies.forEach((enemy) => {
-      enemy.y += 600;
-    });
+    this.bottles.forEach((bottle) => (bottle.y += 600));
+    this.coins.forEach((coin) => (coin.y += 600));
+    this.level.enemies.forEach((enemy) => (enemy.y += 600));
+    this.hideStatusBars();
+  }
 
+  /**
+   * Hide all status-bars
+   */
+  hideStatusBars() {
     world.statusBarBottle.y += 600;
     world.statusBarBottle.textY += 600;
     world.statusBarHealth.y += 600;

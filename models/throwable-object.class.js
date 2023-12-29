@@ -23,6 +23,7 @@ class ThrowableObject extends MovableObject {
   };
 
   throwIntervalId;
+  lastPlaySound = 0;
 
   constructor(x, y, otherDirection) {
     super().loadImage('img/6_salsa_bottle/salsa_bottle.png');
@@ -38,6 +39,9 @@ class ThrowableObject extends MovableObject {
     this.throw();
   }
 
+  /**
+   * Start animation and intervals
+   */
   throw() {
     this.speedY = 30;
     this.applyGravity();
@@ -46,20 +50,22 @@ class ThrowableObject extends MovableObject {
       if (this.y < 380) {
         this.playAnimation(this.IMAGES_THROW);
 
-        if (this.speed !== 0)
-          this.x += this.otherDirection ? -10 : 10;        
+        if (this.speed !== 0) this.x += this.otherDirection ? -10 : 10;
       } else if (this.speed !== 0) {
         this.speed = 0;
-        this.bottleSplash();
+        this.bottleSplash();        
       }
     }, 1000 / 25);
   }
 
   bottleSplash() {
+    let now = new Date().getTime();
     this.stopAnimation(this.throwIntervalId);
-    //TODO - play sound just once
-    
-    playSound(GLASS_SOUND);
+
+    if(now - this.lastPlaySound >= 2000){
+      playSound(GLASS_SOUND);
+      this.lastPlaySound = now;
+    }
     this.speedY = 0;
     setInterval(() => this.playAnimation(this.IMAGES_SPLASH), 50);
   }

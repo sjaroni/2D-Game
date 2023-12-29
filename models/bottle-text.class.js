@@ -1,5 +1,5 @@
 class BottleText extends StatusIcons {
-  textX = 190;
+  textX = 220;
   textY = 465;
 
   counter = 0;

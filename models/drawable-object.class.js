@@ -51,7 +51,7 @@ class DrawableObject {
    * @param {object} ctx 
    */
   drawText(ctx) {
-    ctx.font = '48px zabars';
+    ctx.font = '40px zabars';
     ctx.fillStyle = 'white';
     ctx.fillText(this.text, this.textX, this.textY);
   }

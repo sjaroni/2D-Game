@@ -1,5 +1,4 @@
 //TODO - Checkliste DA
-//TODO - 2x glass Sound wenn getroffen
 //TODO - code einrücken mit SHIFT+Option+F
 //TODO - auf Handy testen
 //TODO - auf FTP testen
