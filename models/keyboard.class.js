@@ -7,11 +7,17 @@ class Keyboard {
     this.bindButtons();
   }
 
+  /**
+   * Mainfunction
+   */
   bindButtons() {
     this.bindTouchBtns();
     this.bindClickBtns();
   }
 
+  /**
+   * Add actions to buttons on touch-event
+   */
   bindTouchBtns() {
     document.getElementById('leftBtn').addEventListener('touchstart', (e) => {
       e.preventDefault();
@@ -54,6 +60,9 @@ class Keyboard {
     });
   }
 
+  /**
+   * Add actions to buttons on click-event
+   */
   bindClickBtns() {
     document.getElementById('leftBtn').addEventListener('click', (e) => {
       e.preventDefault();

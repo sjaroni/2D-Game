@@ -46,9 +46,8 @@ class ThrowableObject extends MovableObject {
       if (this.y < 380) {
         this.playAnimation(this.IMAGES_THROW);
 
-        if (this.speed !== 0) {
-          this.x += this.otherDirection ? -10 : 10;
-        }
+        if (this.speed !== 0)
+          this.x += this.otherDirection ? -10 : 10;        
       } else if (this.speed !== 0) {
         this.speed = 0;
         this.bottleSplash();
@@ -58,12 +57,10 @@ class ThrowableObject extends MovableObject {
 
   bottleSplash() {
     this.stopAnimation(this.throwIntervalId);
-    //TODO - just once
+    //TODO - play sound just once
+    
     playSound(GLASS_SOUND);
     this.speedY = 0;
-
-    setInterval(() => {
-      this.playAnimation(this.IMAGES_SPLASH);
-    }, 50);
+    setInterval(() => this.playAnimation(this.IMAGES_SPLASH), 50);
   }
 }

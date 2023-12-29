@@ -24,25 +24,47 @@ class Chicken extends MovableObject {
     this.animate();
   }
 
+  /**
+   * Start animation and intervals
+   */
   animate() {
-    const intervalIdWalking = setInterval(() => {
-      if (!this.otherDirection) {
-        this.moveLeft();
-      } else {
-        this.moveRight();
-      }
-    }, 1000 / 60);
+    const intervalIdWalking = setInterval(() => this.moveChicken(), 1000 / 60);
 
-    const intervalId = setInterval(() => {
-      if (this.isDead()) {
-        playSound(CHICKEN_SOUND);
-        this.playAnimation(this.IMAGES_DEAD);
-        this.stopAnimation(intervalIdWalking);
-        this.stopAnimation(intervalId);
-        this.hideObject();
-      } else {
-        this.playAnimation(this.IMAGES_WALKING);
-      }
-    }, 200);
+    const intervalId = setInterval(
+      () => this.playChicken(intervalId, intervalIdWalking),
+      200,
+    );
+  }
+
+  /**
+   * Check if chicken is moving
+   */
+  moveChicken() {
+    if (!this.otherDirection) this.moveLeft();
+    else this.moveRight();
+  }
+
+  /**
+   * /**
+   * Check which animation is active
+   * @param {number} intervalId
+   * @param {number} intervalIdWalking
+   */
+  playChicken(intervalId, intervalIdWalking) {
+    if (this.isDead()) this.chickenIsDead(intervalId, intervalIdWalking);
+    else this.playAnimation(this.IMAGES_WALKING);
+  }
+
+  /**
+   * Play animation dead
+   * @param {number} intervalId
+   * @param {number} intervalIdWalking
+   */
+  chickenIsDead(intervalId, intervalIdWalking) {
+    playSound(CHICKEN_SOUND);
+    this.playAnimation(this.IMAGES_DEAD);
+    this.stopAnimation(intervalIdWalking);
+    this.stopAnimation(intervalId);
+    this.hideObject();
   }
 }
