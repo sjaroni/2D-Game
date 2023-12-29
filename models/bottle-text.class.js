@@ -10,6 +10,9 @@ class BottleText extends StatusIcons {
     this.hideInfo();
   }
 
+  /**
+   * Start animation and intervals
+   */
   animate(side) {
     this.intervalTextId = setInterval(() => {
       this.text = `New Bottle on your ${side}`;

@@ -95,6 +95,9 @@ class Character extends MovableObject {
     this.animate();
   }
 
+  /**
+   * Start animation and intervals
+   */
   animate() {
     setInterval(() => this.moveCharacter(), 1000 / 60);
     const intervalId = setInterval(() => this.playCharacter(intervalId), 50);
@@ -152,7 +155,7 @@ class Character extends MovableObject {
   }
 
   /**
-   * Check if character is moving
+   * Check if character jumps
    * @returns true/false
    */
   canJump() {
