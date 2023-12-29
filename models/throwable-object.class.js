@@ -58,6 +58,7 @@ class ThrowableObject extends MovableObject {
 
   bottleSplash() {
     this.stopAnimation(this.throwIntervalId);
+    //TODO - just once
     playSound(GLASS_SOUND);
     this.speedY = 0;
 
