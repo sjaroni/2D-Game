@@ -1,5 +1,1 @@
-//TODO - endboss-animation
-
-//TODO - Checkliste DA
 //TODO - auf Handy testen
-//TODO - auf FTP testen

@@ -445,15 +445,16 @@ class World {
     setInterval(() => {
       if (GAME_IS_OVER) {
         this.switchElementView();
-        if (ENDBOSS_IS_DEAD)
-          document.getElementById('start-endscreen').src = WINSCREEN;
-        else document.getElementById('start-endscreen').src = LOSTSCREEN;
-
+        if (ENDBOSS_IS_DEAD){
+          document.getElementById('start-endscreen').src = WINSCREEN;          
+        } else {
+          document.getElementById('start-endscreen').src = LOSTSCREEN;
+          playSound(LOST_SOUND);
+        }        
         stopGame();
-        this.hideAllObjects();
-        playSound(LOST_SOUND);
+        this.hideAllObjects();        
       }
-    }, 8000);
+    }, 6000);
   }
 
   /**

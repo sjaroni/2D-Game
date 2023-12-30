@@ -152,15 +152,15 @@ class Endboss extends MovableObject {
   /**
    * Endboss alerting
    */
-  endbossAlert(){
+  endbossAlert() {
     this.playAnimation(this.IMAGES_ALERT);
-        this.initIntervalWalking = 0;
-        if (this.initIntervalAlert == 5) {
-          this.stopAnimation(this.intervalAlert);
-          this.intervalNum = 3;
-          this.startInterval();
-        }
-        this.initIntervalAlert++;
+    this.initIntervalWalking = 0;
+    if (this.initIntervalAlert == 5) {
+      this.stopAnimation(this.intervalAlert);
+      this.intervalNum = 3;
+      this.startInterval();
+    }
+    this.initIntervalAlert++;
   }
 
   /**
@@ -175,15 +175,15 @@ class Endboss extends MovableObject {
   /**
    * Endboss attacks
    */
-  endbossAttacks(){
+  endbossAttacks() {
     this.playAnimation(this.IMAGES_ATTACK);
-        this.initIntervalAlert = 0;
-        if (this.initIntervalAttack == 6) {
-          this.stopAnimation(this.intervalAttack);
-          this.intervalNum = 1;
-          this.startInterval();
-        }
-        this.initIntervalAttack++;
+    this.initIntervalAlert = 0;
+    if (this.initIntervalAttack == 6) {
+      this.stopAnimation(this.intervalAttack);
+      this.intervalNum = 1;
+      this.startInterval();
+    }
+    this.initIntervalAttack++;
   }
 
   /**
@@ -202,6 +202,10 @@ class Endboss extends MovableObject {
     }, 200);
   }
 
+  /**
+   * Endboss is hurt
+   * @param {number} intervalId 
+   */
   endbossIsHurt(intervalId) {
     let endbossIsHurtInterval = setInterval(
       () => this.playAnimation(this.IMAGES_HURT),
@@ -212,16 +216,7 @@ class Endboss extends MovableObject {
     playSound(CHICKEN_SOUND);
 
     this.reloadCounter++;
-
-    setTimeout(() => {
-      this.stopAnimation(endbossIsHurtInterval);
-      this.intervalAfterHurt = setInterval(() => {
-        this.playAnimation(this.IMAGES_WALKING);
-        if (!this.otherDirection) this.moveLeft();
-        else this.moveRight();
-      }, 100);
-    }, 800);
-
+    setTimeout(() => this.moveEndbossAfterHurt(endbossIsHurtInterval), 800);
     this.enbossStopAnimations();
 
     setTimeout(() => {
@@ -230,6 +225,22 @@ class Endboss extends MovableObject {
     }, 2200);
   }
 
+  /**
+   * Move endboss after hurt
+   */
+  moveEndbossAfterHurt(endbossIsHurtInterval) {
+    this.stopAnimation(endbossIsHurtInterval);
+    this.intervalAfterHurt = setInterval(() => {
+      this.playAnimation(this.IMAGES_WALKING);
+      if (!this.otherDirection) this.moveLeft();
+      else this.moveRight();
+    }, 100);
+  }
+
+  /**
+   * Endboss is dead
+   * @param {number} intervalId
+   */
   endbossIsDead(intervalId) {
     if (this.end == 1) {
       this.stopAnimation(intervalId);
@@ -253,6 +264,10 @@ class Endboss extends MovableObject {
     this.stopAnimation(this.intervalAttack);
   }
 
+  /**
+   * Endboss defeated
+   * @param {number} lastInterval
+   */
   endbossDefeated(lastInterval) {
     pauseSound(ENDBOSS_SOUND);
     playSound(CHICKEN_SOUND);
