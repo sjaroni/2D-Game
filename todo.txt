@@ -1,4 +1,3 @@
-//TODO - bottleanimation after help
 //TODO - endboss-animation
 
 //TODO - Checkliste DA

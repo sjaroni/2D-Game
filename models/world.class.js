@@ -62,57 +62,90 @@ class World {
     this.checkCollisionsEnemies();
     this.checkCollectingCoin();
     this.checkCollectingBottle();
+    this.addNewBottle();
   }
 
+  /**
+   * Check collisions with enemies
+   */
   checkCollisionsEnemies() {
     this.level.enemies.forEach((enemy) => {
       if (this.isOtherDirectionToEnemy(enemy)) enemy.otherDirection = true;
       else enemy.otherDirection = false;
 
-      if (
-        this.character.isColliding(enemy) &&
-        enemy.energy != 0 &&
-        this.character.energy > 0 &&
-        this.character.isAboveGroundCharacter() == false
-      ) {
-        this.character.hit(2);
-        this.statusBarHealth.setPercentage(this.character.energy);
-      } else {
-        if (
-          (enemy instanceof Chicken || enemy instanceof ChickenSmall) &&
-          this.character.isCollidingFromTop(enemy) &&
-          this.character.isAboveGroundCharacter()
-        ) {
-          enemy.hit(100);
-        }
-      }
+      if (this.isCharacterCollidingEnemy(enemy)) this.characterDamage();
+      else if (this.isCharacterJumpingOnEnemy(enemy)) enemy.hit(100);
 
       if (this.throwableObjects.length !== 0) {
-        if (this.throwableObjects[0].isColliding(enemy)) {
-          this.throwableObjects[0].speed = 0;
-          this.throwableObjects[0].bottleSplash();
-
-          if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
-            enemy.hit(100);
-          }
-          if (enemy instanceof Endboss && this.nextHit == 0) {
-            enemy.hit(20);
-            this.statusBarEndboss.setPercentage(enemy.energy);
-            this.nextHit = 50;
-          }
-        }
-
-        if (enemy instanceof Endboss) {
-          if (this.nextHit < 1) {
-            this.nextHit = 0;
-          } else {
-            this.nextHit--;
-          }
-        }
+        this.bottleIsColliding(enemy);
+        this.endbossNextHit(enemy);
       }
-
-      this.addNewBottle();
     });
+  }
+
+  /**
+   * Check if character is colliding enemy
+   * @param {object} enemy
+   * @returns true/false
+   */
+  isCharacterCollidingEnemy(enemy) {
+    return (
+      this.character.isColliding(enemy) &&
+      enemy.energy != 0 &&
+      this.character.energy > 0 &&
+      this.character.isAboveGroundCharacter() == false
+    );
+  }
+
+  /**
+   * Check if character is jumping on enemy
+   * @param {object} enemy
+   * @returns true/false
+   */
+  isCharacterJumpingOnEnemy(enemy) {
+    return (
+      (enemy instanceof Chicken || enemy instanceof ChickenSmall) &&
+      this.character.isCollidingFromTop(enemy) &&
+      this.character.isAboveGroundCharacter()
+    );
+  }
+
+  /**
+   * Bottle collides with enemy
+   * @param {object} enemy
+   */
+  bottleIsColliding(enemy) {
+    if (this.throwableObjects[0].isColliding(enemy)) {
+      this.throwableObjects[0].speed = 0;
+      this.throwableObjects[0].bottleSplash();
+
+      if (enemy instanceof Chicken || enemy instanceof ChickenSmall)
+        enemy.hit(100);
+      if (enemy instanceof Endboss && this.nextHit == 0) {
+        enemy.hit(20);
+        this.statusBarEndboss.setPercentage(enemy.energy);
+        this.nextHit = 50;
+      }
+    }
+  }
+
+  /**
+   * Allow next hit on endboss
+   * @param {object} enemy
+   */
+  endbossNextHit(enemy) {
+    if (enemy instanceof Endboss) {
+      if (this.nextHit < 1) this.nextHit = 0;
+      else this.nextHit--;
+    }
+  }
+
+  /**
+   * Character Damage
+   */
+  characterDamage() {
+    this.character.hit(2);
+    this.statusBarHealth.setPercentage(this.character.energy);
   }
 
   /**
@@ -148,7 +181,7 @@ class World {
 
   /**
    * Check position character and current enemy
-   * @param {object} enemy 
+   * @param {object} enemy
    * @returns true/false
    */
   isOtherDirectionToEnemy(enemy) {
@@ -185,70 +218,91 @@ class World {
     });
   }
 
+  /**
+   * Check throwing a bottle
+   */
   checkThrowObjects() {
     let offsetBottle;
-    if (this.character.otherDirection == true) {
-      offsetBottle = -10;
-    } else {
-      offsetBottle = 100;
-    }
+    if (this.character.otherDirection == true) offsetBottle = -10;
+    else offsetBottle = 100;
 
-    if (
-      this.keyboard.KEYD &&
-      this.collectedBottles > 0 &&
-      this.nextThrow == 0
-    ) {
-      let bottle = new ThrowableObject(
-        this.character.x + offsetBottle,
-        this.character.y + 100,
-        this.character.otherDirection,
-      );
+    if (this.canThrowBottle()) this.throwBottle(offsetBottle);
 
-      this.nextThrow = 40;
-
-      playSound(THROW_SOUND);
-
-      this.throwableObjects.push(bottle);
-      this.collectedBottles--;
-      this.statusBarBottle.collected('Bottles');
-    }
     if (this.nextThrow < 1) {
       this.nextThrow = 0;
       this.throwableObjects = [];
-    } else {
-      this.nextThrow--;
-    }
+    } else this.nextThrow--;
+  }
+
+  /**
+   * Check if able to throw a new bottle
+   * @returns true/false
+   */
+  canThrowBottle() {
+    return (
+      this.keyboard.KEYD && this.collectedBottles > 0 && this.nextThrow == 0
+    );
+  }
+
+  /**
+   * Throw bottle
+   * @param {number} offsetBottle
+   */
+  throwBottle(offsetBottle) {
+    let bottle = new ThrowableObject(
+      this.character.x + offsetBottle,
+      this.character.y + 100,
+      this.character.otherDirection,
+    );
+
+    this.nextThrow = 40;
+    playSound(THROW_SOUND);
+
+    this.throwableObjects.push(bottle);
+    this.collectedBottles--;
+    this.statusBarBottle.collected('Bottles');
   }
 
   reachedEndboss() {
     let enemies = world.level.enemies;
     let endboss = enemies[enemies.length - 1];
 
-    if (
+    if (this.isEndbossReached(endboss)) this.endbossReached(endboss);
+    else if (this.isEndbossLeft(endboss)) this.endbossLeft();
+  }
+
+  isEndbossReached(endboss) {
+    return (
       endboss.x - this.character.x <= 570 &&
       endboss.x &&
       !ENDBOSS_REACHED &&
       endboss.energy > 0
-    ) {
-      ENDBOSS_REACHED = true;
-      this.endboss_reached();
-      if (!ENDBOSS_FIRST_CONTACT) {
-        playSound(ALARM_SOUND);
-      }
+    );
+  }
 
-      if (!ENDBOSS_FIRST_CONTACT) {
-        endboss.startInterval();
-        ENDBOSS_FIRST_CONTACT = true;
-      }
-    } else if (
+  endbossReached(endboss) {
+    ENDBOSS_REACHED = true;
+    this.endboss_reached();
+    if (!ENDBOSS_FIRST_CONTACT) playSound(ALARM_SOUND);
+
+    if (!ENDBOSS_FIRST_CONTACT) {
+      endboss.startInterval();
+      ENDBOSS_FIRST_CONTACT = true;
+    }
+  }
+
+  isEndbossLeft(endboss) {
+    return (
       endboss.x - this.character.x > 570 &&
       ENDBOSS_REACHED &&
       endboss.energy > 0
-    ) {
-      ENDBOSS_REACHED = false;
-      pauseSound(ENDBOSS_SOUND);
-      this.endboss_left();
-    }
+    );
+  }
+
+  endbossLeft() {
+    ENDBOSS_REACHED = false;
+    pauseSound(ENDBOSS_SOUND);
+    this.endboss_left();
   }
 
   /**
@@ -303,7 +357,7 @@ class World {
 
   /**
    * Adding objects to map
-   * @param {object} objects 
+   * @param {object} objects
    */
   addObjectsToMap(objects) {
     objects.forEach((o) => {
@@ -313,7 +367,7 @@ class World {
 
   /**
    * Add object to map
-   * @param {object} objects 
+   * @param {object} objects
    */
   addToMap(mo) {
     if (mo.otherDirection) this.flipImage(mo);
@@ -327,7 +381,7 @@ class World {
 
   /**
    * Add text on canvas
-   * @param {object} mo 
+   * @param {object} mo
    */
   addTextToMap(mo) {
     mo.drawText(this.ctx);
@@ -335,7 +389,7 @@ class World {
 
   /**
    * Reflect image
-   * @param {object} mo 
+   * @param {object} mo
    */
   flipImage(mo) {
     this.ctx.save();
@@ -346,7 +400,7 @@ class World {
 
   /**
    * Reflect image back to normal
-   * @param {object} mo 
+   * @param {object} mo
    */
   flipImageBack(mo) {
     mo.x = mo.x * -1;
@@ -359,7 +413,7 @@ class World {
   endboss_reached() {
     document.getElementById('canvas').classList.add('alarm');
   }
- 
+
   endboss_left() {
     document.getElementById('canvas').classList.remove('alarm');
   }
