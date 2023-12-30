@@ -52,7 +52,7 @@ class MovableObject extends DrawableObject {
 
   /**
    * Object was been hit
-   * @param {number} deduction 
+   * @param {number} deduction
    */
   hit(deduction) {
     this.energy -= deduction;
@@ -80,7 +80,7 @@ class MovableObject extends DrawableObject {
 
   /**
    * Check if character is colliding with object
-   * @param {object} mo 
+   * @param {object} mo
    * @returns true/false
    */
   isColliding(mo) {
@@ -94,7 +94,7 @@ class MovableObject extends DrawableObject {
 
   /**
    * Check if character jumps on object
-   * @param {object} mo 
+   * @param {object} mo
    * @returns true/false
    */
   isCollidingFromTop(mo) {

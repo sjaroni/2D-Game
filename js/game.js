@@ -66,7 +66,7 @@ function help() {
   stopGame();
   GAME_IS_PAUSED = !GAME_IS_PAUSED;
   if (GAME_IS_PAUSED) {
-    document.getElementById('startBtn').classList.add('d-none');    
+    document.getElementById('startBtn').classList.add('d-none');
   } else {
     document.getElementById('startBtn').classList.remove('d-none');
     continueGame();
@@ -432,8 +432,8 @@ function switchFirstStart() {
 }
 
 /**
-* Show story or manual on help-menu
-*/
+ * Show story or manual on help-menu
+ */
 function showStory() {
   document.getElementById('story').classList.remove('d-none');
   document.getElementById('manual').classList.add('d-none');

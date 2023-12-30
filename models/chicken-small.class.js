@@ -62,9 +62,9 @@ class ChickenSmall extends MovableObject {
 
   /**
    * /**
-   * Check which animation is active   
-   * @param {number} intervalId 
-   * @param {number} intervalIdWalking 
+   * Check which animation is active
+   * @param {number} intervalId
+   * @param {number} intervalIdWalking
    */
   playChicken(intervalId, intervalIdWalking) {
     if (this.isDead()) this.chickenIsDead(intervalId, intervalIdWalking);
@@ -73,8 +73,8 @@ class ChickenSmall extends MovableObject {
 
   /**
    * Play animation dead
-   * @param {number} intervalId 
-   * @param {number} intervalIdWalking 
+   * @param {number} intervalId
+   * @param {number} intervalIdWalking
    */
   chickenIsDead(intervalId, intervalIdWalking) {
     playSound(CHICKEN_SMALL_SOUND);

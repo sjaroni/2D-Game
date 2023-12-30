@@ -1,6 +1,5 @@
 //TODO - endboss-animation
 
 //TODO - Checkliste DA
-//TODO - code einrücken mit SHIFT+Option+F
 //TODO - auf Handy testen
 //TODO - auf FTP testen

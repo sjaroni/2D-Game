@@ -76,6 +76,24 @@ class Endboss extends MovableObject {
     this.animate();
   }
 
+  /**
+   * Start animation and intervals
+   */
+  animate() {
+    let intervalId = setInterval(() => {
+      if (this.isDead() && this.energy == 0) {
+        this.end++;
+        this.endbossIsDead(intervalId);
+        this.hideObject();
+      } else if (this.isHurt() && this.reloadCounter <= 0) {
+        this.endbossIsHurt(intervalId);
+      }
+    }, 50);
+  }
+
+  /**
+   * Switch intervals
+   */
   startInterval() {
     switch (this.intervalNum) {
       case 1:
@@ -94,33 +112,48 @@ class Endboss extends MovableObject {
     }
   }
 
+  /**
+   * Start interval walking
+   */
   startWalkingInterval() {
     if (this.energy > 0) {
       playSound(ENDBOSS_SOUND);
 
-      this.intervalWalking = setInterval(() => {
-        if (!this.otherDirection) {
-          this.moveLeft();
-        } else {
-          this.moveRight();
-        }
-
-        this.playAnimation(this.IMAGES_WALKING);
-        this.initIntervalAttack = 0;
-        if (this.initIntervalWalking == 5) {
-          this.stopAnimation(this.intervalWalking);
-          this.intervalNum = 2;
-          this.startInterval();
-        }
-        this.initIntervalWalking++;
-      }, 50);
+      this.intervalWalking = setInterval(() => this.endbossWalks(), 50);
     }
   }
 
+  /**
+   * Endboss walks
+   */
+  endbossWalks() {
+    if (!this.otherDirection) this.moveLeft();
+    else this.moveRight();
+
+    this.playAnimation(this.IMAGES_WALKING);
+    this.initIntervalAttack = 0;
+    if (this.initIntervalWalking == 5) {
+      this.stopAnimation(this.intervalWalking);
+      this.intervalNum = 2;
+      this.startInterval();
+    }
+    this.initIntervalWalking++;
+  }
+
+  /**
+   * Start endboss alert-animation
+   */
   startAlertInterval() {
     if (this.energy > 0) {
-      this.intervalAlert = setInterval(() => {
-        this.playAnimation(this.IMAGES_ALERT);
+      this.intervalAlert = setInterval(() => this.endbossAlert(), 400);
+    }
+  }
+
+  /**
+   * Endboss alerting
+   */
+  endbossAlert(){
+    this.playAnimation(this.IMAGES_ALERT);
         this.initIntervalWalking = 0;
         if (this.initIntervalAlert == 5) {
           this.stopAnimation(this.intervalAlert);
@@ -128,14 +161,22 @@ class Endboss extends MovableObject {
           this.startInterval();
         }
         this.initIntervalAlert++;
-      }, 400);
+  }
+
+  /**
+   * Start endboss attack-animation
+   */
+  startAttackInterval() {
+    if (this.energy > 0) {
+      this.intervalAttack = setInterval(() => this.endbossAttacks(), 400);
     }
   }
 
-  startAttackInterval() {
-    if (this.energy > 0) {
-      this.intervalAttack = setInterval(() => {
-        this.playAnimation(this.IMAGES_ATTACK);
+  /**
+   * Endboss attacks
+   */
+  endbossAttacks(){
+    this.playAnimation(this.IMAGES_ATTACK);
         this.initIntervalAlert = 0;
         if (this.initIntervalAttack == 6) {
           this.stopAnimation(this.intervalAttack);
@@ -143,22 +184,12 @@ class Endboss extends MovableObject {
           this.startInterval();
         }
         this.initIntervalAttack++;
-      }, 400);
-    }
   }
 
-  animate() {
-    let intervalId = setInterval(() => {
-      if (this.isDead() && this.energy == 0) {
-        this.end++;
-        this.endbossIsDead(intervalId);
-        this.hideObject();
-      } else if (this.isHurt() && this.reloadCounter <= 0) {
-        this.endbossIsHurt(intervalId);
-      }
-    }, 50);
-  }
-
+  /**
+   * Reload animations
+   * @param {number} intervalId
+   */
   reloadAnimations(intervalId) {
     setTimeout(() => {
       this.stopAnimation(intervalId);
@@ -171,38 +202,11 @@ class Endboss extends MovableObject {
     }, 200);
   }
 
-  endbossIsDead(intervalId) {
-    if (this.end == 1) {
-      this.stopAnimation(intervalId);
-
-      let lastInterval = setInterval(() => {
-        this.playAnimation(this.IMAGES_DEAD);
-      }, 400);
-
-      setTimeout(() => {
-        pauseSound(ENDBOSS_SOUND);
-        playSound(CHICKEN_SOUND);
-        playSound(WIN_SOUND);
-
-        this.stopAnimation(this.intervalWalking);
-        this.stopAnimation(this.intervalAlert);
-        this.stopAnimation(this.intervalAttack);
-
-        setTimeout(() => {
-          this.stopAnimation(lastInterval);
-          this.y = 100;
-          this.loadImage(this.IMAGES_DEAD[2]);
-          ENDBOSS_IS_DEAD = true;
-          GAME_IS_OVER = true;
-        }, 1200);
-      }, 300);
-    }
-  }
-
   endbossIsHurt(intervalId) {
-    let endbossIsHurtInterval = setInterval(() => {
-      this.playAnimation(this.IMAGES_HURT);
-    }, 200);
+    let endbossIsHurtInterval = setInterval(
+      () => this.playAnimation(this.IMAGES_HURT),
+      200,
+    );
 
     pauseSound(ENDBOSS_SOUND);
     playSound(CHICKEN_SOUND);
@@ -213,21 +217,55 @@ class Endboss extends MovableObject {
       this.stopAnimation(endbossIsHurtInterval);
       this.intervalAfterHurt = setInterval(() => {
         this.playAnimation(this.IMAGES_WALKING);
-        if (!this.otherDirection) {
-          this.moveLeft();
-        } else {
-          this.moveRight();
-        }
+        if (!this.otherDirection) this.moveLeft();
+        else this.moveRight();
       }, 100);
     }, 800);
 
-    this.stopAnimation(this.intervalWalking);
-    this.stopAnimation(this.intervalAlert);
-    this.stopAnimation(this.initIntervalAttack);
+    this.enbossStopAnimations();
 
     setTimeout(() => {
       this.stopAnimation(this.intervalAfterHurt);
       this.reloadAnimations(intervalId);
     }, 2200);
+  }
+
+  endbossIsDead(intervalId) {
+    if (this.end == 1) {
+      this.stopAnimation(intervalId);
+
+      let lastInterval = setInterval(() => {
+        this.playAnimation(this.IMAGES_DEAD);
+      }, 400);
+
+      setTimeout(() => {
+        this.endbossDefeated(lastInterval);
+      }, 300);
+    }
+  }
+
+  /**
+   * Stop animations
+   */
+  enbossStopAnimations() {
+    this.stopAnimation(this.intervalWalking);
+    this.stopAnimation(this.intervalAlert);
+    this.stopAnimation(this.intervalAttack);
+  }
+
+  endbossDefeated(lastInterval) {
+    pauseSound(ENDBOSS_SOUND);
+    playSound(CHICKEN_SOUND);
+    playSound(WIN_SOUND);
+
+    this.enbossStopAnimations();
+
+    setTimeout(() => {
+      this.stopAnimation(lastInterval);
+      this.y = 100;
+      this.loadImage(this.IMAGES_DEAD[2]);
+      ENDBOSS_IS_DEAD = true;
+      GAME_IS_OVER = true;
+    }, 1200);
   }
 }

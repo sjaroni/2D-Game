@@ -53,7 +53,7 @@ class ThrowableObject extends MovableObject {
         if (this.speed !== 0) this.x += this.otherDirection ? -10 : 10;
       } else if (this.speed !== 0) {
         this.speed = 0;
-        this.bottleSplash();        
+        this.bottleSplash();
       }
     }, 1000 / 25);
   }
@@ -62,7 +62,7 @@ class ThrowableObject extends MovableObject {
     let now = new Date().getTime();
     this.stopAnimation(this.throwIntervalId);
 
-    if(now - this.lastPlaySound >= 2000){
+    if (now - this.lastPlaySound >= 2000) {
       playSound(GLASS_SOUND);
       this.lastPlaySound = now;
     }

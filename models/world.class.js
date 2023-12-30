@@ -263,6 +263,9 @@ class World {
     this.statusBarBottle.collected('Bottles');
   }
 
+  /**
+   * Check distance to endboss
+   */
   reachedEndboss() {
     let enemies = world.level.enemies;
     let endboss = enemies[enemies.length - 1];
@@ -271,6 +274,11 @@ class World {
     else if (this.isEndbossLeft(endboss)) this.endbossLeft();
   }
 
+  /**
+   * Check if character reached endboss
+   * @param {object} endboss
+   * @returns true/false
+   */
   isEndbossReached(endboss) {
     return (
       endboss.x - this.character.x <= 570 &&
@@ -280,6 +288,10 @@ class World {
     );
   }
 
+  /**
+   * endboss reached
+   * @param {object} endboss
+   */
   endbossReached(endboss) {
     ENDBOSS_REACHED = true;
     this.endboss_reached();
@@ -291,6 +303,11 @@ class World {
     }
   }
 
+  /**
+   * Check if character leaves endboss
+   * @param {object} endboss
+   * @returns true/false
+   */
   isEndbossLeft(endboss) {
     return (
       endboss.x - this.character.x > 570 &&
@@ -299,6 +316,9 @@ class World {
     );
   }
 
+  /**
+   * endboss left
+   */
   endbossLeft() {
     ENDBOSS_REACHED = false;
     pauseSound(ENDBOSS_SOUND);

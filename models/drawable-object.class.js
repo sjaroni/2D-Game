@@ -19,7 +19,7 @@ class DrawableObject {
 
   /**
    * Load image from path
-   * @param {string} path 
+   * @param {string} path
    */
   loadImage(path) {
     this.img = new Image();
@@ -40,7 +40,7 @@ class DrawableObject {
 
   /**
    * Draw images on canvas
-   * @param {object} ctx 
+   * @param {object} ctx
    */
   draw(ctx) {
     ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
@@ -48,7 +48,7 @@ class DrawableObject {
 
   /**
    * Draw text on canvas
-   * @param {object} ctx 
+   * @param {object} ctx
    */
   drawText(ctx) {
     ctx.font = '40px zabars';
@@ -58,7 +58,7 @@ class DrawableObject {
 
   /**
    * Draw frames for debugging
-   * @param {object} ctx 
+   * @param {object} ctx
    */
   drawFrame(ctx) {
     if (this.isInstanceOf()) this.drawOuterWhiteFrame(ctx);
@@ -66,7 +66,7 @@ class DrawableObject {
 
   /**
    * Draw frames for debugging
-   * @param {object} ctx 
+   * @param {object} ctx
    */
   drawInnerFrame(ctx) {
     if (this.isInstanceOf()) this.drawInnerRedFrame(ctx);
@@ -90,7 +90,7 @@ class DrawableObject {
 
   /**
    * Draw frame on images
-   * @param {object} ctx 
+   * @param {object} ctx
    */
   drawOuterWhiteFrame(ctx) {
     ctx.beginPath();
@@ -102,7 +102,7 @@ class DrawableObject {
 
   /**
    * Draw frame with offset
-   * @param {object} ctx 
+   * @param {object} ctx
    */
   drawInnerRedFrame(ctx) {
     ctx.beginPath();
