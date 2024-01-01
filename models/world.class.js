@@ -122,7 +122,7 @@ class World {
       if (enemy instanceof Chicken || enemy instanceof ChickenSmall)
         enemy.hit(100);
       if (enemy instanceof Endboss && this.nextHit == 0) {
-        enemy.hit(20);
+        enemy.hit(16.7);
         this.statusBarEndboss.setPercentage(enemy.energy);
         this.nextHit = 50;
       }

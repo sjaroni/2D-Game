@@ -66,8 +66,7 @@ h2 {
 #start-endscreen {
   position: absolute;
   z-index: 3;
-  animation: rotateAndScale 0.5s linear forwards;
-  object-fit: cover;
+  animation: rotateAndScale 0.5s linear forwards;  
   display: flex;
   align-items: baseline;
   justify-content: center;

@@ -1,1 +1,11 @@
-//TODO - auf Handy testen
+//TODO - Aufruf Sound - Fehlermeldung (Google)
+//TODO - keine musik bei Start/im Spiel? wg. Fehler
+
+//TODO - Jump auf Gegner - nur wenn selbst nicht hit
+//TODO - Pepe soll beim Anhalten immer in Startposition wechseln (auch nach Jump)
+//TODO - Idle-Modus zu langsam (1-2 sekunden)
+
+//TODO - berührt gleich Schaden
+
+//TODO - iPhone SE geht nicht
+//TODO - IpadAir - Hochkant Touchbuttons (keyboard:.class.js:23)

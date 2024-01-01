@@ -17,7 +17,8 @@ const WIN_SOUND = new Audio('audio/win.mp3');
 const LOST_SOUND = new Audio('audio/lost.mp3');
 
 function playSound(sound) {
-  if (SOUND_ON) {
+  if (SOUND_ON) {    
+    sound.volume = 0.1;
     sound.play();
   }
 }
@@ -31,11 +32,5 @@ function pauseSound(sound) {
 function loopSound(sound) {
   if (SOUND_ON) {
     sound.loop = true;
-  }
-}
-
-function volumeSound(sound) {
-  if (SOUND_ON) {
-    sound.volume = 0.1;
   }
 }

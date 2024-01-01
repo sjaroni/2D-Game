@@ -114,7 +114,10 @@ class Character extends MovableObject {
     if (this.canMoveLeft()) this.moveLeft();
     if (this.world.keyboard.KEYD) this.stopIdle();
     if (this.canJump()) this.jump();
-    if (this.iAmIdle == 300) this.playIdleAnimation(300);
+    
+    //if (this.iAmIdle == 300) this.playIdleAnimation(300);
+    if (this.iAmIdle == 200) this.playIdleAnimation(300);
+
     this.iAmIdle++;
   }
 
