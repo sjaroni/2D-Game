@@ -6,11 +6,8 @@ https://developer.chrome.com/blog/play-request-was-interrupted?hl=de
 
 //TODO - berührt gleich Schaden
 
-
 //TODO - Scrollbars entfernen
 //TODO - iPhone SE geht nicht (667 * 375)
 //TODO - iPhone 5 (568 * 320)
-
-
 
 //TODO - IpadAir - Hochkant Touchbuttons (keyboard:.class.js:23)

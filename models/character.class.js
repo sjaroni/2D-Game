@@ -102,7 +102,7 @@ class Character extends MovableObject {
     setInterval(() => this.moveCharacter(), 1000 / 60);
     const intervalId = setInterval(() => this.playCharacter(intervalId), 50);
     setInterval(() => this.checkCameraPosition(), 1000 / 60);
-    setInterval(() => this.checkMoving(), 1000);
+    setInterval(() => this.checkMoving(), 500);
   }
 
   /**
@@ -115,24 +115,30 @@ class Character extends MovableObject {
     if (this.canMoveLeft()) this.moveLeft();
     if (this.world.keyboard.KEYD) this.stopIdle();
     if (this.canJump()) this.jump();    
-    
-    //if (this.iAmIdle == 300) this.playIdleAnimation(300);
     if (this.iAmIdle == 200) this.playIdleAnimation(300);
-
     this.iAmIdle++;
   }
 
-
+  /**
+   * Check if character is not Moving
+   */
   checkMoving(){
     if(this.isNotMoving()) this.notMoving();
   }
 
+  /**
+   * Not moving
+   * @returns true/false
+   */
   isNotMoving(){
-     return !this.canMoveRight() && !this.canMoveLeft()  && !this.canJump();
+     return !this.canMoveRight() && !this.canMoveLeft() && !this.canJump() && this.iAmIdle < 200;
   }
 
-  notMoving(){
-      this.loadImage(this.IMAGES_IDLE[1]);
+  /**
+   * Show idle-picture
+   */
+  notMoving(){  
+    this.loadImage(this.IMAGES_IDLE[1]);
   }
 
   /**
