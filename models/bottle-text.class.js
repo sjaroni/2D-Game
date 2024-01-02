@@ -25,7 +25,7 @@ class BottleText extends StatusIcons {
    */
   hideInfo() {
     setInterval(() => {
-      if (this.counter == 120) {
+      if (this.counter == 80) {
         ADD_NEW_BOTTLE = false;
         clearInterval(this.intervalTextId);
         this.counter = 0;

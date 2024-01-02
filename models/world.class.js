@@ -93,7 +93,7 @@ class World {
       this.character.isColliding(enemy) &&
       enemy.energy != 0 &&
       this.character.energy > 0 &&
-      this.character.isAboveGroundCharacter() == false
+      !this.character.isAboveGroundCharacter()
     );
   }
 
@@ -103,7 +103,7 @@ class World {
    * @returns true/false
    */
   isCharacterJumpingOnEnemy(enemy) {
-    return (
+    return (      
       (enemy instanceof Chicken || enemy instanceof ChickenSmall) &&
       this.character.isCollidingFromTop(enemy) &&
       this.character.isAboveGroundCharacter() && !this.character.isHurt()
@@ -143,7 +143,8 @@ class World {
   /**
    * Character Damage
    */
-  characterDamage() {
+  characterDamage() {    
+    console.log('aua');
     this.character.hit(2);
     this.statusBarHealth.setPercentage(this.character.energy);
   }
@@ -321,7 +322,6 @@ class World {
    */
   endbossLeft() {
     ENDBOSS_REACHED = false;
-    pauseSound(ENDBOSS_SOUND);
     this.endboss_left();
   }
 

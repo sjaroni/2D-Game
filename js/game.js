@@ -46,6 +46,7 @@ function gameStart() {
   ENDBOSS_IS_DEAD = false;
   GAME_IS_STARTED = true;
   GAME_IS_OVER = false;
+  checkMusic();
   initLevel();
   init();
 }
@@ -219,7 +220,10 @@ function checkMusic() {
     musicImg.src = 'img/menu/music_on.png';
     MUSIC_SOUND.loop = true;
     MUSIC_SOUND.volume = 0.1;
-    MUSIC_SOUND.play();
+    //
+    if(GAME_IS_STARTED){
+      MUSIC_SOUND.play();
+    }
   }
   musicBtn.blur();
 }
@@ -337,6 +341,8 @@ function isThisFirstStart() {
  */
 function setFirstStart() {
   storeValue('GAME_FIRST_START', GAME_FIRST_START);
+  storeValue('MUSIC_ON', false);
+  storeValue('SOUND_ON', false);
   document.getElementById('helpBtn').classList.add('alarm2');
 }
 

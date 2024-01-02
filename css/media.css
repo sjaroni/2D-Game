@@ -48,7 +48,7 @@
 @media only screen and (max-height: 480px) {
   canvas,
   #start-endscreen {
-    height: 100vh;
+    height: 100vh !important;
     margin: 0;
   }
 
@@ -75,13 +75,14 @@
   }
 
   body{
-    background-size: auto !important;
+    background-size: auto !important;   
+    width: 100% !important;
   }
 }
 
 @media only screen and (max-width: 320px) {
   .content {
-    width: 100% !important;
+    width: 640px !important;
   }
 }
 
