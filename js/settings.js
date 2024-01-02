@@ -1,5 +1,5 @@
 let FULLSCREEN = false;
-let DRAWALLFRAMES = true;
+let DRAWALLFRAMES = false;
 
 let ENDBOSS_REACHED = false;
 let ENDBOSS_FIRST_CONTACT = false;
