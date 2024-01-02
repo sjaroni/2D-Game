@@ -144,7 +144,6 @@ class World {
    * Character Damage
    */
   characterDamage() {    
-    console.log('aua');
     this.character.hit(2);
     this.statusBarHealth.setPercentage(this.character.energy);
   }
