@@ -2,8 +2,6 @@
 //TODO - keine musik bei Start/im Spiel? wg. Fehler
 https://developer.chrome.com/blog/play-request-was-interrupted?hl=de
 
-//TODO - Jump auf Gegner - nur wenn selbst nicht hit
-
 //TODO - berührt gleich Schaden
 
 //TODO - Scrollbars entfernen

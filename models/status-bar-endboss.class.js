@@ -30,17 +30,17 @@ class StatusBarEndboss extends StatusIcons {
   }
 
   resolveImageIndex() {
-    if (this.percentage <= 100 && this.percentage > 83.3) {
+    if (this.percentage <= 100 && this.percentage > 80) {
       return 5;
-    } else if (this.percentage <= 83.3 && this.percentage > 66.6) {
+    } else if (this.percentage <= 80 && this.percentage > 60) {
       return 4;
-    } else if (this.percentage <= 66.6 && this.percentage > 49.9) {
+    } else if (this.percentage <= 60 && this.percentage > 40) {
       return 3;
-    } else if (this.percentage <= 49.9 && this.percentage > 33.2) {
+    } else if (this.percentage <= 40 && this.percentage > 20) {
       return 2;
-    } else if (this.percentage <= 33.2 && this.percentage > 16.5) {
+    } else if (this.percentage <= 20 && this.percentage > 0) {
       return 1;
-    } else if (this.percentage <= 16.5) {
+    } else if (this.percentage == 0) {
       return 0;
     }
   }
