@@ -68,9 +68,14 @@
   }
 }
 
-@media only screen and (max-height: 370px) {
+@media only screen and (max-height: 375px) {
   #fullscreen {
     transform: scale(0.9) !important;
+    overflow: hidden;
+  }
+
+  body{
+    background-size: auto !important;
   }
 }
 
