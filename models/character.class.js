@@ -100,7 +100,7 @@ class Character extends MovableObject {
    */
   animate() {
     setInterval(() => this.moveCharacter(), 1000 / 60);
-    const intervalId = setInterval(() => this.playCharacter(intervalId), 50);
+    const intervalId = setInterval(() => this.playCharacter(intervalId), 130);
     setInterval(() => this.checkCameraPosition(), 1000 / 60);
     setInterval(() => this.checkMoving(), 500);
   }
@@ -114,7 +114,7 @@ class Character extends MovableObject {
     if (this.canMoveRight()) this.moveRight();
     if (this.canMoveLeft()) this.moveLeft();
     if (this.world.keyboard.KEYD) this.stopIdle();
-    if (this.canJump()) this.jump();    
+    if (this.canJump()) this.jump();
     if (this.iAmIdle == 200) this.playIdleAnimation(300);
     this.iAmIdle++;
   }
