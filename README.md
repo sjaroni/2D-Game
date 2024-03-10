@@ -1,0 +1,1 @@
+In this action-packed game, you take on the role of Pepe, the little Mexican, who embarks on a mission to defeat the crazy chickens and confront the feared final boss. Are you ready to showcase your skills? Your task is to navigate through this level, defeat the crazy chickens, collect coins, and ultimately conquer "El Pollo Loco."
