@@ -240,7 +240,7 @@ class World {
    */
   canThrowBottle() {
     return (
-      this.keyboard.KEYD && this.collectedBottles > 0 && this.nextThrow == 0
+      this.keyboard.KEYC && this.collectedBottles > 0 && this.nextThrow == 0
     );
   }
 

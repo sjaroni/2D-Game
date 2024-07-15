@@ -41,12 +41,12 @@ class Keyboard {
 
     document.getElementById('throwBtn').addEventListener('touchstart', (e) => {
       if (e.cancelable) e.preventDefault();
-      this.KEYD = true;
+      this.KEYC = true;
     });
 
     document.getElementById('throwBtn').addEventListener('touchend', (e) => {
       if (e.cancelable) e.preventDefault();
-      this.KEYD = false;
+      this.KEYC = false;
     });
 
     document.getElementById('jumpBtn').addEventListener('touchstart', (e) => {
@@ -86,12 +86,12 @@ class Keyboard {
 
     document.getElementById('throwBtn').addEventListener('click', (e) => {
       if (e.cancelable) e.preventDefault();
-      this.KEYD = true;
+      this.KEYC = true;
     });
 
     document.getElementById('throwBtn').addEventListener('mouseleave', (e) => {
       if (e.cancelable) e.preventDefault();
-      this.KEYD = false;
+      this.KEYC = false;
     });
     document.getElementById('jumpBtn').addEventListener('click', (e) => {
       if (e.cancelable) e.preventDefault();
